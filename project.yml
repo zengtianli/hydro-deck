@@ -1,0 +1,39 @@
+name: HydroDeck
+options:
+  bundleIdPrefix: cyou.tianli
+  deploymentTarget: { iOS: "18.0" }
+  createIntermediateGroups: true
+settings:
+  base:
+    CODE_SIGN_STYLE: Automatic
+    # 2026-08-29 起已开通付费 Developer Program(团队 B9LJH93LA4)。
+    DEVELOPMENT_TEAM: B9LJH93LA4
+    SWIFT_VERSION: "5.0"
+targets:
+  HydroDeck:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+      - path: Resources/Assets.xcassets
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: cyou.tianli.hydrodeck
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_CFBundleDisplayName: 水利助手
+        # 四方向全给:上 TestFlight 时 ASC 对 universal app 强制要求 iPad 分屏四方向不能缺,
+        # 只给 Portrait 会在上传阶段被拒(2026-08-29 wrong-book 实证)。
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        # 出口合规:只走系统 HTTPS,无自写加密 → 免每 build 的网页问卷。
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: 语音提问需要用麦克风收音
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: 把说的话转成文字填进输入框（发送仍由你确认）
+
+        MARKETING_VERSION: "0.1"
+        CURRENT_PROJECT_VERSION: "1"
+    scheme:
+      testTargets: []
+      configVariants: []
