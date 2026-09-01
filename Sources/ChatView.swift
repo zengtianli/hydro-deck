@@ -31,7 +31,7 @@ struct ChatView: View {
                             emptyHint
                         }
                         ForEach(model.turns) { turn in
-                            TurnView(turn: turn, speaker: speaker) { cite in
+                            TurnView(turn: turn, speaker: speaker, voice: voice) { cite in
                                 citationDoc = cite
                             }
                         }
@@ -213,6 +213,7 @@ struct ChatView: View {
     /// 自动发送 = 把错字发给 agent 再白等几十秒）。
     private var micButton: some View {
         Button {
+            speaker.stop()          // 录音与朗读共用 AVAudioSession，先停另一头（复审 finding）
             voice.toggle()
         } label: {
             Image(systemName: voice.recording ? "mic.fill" : "mic")
@@ -289,6 +290,7 @@ struct ChatView: View {
 private struct TurnView: View {
     let turn: TurnRecord
     let speaker: Speaker
+    let voice: VoiceInput
     let onCitation: (TurnRecord.CitationRecord) -> Void
 
     var body: some View {
@@ -306,6 +308,7 @@ private struct TurnView: View {
             MarkdownText(text: turn.answer)
             HStack(spacing: 12) {
                 Button {
+                    voice.stop()    // 朗读前停录音：.record category 挂着 TTS 无声（复审 finding）
                     speaker.toggle(turnId: turn.id, markdown: turn.answer)
                 } label: {
                     Image(systemName: speaker.speakingTurn == turn.id

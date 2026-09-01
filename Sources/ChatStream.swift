@@ -108,7 +108,11 @@ enum ChatStream {
                                 as? [String: Any],
                               let ev = decode(d) else { continue }
                         continuation.yield(ev)
-                        if isTerminal(ev.event) { break }
+                        // 只有 run.end 才提前收线。error（含 nonfatal=false）**不是**流终态：
+                        // 后端契约是「异常也必须发 error 再发 run.end」（runner.py），
+                        // fatal 后面往往跟着兜底成稿的 run.end —— 在这断线等于把救回来的
+                        // 答案扔了（复审实锤）。真崩溃后端自己会关连接，循环自然结束。
+                        if case .runEnd = ev.event { break }
                     }
                     continuation.finish()
                 } catch {
@@ -149,10 +153,13 @@ enum ChatStream {
                            lastSeq: d["last_seq"] as? Int ?? afterSeq)
     }
 
-    static func isTerminal(_ ev: AgentEvent) -> Bool {
+    /// 这条事件是否**收束了整个 run**（run.end，或孤儿合成句号）。
+    /// 非孤儿的 fatal 不算：契约保证它后面还有 run.end；真崩溃则由流关闭 + 取回收尾。
+    static func endsRun(_ ev: AgentEvent) -> Bool {
         switch ev {
-        case .runEnd, .fatal: return true
-        default: return false
+        case .runEnd:                       return true
+        case .fatal(_, let orphaned):       return orphaned
+        default:                            return false
         }
     }
 
@@ -187,8 +194,10 @@ enum ChatStream {
         case "error":
             let msg = (p["message"] as? String) ?? "未知错误"
             if p["nonfatal"] as? Bool ?? false { return wrap(.notice(message: msg)) }
-            let orphaned = (d["synthetic"] as? Bool ?? false)
-                        || (p["kind"] as? String) == "run_orphaned"
+            // 良性孤儿句号**只认 kind=run_orphaned**。synthetic:true 还覆盖泵线程异常/
+            // trace 坏行/无终态 bug —— 那些是必须报给用户的真实故障，判宽了会把后端
+            // 崩溃静默固化成「已停止」，用户以为是自己停的（复审实锤）。
+            let orphaned = (p["kind"] as? String) == "run_orphaned"
             return wrap(.fatal(message: msg, orphaned: orphaned))
         case "run.end":
             guard let terminal = p["terminal"] as? String else { return nil }
