@@ -10,10 +10,15 @@
 		03291E3F9B5D5A3BE7432648 /* ChatStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB2A8803A336C3FA30A84F /* ChatStream.swift */; };
 		06493E35C062F2503726B8CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56F788C5D56602321AF0A1B5 /* Assets.xcassets */; };
 		15B2D883BA5369C436005D7F /* MarkdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A128077426B2D9E1B4E117A9 /* MarkdownView.swift */; };
+		4308973613E8EC7F3F398479 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D87BB38F7D489727548FE6 /* HistoryView.swift */; };
+		4F4E696848163AF9BE425E9E /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73B45302D3FA3438BCC70 /* Speaker.swift */; };
 		9042FD5D2AC1FD5622719E30 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20100CF426813304A754C210 /* ChatModel.swift */; };
 		9E3038C927ADB92CB257A6BB /* VoiceInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD6093C75106F38F5413353 /* VoiceInput.swift */; };
 		A876476E1D0BA8C5B785EF07 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFBD2A3F6E1650F4B082CA /* ChatView.swift */; };
+		B8EB06E4BBC7C9E1B16086D4 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89FF64559DACD2F74ABF00A /* Store.swift */; };
 		BB1B35D800BD09E70930DD78 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F4E191BCF0B401C2B9F16 /* App.swift */; };
+		D1DB469BE53E5D1B157A4CD5 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279A1F082517B420D02B123 /* CameraPicker.swift */; };
+		D7176996C6FAA32AF435D03B /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF15F3AE3DAC2D065781C7 /* Backend.swift */; };
 		F5FFF323B84C4AB945264BF2 /* Gate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D76FDDE7B542FADB26C350F /* Gate.swift */; };
 /* End PBXBuildFile section */
 
@@ -21,12 +26,17 @@
 		08AB2A8803A336C3FA30A84F /* ChatStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatStream.swift; sourceTree = "<group>"; };
 		0D76FDDE7B542FADB26C350F /* Gate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gate.swift; sourceTree = "<group>"; };
 		20100CF426813304A754C210 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		5279A1F082517B420D02B123 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		56F788C5D56602321AF0A1B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87DFBD2A3F6E1650F4B082CA /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		9FFF15F3AE3DAC2D065781C7 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
 		A128077426B2D9E1B4E117A9 /* MarkdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownView.swift; sourceTree = "<group>"; };
+		BDA73B45302D3FA3438BCC70 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		C6A03AA5F9A89FB622DB7A3E /* HydroDeck.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HydroDeck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E05F4E191BCF0B401C2B9F16 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		E89FF64559DACD2F74ABF00A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		EFD6093C75106F38F5413353 /* VoiceInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceInput.swift; sourceTree = "<group>"; };
+		F4D87BB38F7D489727548FE6 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -34,11 +44,16 @@
 			isa = PBXGroup;
 			children = (
 				E05F4E191BCF0B401C2B9F16 /* App.swift */,
+				9FFF15F3AE3DAC2D065781C7 /* Backend.swift */,
+				5279A1F082517B420D02B123 /* CameraPicker.swift */,
 				20100CF426813304A754C210 /* ChatModel.swift */,
 				08AB2A8803A336C3FA30A84F /* ChatStream.swift */,
 				87DFBD2A3F6E1650F4B082CA /* ChatView.swift */,
 				0D76FDDE7B542FADB26C350F /* Gate.swift */,
+				F4D87BB38F7D489727548FE6 /* HistoryView.swift */,
 				A128077426B2D9E1B4E117A9 /* MarkdownView.swift */,
+				BDA73B45302D3FA3438BCC70 /* Speaker.swift */,
+				E89FF64559DACD2F74ABF00A /* Store.swift */,
 				EFD6093C75106F38F5413353 /* VoiceInput.swift */,
 			);
 			path = Sources;
@@ -141,11 +156,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB1B35D800BD09E70930DD78 /* App.swift in Sources */,
+				D7176996C6FAA32AF435D03B /* Backend.swift in Sources */,
+				D1DB469BE53E5D1B157A4CD5 /* CameraPicker.swift in Sources */,
 				9042FD5D2AC1FD5622719E30 /* ChatModel.swift in Sources */,
 				03291E3F9B5D5A3BE7432648 /* ChatStream.swift in Sources */,
 				A876476E1D0BA8C5B785EF07 /* ChatView.swift in Sources */,
 				F5FFF323B84C4AB945264BF2 /* Gate.swift in Sources */,
+				4308973613E8EC7F3F398479 /* HistoryView.swift in Sources */,
 				15B2D883BA5369C436005D7F /* MarkdownView.swift in Sources */,
+				4F4E696848163AF9BE425E9E /* Speaker.swift in Sources */,
+				B8EB06E4BBC7C9E1B16086D4 /* Store.swift in Sources */,
 				9E3038C927ADB92CB257A6BB /* VoiceInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +305,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "水利助手";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSCameraUsageDescription = "拍照上传给助手读图（表格/现场照片）";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "语音提问需要用麦克风收音";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "把说的话转成文字填进输入框（发送仍由你确认）";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -309,6 +330,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "水利助手";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSCameraUsageDescription = "拍照上传给助手读图（表格/现场照片）";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "语音提问需要用麦克风收音";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "把说的话转成文字填进输入框（发送仍由你确认）";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

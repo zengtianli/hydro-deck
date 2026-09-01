@@ -31,6 +31,7 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_NSMicrophoneUsageDescription: 语音提问需要用麦克风收音
         INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: 把说的话转成文字填进输入框（发送仍由你确认）
+        INFOPLIST_KEY_NSCameraUsageDescription: 拍照上传给助手读图（表格/现场照片）
 
         MARKETING_VERSION: "0.1"
         CURRENT_PROJECT_VERSION: "1"

@@ -1,26 +1,29 @@
 import Foundation
 
 // =============================================================================
-// hydro-agent 的 SSE 客户端。
+// hydro-agent 的 SSE 客户端 + 断线取回（catch-up）。
 //
 // 契约 SSOT = 后端 `obs/events.py`（判别字段 `type`，业务字段在 `payload`）。
-// 帧形状（后端 `app/sse.py::encode_frame`，实测三行 + 空行）：
-//     event: tool.call
-//     data: {"type":"tool.call","payload":{...},"seq":3,...}
-//     id: 3
-// 心跳是 `: ping` 注释帧（10s 一发），SSE 规范里冒号开头 = 注释，直接丢。
+// 帧形状（后端 `app/sse.py::encode_frame`）：`event:` / `data:` / `id:` 三行 + 空行；
+// 心跳是 `: ping` 注释帧（10s 一发），冒号开头 = SSE 注释，直接丢。
 //
-// **白名单消费**：只解下面 enum 里列的事件，未知 type 静默忽略 ——
-// 后端加诊断事件不需要动 app。三条硬语义（后端 2026-09-01 立的结构轴）：
+// **白名单消费**：只解 enum 里列的事件，未知 type 静默忽略。三条硬语义
+// （后端 2026-09-01 立的结构轴）：
 //   · answer.delta.reset == true → 新一稿第一段，清掉已累积正文再接
 //   · error.nonfatal == true    → 提示性事件，run 照常继续，不进错误态
 //   · run.end.answer            → 权威成稿，覆盖 delta 拼接结果
+//
+// **停止/断线语义**（web 参考实现 useAgentRun.ts + 后端 app/sse.py 的取消协议）：
+//   没有 cancel 端点 —— 客户端断开连接，后端在**当前步跑完后**自停；
+//   已生成部分从 GET /api/runs/{id}/events?after_seq=N 轮询取回（500ms 间隔），
+//   complete=true 收工。孤儿 run 的合成终态带 synthetic:true + kind=run_orphaned，
+//   那是传输层补的句号，不是 agent 报错，别当红色错误渲染。
 // =============================================================================
 
 struct Citation: Identifiable, Equatable {
     let id = UUID()
     let kind: String        // rag | tool
-    let source: String
+    let source: String      // rag → doc_id（kb.read_doc 同一命名空间，可回原文）
     let label: String?
 }
 
@@ -31,8 +34,15 @@ enum AgentEvent {
     case toolResult(name: String, ok: Bool, durationMs: Int)
     case answerDelta(text: String, reset: Bool)
     case notice(message: String)                       // error 且 nonfatal
-    case fatal(message: String)                        // error 且 !nonfatal（终态）
+    case fatal(message: String, orphaned: Bool)        // error 且 !nonfatal（终态）
     case runEnd(terminal: String, answer: String?, citations: [Citation], wallMs: Int)
+}
+
+/// 一帧解出来的事件 + 续传游标。seq 用于断线后 after_seq 续传。
+struct WireEvent {
+    let seq: Int
+    let runId: String
+    let event: AgentEvent
 }
 
 enum StreamError: Error {
@@ -58,7 +68,7 @@ enum ChatStream {
         c.httpCookieStorage = .shared
         c.httpShouldSetCookies = true
         // 流式请求的 request timeout 是「空闲间隔」不是总时长；后端 10s 一跳心跳，
-        // 60s 收不到任何字节才算断。
+        // 60s 收不到任何字节才算断（web 端 STALL_MS=90s，这里更紧一点即可）。
         c.timeoutIntervalForRequest = 60
         c.timeoutIntervalForResource = 600
         return URLSession(configuration: c)
@@ -66,9 +76,9 @@ enum ChatStream {
 
     /// 发一问，返回事件流。撞闸时抛 `StreamError.gateBlocked`，
     /// 由调用方决定「拿钥匙串密码换会话重试一次」还是「向人要密码」——
-    /// 重试策略不写死在这层（day-deck 的教训：只准重试一次，无限重试 = 拿错密码撞限流）。
-    static func open(message: String, sessionId: String?) async throws
-        -> AsyncThrowingStream<AgentEvent, Error>
+    /// 重试策略不写死在这层（day-deck 的教训：只准重试一次）。
+    static func open(message: String, sessionId: String?, imageIds: [String] = [])
+        async throws -> AsyncThrowingStream<WireEvent, Error>
     {
         var req = URLRequest(url: URL(string: base + "/api/chat/stream")!)
         req.httpMethod = "POST"
@@ -76,6 +86,7 @@ enum ChatStream {
         req.setValue("text/event-stream", forHTTPHeaderField: "Accept")
         var body: [String: Any] = ["message": message, "paradigm": "react"]
         if let sid = sessionId { body["session_id"] = sid }
+        if !imageIds.isEmpty { body["image_ids"] = imageIds }
         req.httpBody = try JSONSerialization.data(withJSONObject: body)
 
         let (bytes, resp) = try await session.bytes(for: req)
@@ -97,8 +108,7 @@ enum ChatStream {
                                 as? [String: Any],
                               let ev = decode(d) else { continue }
                         continuation.yield(ev)
-                        if case .runEnd = ev { break }
-                        if case .fatal = ev { break }
+                        if isTerminal(ev.event) { break }
                     }
                     continuation.finish()
                 } catch {
@@ -109,41 +119,87 @@ enum ChatStream {
         }
     }
 
+    // MARK: - 断线取回
+
+    struct CatchUpPage {
+        let events: [WireEvent]
+        let complete: Bool
+        let lastSeq: Int
+    }
+
+    /// 取一页补发事件。轮询循环（500ms、上限、终止条件）由调用方掌握 ——
+    /// 这层只做一次幂等 GET，方便按页喂 UI。
+    static func catchUpPage(runId: String, afterSeq: Int) async throws -> CatchUpPage {
+        let esc = runId.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? runId
+        let url = URL(string: base + "/api/runs/\(esc)/events?after_seq=\(afterSeq)")!
+        let (data, resp) = try await session.data(from: url)
+        if Gate.blocked(resp) { throw StreamError.gateBlocked }
+        let code = (resp as? HTTPURLResponse)?.statusCode ?? -1
+        guard code == 200 else {
+            throw StreamError.http(status: code,
+                                   body: String(String(data: data, encoding: .utf8)?.prefix(300) ?? ""))
+        }
+        guard let d = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let complete = d["complete"] as? Bool else {
+            throw StreamError.network("events 响应解不出 complete 字段")
+        }
+        let evs = (d["events"] as? [[String: Any]] ?? []).compactMap(decode)
+        return CatchUpPage(events: evs,
+                           complete: complete,
+                           lastSeq: d["last_seq"] as? Int ?? afterSeq)
+    }
+
+    static func isTerminal(_ ev: AgentEvent) -> Bool {
+        switch ev {
+        case .runEnd, .fatal: return true
+        default: return false
+        }
+    }
+
+    // MARK: - 解码
+
     /// 一条 wire dict → 事件。**不容错补默认值**：关键字段缺失就返回 nil 丢弃该帧，
     /// 而不是渲染一个猜出来的东西（day-deck 的 decode 规矩，同源）。
-    private static func decode(_ d: [String: Any]) -> AgentEvent? {
+    private static func decode(_ d: [String: Any]) -> WireEvent? {
         guard let type = d["type"] as? String else { return nil }
         let p = (d["payload"] as? [String: Any]) ?? [:]
+        let seq = d["seq"] as? Int ?? -1
+        let runId = d["run_id"] as? String ?? ""
+
+        func wrap(_ ev: AgentEvent) -> WireEvent { WireEvent(seq: seq, runId: runId, event: ev) }
+
         switch type {
         case "run.start":
             guard let sid = p["session_id"] as? String else { return nil }
-            return .runStart(sessionId: sid, provider: p["provider_selected"] as? String)
+            return wrap(.runStart(sessionId: sid, provider: p["provider_selected"] as? String))
         case "step.start":
             guard let i = p["index"] as? Int, let k = p["kind"] as? String else { return nil }
-            return .stepStart(index: i, kind: k)
+            return wrap(.stepStart(index: i, kind: k))
         case "tool.call":
             guard let n = p["name"] as? String else { return nil }
-            return .toolCall(name: n)
+            return wrap(.toolCall(name: n))
         case "tool.result":
             guard let n = p["name"] as? String, let ok = p["ok"] as? Bool else { return nil }
-            return .toolResult(name: n, ok: ok, durationMs: p["duration_ms"] as? Int ?? 0)
+            return wrap(.toolResult(name: n, ok: ok, durationMs: p["duration_ms"] as? Int ?? 0))
         case "answer.delta":
             guard let t = p["text"] as? String else { return nil }
-            return .answerDelta(text: t, reset: p["reset"] as? Bool ?? false)
+            return wrap(.answerDelta(text: t, reset: p["reset"] as? Bool ?? false))
         case "error":
             let msg = (p["message"] as? String) ?? "未知错误"
-            let nonfatal = p["nonfatal"] as? Bool ?? false
-            return nonfatal ? .notice(message: msg) : .fatal(message: msg)
+            if p["nonfatal"] as? Bool ?? false { return wrap(.notice(message: msg)) }
+            let orphaned = (d["synthetic"] as? Bool ?? false)
+                        || (p["kind"] as? String) == "run_orphaned"
+            return wrap(.fatal(message: msg, orphaned: orphaned))
         case "run.end":
             guard let terminal = p["terminal"] as? String else { return nil }
             let cites = (p["citations"] as? [[String: Any]] ?? []).compactMap { c -> Citation? in
                 guard let kind = c["kind"] as? String, let src = c["source"] as? String else { return nil }
                 return Citation(kind: kind, source: src, label: c["label"] as? String)
             }
-            return .runEnd(terminal: terminal,
-                           answer: p["answer"] as? String,
-                           citations: cites,
-                           wallMs: p["wall_ms"] as? Int ?? 0)
+            return wrap(.runEnd(terminal: terminal,
+                                answer: p["answer"] as? String,
+                                citations: cites,
+                                wallMs: p["wall_ms"] as? Int ?? 0))
         default:
             return nil        // llm.request / retrieve / verify / heartbeat 等：本 app 不消费
         }
