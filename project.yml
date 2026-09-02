@@ -1,25 +1,33 @@
 name: HydroDeck
 options:
   bundleIdPrefix: cyou.tianli
-  deploymentTarget: { iOS: "18.0" }
+  deploymentTarget: { iOS: "18.0", macOS: "15.0" }
   createIntermediateGroups: true
 settings:
   base:
     CODE_SIGN_STYLE: Automatic
     # 2026-08-29 起已开通付费 Developer Program(团队 B9LJH93LA4)。
     DEVELOPMENT_TEAM: B9LJH93LA4
+    ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
     SWIFT_VERSION: "5.0"
 targets:
   HydroDeck:
     type: application
-    platform: iOS
+    supportedDestinations: [iOS, macOS]
     sources:
+      # 总部共享：macOS 侧给 iOS-only SwiftUI 修饰符提供同名 no-op，调用点不改（multiplatform.py 注入）
+      - path: /Users/tianli/Dev/tools/dev/lib/tools/macapp/swift-shared/PlatformCompat.swift
       - path: Sources
       - path: Resources/Assets.xcassets
         buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: cyou.tianli.hydrodeck
+        # ── Mac 侧（multiplatform.py 注入）：沙盒 + 加固运行时是 TestFlight for Mac 的硬门槛；
+        #    entitlements 按 sdk 分开给，iOS 的 profile 不认 app-sandbox 这个键。
+        "CODE_SIGN_ENTITLEMENTS[sdk=macosx*]": Mac.entitlements
+        "ENABLE_HARDENED_RUNTIME[sdk=macosx*]": YES
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_CFBundleDisplayName: 水利助手
