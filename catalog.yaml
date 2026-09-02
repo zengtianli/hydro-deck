@@ -1,4 +1,5 @@
 name: hydro-deck
+bundle_id: cyou.tianli.hydrodeck   # 派生自 project.yml（SSOT）；fleet_audit a/g 项与 app_registry gate-mac 按它对装机
 origin: own
 lifecycle: active
 form: ios
