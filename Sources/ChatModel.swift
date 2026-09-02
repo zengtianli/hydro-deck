@@ -1,6 +1,8 @@
 import Foundation
 import Observation
+#if canImport(UIKit)
 import UIKit
+#endif
 
 // =============================================================================
 // 对话状态机：事件流 → UI 状态 + 持久化的唯一翻译点。一次只跑一问（后端并发闸同语义）。

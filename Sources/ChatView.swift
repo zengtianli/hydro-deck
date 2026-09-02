@@ -7,10 +7,14 @@ import PhotosUI
 // 流式期间用户上滚 = 停止自动吸底（后端复审轮抓过「每条 delta 钉 scrollTop、
 // 综述期间没法回看」的坑）；再点发送恢复吸底。
 // 历史列表照 day-deck DayPicker 范式：sheet + List + 选中回写，不发明抽屉。
+// 宽屏（iPad / Mac）由 RootView 把本视图放进 NavigationSplitView 的 detail 栏，
+// 会话列表常驻左栏（sidebarPresent=true：不再渲染历史入口按钮，正文限宽居中）。
 // =============================================================================
 
 struct ChatView: View {
-    @State private var model = ChatModel()
+    @Bindable var model: ChatModel
+    /// 宽屏两栏时为 true：侧栏已常驻，历史入口按钮不渲染；对话流限读宽居中。
+    var sidebarPresent = false
     @State private var voice = VoiceInput()
     @State private var speaker = Speaker()
     @State private var input = ""
@@ -45,6 +49,8 @@ struct ChatView: View {
                     }
                     .padding(.horizontal, 14)
                     .padding(.top, 8)
+                    .frame(maxWidth: sidebarPresent ? readableWidth : .infinity)
+                    .frame(maxWidth: .infinity)
                 }
                 .simultaneousGesture(DragGesture().onChanged { g in
                     if g.translation.height > 0 { autoFollow = false }   // 上滚：交还滚动权
@@ -66,9 +72,11 @@ struct ChatView: View {
             .navigationTitle("水利助手")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button { showHistory = true } label: {
-                        Image(systemName: "clock.arrow.circlepath")
+                if !sidebarPresent {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button { showHistory = true } label: {
+                            Image(systemName: "clock.arrow.circlepath")
+                        }
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -115,6 +123,9 @@ struct ChatView: View {
     }
 
     // MARK: - 子块
+
+    /// 宽屏对话流的读宽上限：长答案 + 表格铺满 iPad 横屏一行 100+ 字读不动。
+    private let readableWidth: CGFloat = 860
 
     private var emptyHint: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -178,6 +189,8 @@ struct ChatView: View {
             }
         }
         .padding(.horizontal, 12).padding(.vertical, 8)
+        .frame(maxWidth: sidebarPresent ? readableWidth : .infinity)
+        .frame(maxWidth: .infinity)
         .background(.bar)
         .onChange(of: voice.transcript) {
             if voice.recording || !voice.transcript.isEmpty { input = voice.transcript }

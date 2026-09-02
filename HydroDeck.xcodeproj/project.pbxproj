@@ -12,6 +12,7 @@
 		15B2D883BA5369C436005D7F /* MarkdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A128077426B2D9E1B4E117A9 /* MarkdownView.swift */; };
 		4308973613E8EC7F3F398479 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D87BB38F7D489727548FE6 /* HistoryView.swift */; };
 		4F4E696848163AF9BE425E9E /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73B45302D3FA3438BCC70 /* Speaker.swift */; };
+		7B952F69077046A8EDE20639 /* PlatformCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F969B00AB0337553BF76FA87 /* PlatformCompat.swift */; };
 		9042FD5D2AC1FD5622719E30 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20100CF426813304A754C210 /* ChatModel.swift */; };
 		9E3038C927ADB92CB257A6BB /* VoiceInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD6093C75106F38F5413353 /* VoiceInput.swift */; };
 		A876476E1D0BA8C5B785EF07 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFBD2A3F6E1650F4B082CA /* ChatView.swift */; };
@@ -37,9 +38,42 @@
 		E89FF64559DACD2F74ABF00A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		EFD6093C75106F38F5413353 /* VoiceInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceInput.swift; sourceTree = "<group>"; };
 		F4D87BB38F7D489727548FE6 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		F969B00AB0337553BF76FA87 /* PlatformCompat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformCompat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		2566A7F36A5B17F87D3199B6 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				44075F938977DAA0FE9F2E29 /* tools */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		3F8C3FDF092D7EE4341A7A30 /* dev */ = {
+			isa = PBXGroup;
+			children = (
+				2566A7F36A5B17F87D3199B6 /* lib */,
+			);
+			path = dev;
+			sourceTree = "<group>";
+		};
+		44075F938977DAA0FE9F2E29 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				E4AB0AD02681FD66B8C26EC6 /* macapp */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		5F9EA1BF12C05746C9626209 /* swift-shared */ = {
+			isa = PBXGroup;
+			children = (
+				F969B00AB0337553BF76FA87 /* PlatformCompat.swift */,
+			);
+			path = "swift-shared";
+			sourceTree = "<group>";
+		};
 		8CD528CD69B90FDA66B7B4C6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +93,14 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		93AC062829E5ED06D0093D82 /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				C77A95129D936D470264EE53 /* tools */,
+			);
+			path = Dev;
+			sourceTree = "<group>";
+		};
 		AB4962F774AA0CEE8417BC35 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -67,13 +109,39 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C77A95129D936D470264EE53 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				3F8C3FDF092D7EE4341A7A30 /* dev */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		DC2732084B64C51199351CB4 /* tianli */ = {
+			isa = PBXGroup;
+			children = (
+				93AC062829E5ED06D0093D82 /* Dev */,
+			);
+			name = tianli;
+			path = ../../..;
+			sourceTree = "<group>";
+		};
 		E0F1F7AF35D2D979ED411001 = {
 			isa = PBXGroup;
 			children = (
 				AB4962F774AA0CEE8417BC35 /* Resources */,
 				8CD528CD69B90FDA66B7B4C6 /* Sources */,
+				DC2732084B64C51199351CB4 /* tianli */,
 				F5E150D57E5B4858933AB300 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		E4AB0AD02681FD66B8C26EC6 /* macapp */ = {
+			isa = PBXGroup;
+			children = (
+				5F9EA1BF12C05746C9626209 /* swift-shared */,
+			);
+			path = macapp;
 			sourceTree = "<group>";
 		};
 		F5E150D57E5B4858933AB300 /* Products */ = {
@@ -164,6 +232,7 @@
 				F5FFF323B84C4AB945264BF2 /* Gate.swift in Sources */,
 				4308973613E8EC7F3F398479 /* HistoryView.swift in Sources */,
 				15B2D883BA5369C436005D7F /* MarkdownView.swift in Sources */,
+				7B952F69077046A8EDE20639 /* PlatformCompat.swift in Sources */,
 				4F4E696848163AF9BE425E9E /* Speaker.swift in Sources */,
 				B8EB06E4BBC7C9E1B16086D4 /* Store.swift in Sources */,
 				9E3038C927ADB92CB257A6BB /* VoiceInput.swift in Sources */,
@@ -177,6 +246,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -221,10 +291,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = auto;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -235,6 +306,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -285,11 +357,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = auto;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -300,11 +373,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = Mac.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "水利助手";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "拍照上传给助手读图（表格/现场照片）";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "语音提问需要用麦克风收音";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "把说的话转成文字填进输入框（发送仍由你确认）";
@@ -316,7 +392,11 @@
 				);
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cyou.tianli.hydrodeck;
-				SDKROOT = iphoneos;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -325,11 +405,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = Mac.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "水利助手";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "拍照上传给助手读图（表格/现场照片）";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "语音提问需要用麦克风收音";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "把说的话转成文字填进输入框（发送仍由你确认）";
@@ -341,7 +424,11 @@
 				);
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cyou.tianli.hydrodeck;
-				SDKROOT = iphoneos;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

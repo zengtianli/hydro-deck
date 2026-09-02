@@ -1,5 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
 import UIKit
+#endif
 
 // =============================================================================
 // 拍照直传（相册走 PhotosPicker，这里只管相机）。
@@ -8,6 +10,15 @@ import UIKit
 // 模拟器没相机：isSourceTypeAvailable(.camera)=false → 按钮不渲染（wrong-book 同款判据）。
 // =============================================================================
 
+#if !os(iOS)
+// Mac 没有 UIImagePickerController，也没有「随手一拍」这个场景（相册/文件走 PhotosPicker 那条路）。
+// 只保留同名类型让调用点不变：available=false → 按钮不渲染（与模拟器同一条路）。
+struct CameraPicker: View {
+    let onImage: (UIImage?) -> Void
+    static var available: Bool { false }
+    var body: some View { EmptyView() }
+}
+#else
 struct CameraPicker: UIViewControllerRepresentable {
     let onImage: (UIImage?) -> Void
 
@@ -50,3 +61,4 @@ struct CameraPicker: UIViewControllerRepresentable {
         }
     }
 }
+#endif

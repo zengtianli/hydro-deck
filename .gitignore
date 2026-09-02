@@ -7,7 +7,7 @@ xcuserdata/
 
 # xcodegen 从 project.yml 生成,不进仓 —— 进仓会和 project.yml 打架:
 # 改了 yml 忘了重生成,工程和规格就悄悄不一致了。
-OptionsSpike.xcodeproj/
+HydroDeck.xcodeproj/
 
 .DS_Store
 

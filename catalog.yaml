@@ -2,6 +2,7 @@ name: hydro-deck
 origin: own
 lifecycle: active
 form: ios
+platforms: [iphone, ipad, mac]   # 跑在哪（正交于 form=源码住哪）；multiplatform.py audit 与 project.yml 对账
 
 one_liner: 水利 agent 随身版 —— 对着领域后端问一句，SSE 流式看答案与引文（authgate 闸内）
 

@@ -1,5 +1,7 @@
 import Foundation
+#if canImport(UIKit)
 import UIKit
+#endif
 
 // =============================================================================
 // 闸内的非流式请求：图片上传（/api/vision/upload）与引文回原文

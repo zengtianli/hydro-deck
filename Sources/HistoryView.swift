@@ -3,7 +3,53 @@ import SwiftUI
 // =============================================================================
 // 会话历史：sheet + List + 选中回写（day-deck DayPicker 范式，舰队不发明抽屉）。
 // 每行 = 标题（首问）+ 时间 + 轮数徽标；左滑删除；顶部「新会话」。
+//
+// 宽屏（iPad / Mac）不弹 sheet，同一份 List 作为 NavigationSplitView 的常驻侧栏
+// （SessionSidebar）。行视图 SessionRow 两边共用，别再长出第二份。
 // =============================================================================
+
+/// 宽屏侧栏：selection 绑到 model.session.id，点行即切会话；工具条「新会话」。
+struct SessionSidebar: View {
+    @Bindable var model: ChatModel
+
+    private var selection: Binding<String?> {
+        Binding(get: { model.session.id },
+                set: { if let id = $0 { model.switchTo(id) } })
+    }
+
+    var body: some View {
+        List(selection: selection) {
+            Section("历史 · \(model.store.sessions.count)") {
+                ForEach(model.store.sessions) { s in
+                    SessionRow(session: s, current: s.id == model.session.id)
+                        .tag(s.id)
+                        .contextMenu {
+                            Button("删除", systemImage: "trash", role: .destructive) {
+                                model.deleteSession(s.id)
+                            }
+                        }
+                }
+                .onDelete { idx in
+                    for i in idx { model.deleteSession(model.store.sessions[i].id) }
+                }
+            }
+        }
+        .navigationTitle("会话")
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button { model.newSession() } label: {
+                    Label("新会话", systemImage: "plus.bubble")
+                }
+            }
+        }
+        .overlay {
+            if model.store.sessions.isEmpty {
+                ContentUnavailableView("还没有会话", systemImage: "bubble.left.and.bubble.right",
+                                       description: Text("问出第一句就会出现在这里"))
+            }
+        }
+    }
+}
 
 struct HistoryView: View {
     @Bindable var model: ChatModel
@@ -25,7 +71,7 @@ struct HistoryView: View {
                             model.switchTo(s.id)
                             dismiss()
                         } label: {
-                            row(s)
+                            SessionRow(session: s, current: s.id == model.session.id)
                         }
                         .buttonStyle(.plain)
                     }
@@ -50,11 +96,19 @@ struct HistoryView: View {
         }
     }
 
-    private func row(_ s: ChatSession) -> some View {
+}
+
+/// 一行会话：标题（首问）+ 时间 + 轮数；欠着未收完 run 的带橙色回转标。
+struct SessionRow: View {
+    let session: ChatSession
+    let current: Bool
+
+    var body: some View {
+        let s = session
         VStack(alignment: .leading, spacing: 3) {
             HStack {
                 Text(s.title).lineLimit(1)
-                    .fontWeight(s.id == model.session.id ? .semibold : .regular)
+                    .fontWeight(current ? .semibold : .regular)
                 Spacer()
                 if s.pendingRun != nil, !s.pendingRun!.userStopped {
                     Image(systemName: "arrow.triangle.2.circlepath")
