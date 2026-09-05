@@ -1,27 +1,51 @@
-# hydro-deck · 水利助手
+<p align="center"><img src="Resources/icon-1024.png" width="96" alt="水利助手"></p>
+# 水利助手 · hydro-deck
 
-水利领域 agent 的 iPhone 随身版。后端在 `~/Dev/services/hydro-agent`
-（线上 `hydro-agent.tianli.cyou`，authgate 闸内），app 是纯客户端，业务零本地逻辑。
+**水利问题问一句，十几秒拿到带引文的答案。**
 
-## 功能（v0.2）
+![Swift](https://img.shields.io/badge/Swift-5-F05138?logo=swift&logoColor=white) ![SwiftUI](https://img.shields.io/badge/SwiftUI-0D84FF?logo=swift&logoColor=white) ![Platform](https://img.shields.io/badge/iOS%2018.0%2B%20·%20macOS%2015.0%2B-000?logo=apple) ![TestFlight](https://img.shields.io/badge/TestFlight-内测中-0D84FF) ![License](https://img.shields.io/badge/License-MIT-green)
 
-- **打开即聊**：`POST /api/chat/stream` SSE 流式打字机（markdown 真渲染，表格/标题/引用）
-- **停止**：生成中随时打断；已流出部分保留成一轮（后端当前步后自停）
-- **会话历史**：本地持久化（Application Support），多会话列表、切换、左滑删除
-- **断线恢复**：切后台/杀进程/断网后，回来自动从 `/api/runs/{id}/events` 取回已生成部分
-- **过程可视化**：每轮可展开「第 N 步 · 工具 ✓ 耗时」时间线
-- **图片输入**：相册/拍照 → `/api/vision/upload` → 带图提问（压图阶梯有地板，压不进不硬传）
-- **语音输入**：中文转写实时回填输入框（发送仍由人点）
-- **TTS 朗读**：答案一键读出来（表格降级为概述）
-- **引文回原文**：点引文 → `kb.read_doc` 分页读原文（与 agent 同一条读取通道）
-- 七种终态如实标注（「有保留」「拒答」「已停止」不抹成完成）
+自建领域 agent 的手机端：流式打字机、步骤与工具进度实时可见、答案带引文，七种终态如实显示——包括「有保留」和「拒答」。业务零本地逻辑，后端加能力不用动 app。
 
-## 用法
+<table><tr>
+<td align="center" width="25%"><img src="docs/screenshots/01-live-early.png" alt="问一句「2026 年水源地要求和过去有什么区别」——结论先行，依据表随后"><br><sub>问一句「2026 年水源地要求和过去有什么区别」——结论先行，依据表随后</sub></td>
+<td align="center" width="25%"><img src="docs/screenshots/02-live-end.png" alt="答案自带「局限与警示」：两版指标口径不能逐项换算这种话，它主动说"><br><sub>答案自带「局限与警示」：两版指标口径不能逐项换算这种话，它主动说</sub></td>
+<td align="center" width="25%"><img src="docs/screenshots/03-live-final2.png" alt="线上真对话：新旧标准对比 + 局限警示 + 引文 5 条，16.8 秒"><br><sub>线上真对话：新旧标准对比 + 局限警示 + 引文 5 条，16.8 秒</sub></td>
+</tr></table>
+
+## 它做什么
+
+| | |
+|---|---|
+| **SSE 流式，步骤看得见** | 答案打字机式流出，检索/比对的步骤进度实时可见——十几秒的等待里你知道它在干什么，不是对着转圈猜。 |
+| **答案带引文，也带局限** | 每个结论下面是依据表和引文清单；口径对不上、无法逐项换算这类局限，它写在答案里而不是等你踩坑。七种终态如实显示——包括「有保留」和「拒答」。 |
+| **业务零本地逻辑** | 所有智能在后端 agent，app 是薄壳。后端加一种能力、改一版提示词，手机端一行不用动——这正是薄壳的全部意义。 |
+
+## 怎么拿到
+
+TestFlight 内测中（2026-09-02 首发）；后端私有，不开放试用。
+
+薄壳，全部智能在私有后端 `hydro-agent.tianli.cyou`（访问闸后）。代码可读可编，没有后端账号跑不出对话。
+
+## 构建
 
 ```bash
-bash sim-run.sh              # 模拟器
-./install-to-iphone.sh       # 真机装机（WiFi）
-bash seed-gate.sh            # 装机后喂一次闸密码
+brew install xcodegen
+xcodegen generate
+xcodebuild -scheme HydroDeck -destination 'generic/platform=iOS Simulator' build
 ```
 
-验证通道（launch 参数，生产路径恒空）：`-gatepw <pw>` 喂闸密码、`-ask <问题>` 启动即自动发问。
+- 仓里的 `*.sh` 是作者本机舰队脚本的 shim（三平台构建 / 真机装机 / TestFlight），依赖 `~/Dev` 下的总部工具，不在本仓；没有那套工具时它们会明确退出。
+- `Shared/PlatformCompat.swift` 是总部共享文件的逐字节副本（iOS-only SwiftUI 修饰符在 macOS 侧的同名 no-op），别在这里改它。
+
+开发细节（回归、验证通道、约束）见 [DEVELOPING.md](DEVELOPING.md)。
+
+## 相关
+
+- 产品页：<https://apps.tianli.cyou/p/hydro-deck-ios.html>
+- 舰队总览（10 个 app 怎么来的）：<https://apps.tianli.cyou/ios.html>
+- 教程：[从零到 TestFlight：一个人做 iPhone app 的完整路径](https://blog-ai.tianli.cyou/nine-ios-apps-in-two-weeks)
+
+## License
+
+MIT © 2026 曾田力 (Tianli Zeng)
