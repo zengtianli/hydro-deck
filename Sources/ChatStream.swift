@@ -77,9 +77,14 @@ enum ChatStream {
     /// 发一问，返回事件流。撞闸时抛 `StreamError.gateBlocked`，
     /// 由调用方决定「拿钥匙串密码换会话重试一次」还是「向人要密码」——
     /// 重试策略不写死在这层（day-deck 的教训：只准重试一次）。
-    static func open(message: String, sessionId: String?, imageIds: [String] = [])
+    static func open(message: String, sessionId: String?, imageIds: [String] = [],
+                     authorization supplied: AIConsent.Authorization? = nil,
+                     transport: URLSession = ChatStream.session)
         async throws -> AsyncThrowingStream<WireEvent, Error>
     {
+        try Task.checkCancellation()
+        let authorization = try supplied ?? AIConsent.capture()
+        try AIConsent.require(authorization)
         var req = URLRequest(url: URL(string: base + "/api/chat/stream")!)
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -89,7 +94,7 @@ enum ChatStream {
         if !imageIds.isEmpty { body["image_ids"] = imageIds }
         req.httpBody = try JSONSerialization.data(withJSONObject: body)
 
-        let (bytes, resp) = try await session.bytes(for: req)
+        let (bytes, resp) = try await transport.bytes(for: req)
         if Gate.blocked(resp) { throw StreamError.gateBlocked }
         let code = (resp as? HTTPURLResponse)?.statusCode ?? -1
         guard code == 200 else {

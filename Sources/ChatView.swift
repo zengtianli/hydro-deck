@@ -22,7 +22,10 @@ struct ChatView: View {
     @State private var showHistory = false
     @State private var citationDoc: TurnRecord.CitationRecord?
     @State private var pickedPhotos: [PhotosPickerItem] = []
+    @State private var showPhotos = false
     @State private var showCamera = false
+    @State private var photoAuthorization: AIConsent.Authorization?
+    @State private var cameraAuthorization: AIConsent.Authorization?
     @FocusState private var inputFocused: Bool
     @Environment(\.scenePhase) private var scenePhase
 
@@ -86,11 +89,15 @@ struct ChatView: View {
                             model.gateMessage = ""
                             model.needGatePassword = true
                         }
+                        Button("AI 数据处理", systemImage: "hand.raised") {
+                            model.showAIConsent = true
+                        }
                     } label: { Image(systemName: "ellipsis.circle") }
                 }
             }
         }
         .sheet(isPresented: $model.needGatePassword) { GateSheet(model: model) }
+        .sheet(isPresented: $model.showAIConsent) { AIDataConsentSheet(model: model) }
         .sheet(isPresented: $showHistory) { HistoryView(model: model) }
         .sheet(item: $citationDoc) { c in CitationSheet(citation: c) }
         .task {
@@ -99,7 +106,11 @@ struct ChatView: View {
             // 验证通道（同 day-deck 的 `-tab N`）：`-ask <问题>` 启动即自动发一问，
             // 让 CLI 验收能走 app 自己的完整路径。生产路径上恒为空。
             if let q = UserDefaults.standard.string(forKey: "ask"), !q.isEmpty {
-                await model.send(q)
+                input = q
+                if let authorization = model.authorizationForNewAction() {
+                    input = ""
+                    await model.send(q, authorization: authorization)
+                }
             }
         }
         .onChange(of: scenePhase) { _, p in
@@ -110,14 +121,23 @@ struct ChatView: View {
         .onChange(of: pickedPhotos) {
             let items = pickedPhotos
             pickedPhotos = []
-            guard !items.isEmpty else { return }
+            guard !items.isEmpty, let authorization = photoAuthorization else { return }
             Task {
                 for it in items {
+                    guard model.validateAIConsent(authorization) else { break }
                     if let d = try? await it.loadTransferable(type: Data.self),
                        let img = UIImage(data: d) {
-                        await model.attach(img)
+                        guard model.validateAIConsent(authorization) else { break }
+                        await model.attach(img, authorization: authorization)
                     }
                 }
+            }
+        }
+        .onChange(of: model.unsentQuestion) {
+            // Do not overwrite text typed while an earlier request was waiting for authentication.
+            if input.isEmpty, let q = model.unsentQuestion {
+                input = q
+                model.unsentQuestion = nil
             }
         }
     }
@@ -174,6 +194,17 @@ struct ChatView: View {
 
     private var inputBar: some View {
         VStack(alignment: .leading, spacing: 6) {
+            if let q = model.unsentQuestion {
+                HStack(alignment: .top) {
+                    Text("尚未发送：\(q)").font(.caption).lineLimit(2)
+                    Spacer()
+                    Button("恢复文字") {
+                        input = input.isEmpty ? q : input + "\n" + q
+                        model.unsentQuestion = nil
+                    }.font(.caption)
+                }
+                .padding(.horizontal, 4)
+            }
             if let p = voice.problem {
                 Text(p).font(.caption).foregroundStyle(.red).padding(.horizontal, 4)
             }
@@ -238,16 +269,26 @@ struct ChatView: View {
     }
 
     private var photoButton: some View {
-        PhotosPicker(selection: $pickedPhotos, maxSelectionCount: 3, matching: .images) {
+        Button {
+            guard let authorization = model.authorizationForNewAction() else { return }
+            photoAuthorization = authorization
+            showPhotos = true
+        } label: {
             Image(systemName: "photo")
                 .font(.system(size: 21))
                 .foregroundStyle(Color.accentColor)
         }
+        .photosPicker(isPresented: $showPhotos, selection: $pickedPhotos,
+                      maxSelectionCount: 3, matching: .images)
         .disabled(model.streaming || model.uploadingImage)
     }
 
     private var cameraButton: some View {
-        Button { showCamera = true } label: {
+        Button {
+            guard let authorization = model.authorizationForNewAction() else { return }
+            cameraAuthorization = authorization
+            showCamera = true
+        } label: {
             Image(systemName: "camera")
                 .font(.system(size: 21))
                 .foregroundStyle(Color.accentColor)
@@ -256,7 +297,9 @@ struct ChatView: View {
         .fullScreenCover(isPresented: $showCamera) {
             CameraPicker { img in
                 showCamera = false
-                if let img { Task { await model.attach(img) } }
+                if let img, let authorization = cameraAuthorization {
+                    Task { await model.attach(img, authorization: authorization) }
+                }
             }
             .ignoresSafeArea()
         }
@@ -274,13 +317,16 @@ struct ChatView: View {
 
     private var sendButton: some View {
         Button {
-            if voice.recording { voice.stop() }
-            let q = input
-            input = ""
-            voice.transcript = ""
-            autoFollow = true
-            inputFocused = false
-            Task { await model.send(q) }
+            Task { @MainActor in
+                guard let authorization = model.authorizationForNewAction() else { return }
+                if voice.recording { voice.stop() }
+                let q = input
+                input = ""
+                voice.transcript = ""
+                autoFollow = true
+                inputFocused = false
+                await model.send(q, authorization: authorization)
+            }
         } label: {
             Image(systemName: "arrow.up.circle.fill").font(.system(size: 30))
         }
@@ -443,7 +489,7 @@ private struct GateSheet: View {
                         Text(model.gateMessage).font(.caption).foregroundStyle(.red)
                     }
                 } footer: {
-                    Text("密码只存这台设备的钥匙串；会话 7 天自动续。也可以在 Mac 上跑 bash seed-gate.sh 免手输。")
+                    Text("输入为你开通服务时提供的访问密码。验证成功后，密码只保存在这台设备的系统钥匙串；会话到期会自动重新连接。密码变更后，可在菜单中重新设置。")
                 }
                 Button(busy ? "验证中…" : "登录") {
                     busy = true
@@ -460,5 +506,51 @@ private struct GateSheet: View {
             }
         }
         .presentationDetents([.medium])
+    }
+}
+
+// MARK: - AI data disclosure and explicit consent
+
+private struct AIDataConsentSheet: View {
+    @Bindable var model: ChatModel
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("接收方与用途") {
+                    Text("问题和相关会话上下文会发送到开发者维护的 hydro-agent.tianli.cyou，用于检索依据和生成回答。问答使用 DeepSeek；服务不可用时可能使用 Anthropic Claude 备用服务。")
+                    Text("所选图片会先上传到开发者服务器，不会等到你点击发送才上传。上传成功只表示服务器已收到文件；请在问题中写明需要核对的内容。")
+                }
+                Section("哪些内容会发送") {
+                    Text("你输入的问题、同一会话中用于理解问题的历史内容，以及你主动选择上传的图片。请勿发送身份证件、个人联系方式、客户原件、保密工程资料或无权提供的内容。")
+                    Text("语音转写由 Apple 系统语音识别处理，受系统权限控制；转写文字先进入输入框，由你检查后点击发送。")
+                }
+                Section("留存与撤回") {
+                    Text("服务器会保存对话、运行记录和暂存图片。删除本地历史或撤回同意不会自动删除已经上传的资料；需要处理服务器资料时，请联系为你开通访问权限的管理员。")
+                    Text("可以随时从菜单的「AI 数据处理」查看此说明或撤回同意。撤回后不会发起新的问答或图片上传；已发送的请求可能继续处理，仍可读取已有结果。")
+                }
+                Section {
+                    if model.aiConsentAccepted {
+                        Label("已同意此数据处理说明", systemImage: "checkmark.circle")
+                        Button("撤回同意", role: .destructive) { model.revokeAIConsent() }
+                            .accessibilityIdentifier("revokeAIConsent")
+                    } else {
+                        Text("暂不同意可以继续阅读本机历史，输入的文字会保留。同意后请再次点击发送或选择图片，应用不会自动替你发送。")
+                        Button("同意并开启问答和图片上传") { model.acceptAIConsent() }
+                            .accessibilityIdentifier("acceptAIConsent")
+                    }
+                }
+            }
+            .navigationTitle("AI 数据处理")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(model.aiConsentAccepted ? "完成" : "暂不同意") {
+                        model.showAIConsent = false
+                    }
+                    .accessibilityIdentifier("dismissAIConsent")
+                }
+            }
+        }
+        .presentationDetents([.large])
     }
 }

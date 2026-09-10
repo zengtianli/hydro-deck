@@ -54,6 +54,56 @@ final class ChatModel {
     var needGatePassword = false
     var gateMessage = ""
     private var pendingQuestion: String?
+    private var pendingAuthorization: AIConsent.Authorization?
+    var unsentQuestion: String?
+
+    // Consent is separate from access-gate authentication and applies before every new upload.
+    var showAIConsent = false
+    private(set) var aiConsentAccepted = AIConsent.isAccepted()
+
+    @discardableResult
+    func requireAIConsent() -> Bool {
+        aiConsentAccepted = AIConsent.isAccepted()
+        if !aiConsentAccepted { showAIConsent = true }
+        return aiConsentAccepted
+    }
+
+    func acceptAIConsent() {
+        AIConsent.accept()
+        aiConsentAccepted = true
+        showAIConsent = false
+        // Deliberately do not send pending text or upload an image on acceptance.
+    }
+
+    func authorizationForNewAction() -> AIConsent.Authorization? {
+        guard requireAIConsent() else { return nil }
+        return try? AIConsent.capture()
+    }
+
+    @discardableResult
+    func validateAIConsent(_ authorization: AIConsent.Authorization) -> Bool {
+        do { try AIConsent.require(authorization); return true }
+        catch {
+            _ = requireAIConsent()
+            failure = ("内容尚未发送", "数据处理授权已经变更，请再次主动发送或选择图片。")
+            return false
+        }
+    }
+
+    private func retainUnsentQuestion(_ text: String) {
+        unsentQuestion = text
+        _ = requireAIConsent()
+    }
+
+    func revokeAIConsent() {
+        AIConsent.revoke()
+        aiConsentAccepted = false
+        if let pendingQuestion { unsentQuestion = pendingQuestion }
+        pendingQuestion = nil           // a password-sheet retry must not start a new request
+        pendingAuthorization = nil
+        showAIConsent = false
+        // Already submitted runs may finish; keep their read-only result recovery intact.
+    }
 
     // 当前 run 的属主与快照
     private var streamTask: Task<Void, Never>?
@@ -124,11 +174,12 @@ final class ChatModel {
 
     // MARK: - 图片附件
 
-    func attach(_ image: UIImage) async {
+    func attach(_ image: UIImage, authorization: AIConsent.Authorization) async {
+        guard validateAIConsent(authorization) else { return }
         uploadingImage = true
         defer { uploadingImage = false }
         do {
-            let id = try await Backend.uploadImage(image)
+            let id = try await Backend.uploadImage(image, authorization: authorization)
             let edge: CGFloat = 120
             let k = edge / max(image.size.width, image.size.height)
             let size = CGSize(width: image.size.width * k, height: image.size.height * k)
@@ -136,6 +187,8 @@ final class ChatModel {
                 image.draw(in: CGRect(origin: .zero, size: size))
             }
             attachments.append(Attachment(id: id, thumb: thumb))
+        } catch is AIConsent.Required {
+            _ = validateAIConsent(authorization)
         } catch let e as BackendError {
             if case .gate(let m) = e { askPassword(nil, message: m) }
             else { failure = ("图片传不上去", e.message) }
@@ -150,9 +203,14 @@ final class ChatModel {
 
     // MARK: - 发问 / 停止
 
-    func send(_ text: String) async {
+    func send(_ text: String, authorization supplied: AIConsent.Authorization? = nil) async {
         let q = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !q.isEmpty, !streaming else { return }
+        guard let authorization = supplied ?? authorizationForNewAction(),
+              validateAIConsent(authorization) else {
+            retainUnsentQuestion(q)
+            return
+        }
         failure = nil
         notices = []
         draftQuestion = q
@@ -175,11 +233,13 @@ final class ChatModel {
         let task = Task { [weak self] in
             guard let self else { return }
             do {
-                try await self.streamOnce(q, imageIds: imageIds)
+                try await self.streamOnce(q, imageIds: imageIds, authorization: authorization)
+            } catch is AIConsent.Required {
+                self.retainUnsentQuestion(q)
             } catch is CancellationError {
                 self.finalizeAborted()
             } catch StreamError.gateBlocked {
-                await self.handleGateThenRetry(q, imageIds: imageIds)
+                await self.handleGateThenRetry(q, imageIds: imageIds, authorization: authorization)
             } catch {
                 if self.userStopped { self.finalizeAborted() }
                 else { await self.recoverOrShow(error) }
@@ -212,7 +272,10 @@ final class ChatModel {
             try await Gate.login(password: pw, session: ChatStream.session)
             Gate.savePassword(pw)
             needGatePassword = false
-            if let q = pendingQuestion { pendingQuestion = nil; await send(q) }
+            if let q = pendingQuestion, let authorization = pendingAuthorization {
+                pendingQuestion = nil; pendingAuthorization = nil
+                await send(q, authorization: authorization)
+            }
         } catch let e as Gate.Failure {
             gateMessage = e.message
         } catch {
@@ -251,10 +314,11 @@ final class ChatModel {
 
     // MARK: - 私有：流式主路径
 
-    private func streamOnce(_ q: String, imageIds: [String]) async throws {
+    private func streamOnce(_ q: String, imageIds: [String],
+                            authorization: AIConsent.Authorization) async throws {
         let stream = try await ChatStream.open(message: q,
                                                sessionId: session.serverSessionId,
-                                               imageIds: imageIds)
+                                               imageIds: imageIds, authorization: authorization)
         var sawTerminal = false
         for try await w in stream {
             apply(w)
@@ -267,20 +331,24 @@ final class ChatModel {
         }
     }
 
-    private func handleGateThenRetry(_ q: String, imageIds: [String]) async {
+    private func handleGateThenRetry(_ q: String, imageIds: [String],
+                                     authorization: AIConsent.Authorization) async {
+        guard validateAIConsent(authorization) else { retainUnsentQuestion(q); return }
         if let pw = Gate.password {
             do {
                 try await Gate.login(password: pw, session: ChatStream.session)
-                try await streamOnce(q, imageIds: imageIds)
+                try await streamOnce(q, imageIds: imageIds, authorization: authorization)
+            } catch is AIConsent.Required {
+                retainUnsentQuestion(q)
             } catch let e as Gate.Failure {
-                askPassword(q, message: e.message)
+                askPassword(q, message: e.message, authorization: authorization)
             } catch StreamError.gateBlocked {
-                askPassword(q, message: "拿密码换了会话之后仍被拦 —— 密码可能已经改了")
+                askPassword(q, message: "拿密码换了会话之后仍被拦 —— 密码可能已经改了", authorization: authorization)
             } catch is CancellationError {
                 finalizeAborted()
             } catch { await recoverOrShow(error) }
         } else {
-            askPassword(q, message: "这台设备还没有闸凭证")
+            askPassword(q, message: "这台设备还没有闸凭证", authorization: authorization)
         }
     }
 
@@ -448,8 +516,10 @@ final class ChatModel {
         withOwnerSession { $0.pendingRun = p }
     }
 
-    private func askPassword(_ q: String?, message: String) {
+    private func askPassword(_ q: String?, message: String,
+                             authorization: AIConsent.Authorization? = nil) {
         pendingQuestion = q
+        pendingAuthorization = authorization
         gateMessage = message
         needGatePassword = true
     }
@@ -457,7 +527,7 @@ final class ChatModel {
     private func show(_ error: Error) {
         if let e = error as? StreamError {
             switch e {
-            case .gateBlocked:          failure = (e.headline, "在 Mac 上跑一次 bash seed-gate.sh，或在菜单里重设闸密码。")
+            case .gateBlocked:          failure = (e.headline, "请在菜单里重设访问密码后重试。")
             case .http(let s, let b):   failure = (e.headline, "HTTP \(s)\n\(b)")
             case .network(let m):       failure = (e.headline, m)
             }

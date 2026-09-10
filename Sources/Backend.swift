@@ -52,10 +52,18 @@ enum Backend {
 
     /// 传一张图，回 image_id。后端契约（app/routes_vision.py）：multipart 字段名 `file`，
     /// ≤12MB，mime 白名单 png/jpeg/webp（按魔数判）。响应 {image_id, w, h, bytes, ...}。
-    static func uploadImage(_ image: UIImage) async throws -> String {
+    static func uploadImage(_ image: UIImage, authorization: AIConsent.Authorization) async throws -> String {
+        try AIConsent.require(authorization)
         guard let jpeg = compressed(image) else {
             throw BackendError.contract("图片压不进 12MB —— 换一张或截取局部")
         }
+        return try await uploadJPEG(jpeg, authorization: authorization)
+    }
+
+    /// The real multipart upload path, also exercised with an isolated URLSession in checks.
+    static func uploadJPEG(_ jpeg: Data, authorization: AIConsent.Authorization,
+                           transport: URLSession = ChatStream.session) async throws -> String {
+        try AIConsent.require(authorization)
         let boundary = "hydro-deck-\(UUID().uuidString)"
         var req = URLRequest(url: URL(string: ChatStream.base + "/api/vision/upload")!)
         req.httpMethod = "POST"
@@ -69,7 +77,11 @@ enum Backend {
         body.append(Data("\r\n--\(boundary)--\r\n".utf8))
 
         let (data, http) = try await gateRetrying {
-            try await ChatStream.session.upload(for: req, from: body)
+            // Checked again for the retry after authentication, since consent may be revoked
+            // while a previous request was awaiting its response.
+            try Task.checkCancellation()
+            try AIConsent.require(authorization)
+            return try await transport.upload(for: req, from: body)
         }
         guard http.statusCode == 200 else {
             throw BackendError.http(http.statusCode, String(data: data, encoding: .utf8) ?? "")
