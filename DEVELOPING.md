@@ -1,6 +1,6 @@
 # hydro-deck · 水利助手
 
-水利领域 agent 的 iPhone 随身版。后端在 `~/Dev/services/hydro-agent`
+水利领域 agent 的 iPhone 随身版。后端在 `~/Apps/hydro-assistant/service`
 （线上 `hydro-agent.tianli.cyou`，authgate 闸内），app 是纯客户端，业务零本地逻辑。
 
 ## 功能（v0.2）

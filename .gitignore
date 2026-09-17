@@ -41,3 +41,6 @@ handoffs/
 
 # Superseded local artifacts
 /archived/
+
+# 本地 QA 截图原片，不进仓（README 用图在 docs/screenshots/）
+shots/

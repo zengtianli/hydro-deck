@@ -9,7 +9,7 @@ import Security
 // 不带凭证去打 `/api/chat/stream`，URLSession 会跟着 302 走到登录页，
 // 到手的是一个 **200 的 HTML**——SSE 解析失败，而失败原因完全指不出「你没登录」。
 //
-// 本文件从 `~/Apps/ios/day-deck/Sources/Gate.swift` 移植（舰队契约 6：移植不重写），
+// 本文件从 `~/Apps/notifhub/ios/01-源程序/Sources/Gate.swift` 移植（舰队契约 6：移植不重写），
 // 只改了 Keychain 的 service 标识 —— 两个 app 各存各的，互不影响。
 // 闸的登录端点是站群共享的（cookie 域 `.tianli.cyou`），所以 loginURL 保持不变。
 //

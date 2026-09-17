@@ -1,6 +1,6 @@
-// ⚠ 本文件从 `~/Apps/ios/blog-reader/Sources/MarkdownView.swift` **逐字移植**(舰队契约 6)。
+// ⚠ 本文件从 `~/Apps/_archive/retired-apps-20260912/blog-reader/01-源程序/Sources/MarkdownView.swift` **逐字移植**(舰队契约 6)。
 //   这里不改它 —— 改了两边就会漂,而漂了的表现是「同一篇复盘在两个 app 里排版不一样」,
-//   没有任何机器门会报。要改渲染行为,改 blog-reader 那份再同步过来。
+//   构建前由 blog-reader/check-markdown-drift.sh 检查；改源后用 --sync 保留本前言同步。
 //   为什么必须真渲染:全局产物规范 —— 展示 md 的界面露出字面 `**` / `|---|` / 行首 `##` 即不合格。
 
 import SwiftUI
