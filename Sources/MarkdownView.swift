@@ -1,6 +1,6 @@
-// ⚠ 本文件从 `~/Apps/_archive/retired-apps-20260912/blog-reader/01-源程序/Sources/MarkdownView.swift` **逐字移植**(舰队契约 6)。
+// ⚠ 本文件从 day-deck 仓库的 `Sources/MarkdownView.swift` **逐字移植**(舰队契约 6)。
 //   这里不改它 —— 改了两边就会漂,而漂了的表现是「同一篇复盘在两个 app 里排版不一样」,
-//   构建前由 blog-reader/check-markdown-drift.sh 检查；改源后用 --sync 保留本前言同步。
+//   构建前由 day-deck/check-markdown-drift.sh 检查；改源后用 --sync 保留本前言同步。
 //   为什么必须真渲染:全局产物规范 —— 展示 md 的界面露出字面 `**` / `|---|` / 行首 `##` 即不合格。
 
 import SwiftUI
@@ -19,8 +19,9 @@ import SwiftUI
 
 // MARK: - 跨平台色板（2026-08-19 加）
 //
-// 本文件被 iOS 侧 vendored 复用（~/Apps/ios/blog-reader，逐字节一致，由那边的
-// check-markdown-drift.sh 守着）。`Color(nsColor:)` 只在 macOS 上有，iOS 编不过。
+// 本文件被多个 App vendored 复用（责任源 day-deck，代码体逐字节一致，由 day-deck 的
+// check-markdown-drift.sh 守着），同时供 iOS 与 macOS 目标使用。
+// `Color(nsColor:)` 只在 macOS 上有，iOS 编不过。
 // 分叉出一份 iOS 版是错的做法 —— 那道逐字节门会从此永远红，红久了就没人看。
 // 所以把平台差异收在这四个常量里，两边共用同一个文件。
 //
