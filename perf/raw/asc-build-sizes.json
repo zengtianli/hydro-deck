@@ -1,0 +1,42 @@
+{
+  "source": {
+    "kind": "app_store_connect",
+    "app_id": "6807611482",
+    "bundle_id": "cyou.tianli.hydrodeck",
+    "build_id": "da915436-eb86-4eeb-86f0-2c215211d397",
+    "queried_at": "2026-09-26T19:24:23.114508+08:00",
+    "distribution": "TestFlight VALID（未上架）",
+    "processing_state": "VALID",
+    "device_model": "iPhone18,3",
+    "os_variant": "Universal",
+    "api_doc": "https://developer.apple.com/documentation/appstoreconnectapi/get-v1-buildbundles-_id_-buildbundlefilesizes"
+  },
+  "build": {
+    "id": "da915436-eb86-4eeb-86f0-2c215211d397",
+    "attributes": {
+      "version": "1",
+      "uploadedDate": "2026-09-02T01:15:43-07:00",
+      "expired": false,
+      "processingState": "VALID"
+    }
+  },
+  "selected_device_size": {
+    "type": "buildBundleFileSizes",
+    "id": "111c1f20-e245-3d75-8375-3b5e08b7d7b5",
+    "attributes": {
+      "deviceModel": "iPhone18,3",
+      "osVersion": "Universal",
+      "downloadBytes": 277549,
+      "installBytes": 842752
+    },
+    "links": {
+      "self": "https://api.appstoreconnect.apple.com/v1/buildBundleFileSizes/111c1f20-e245-3d75-8375-3b5e08b7d7b5"
+    }
+  },
+  "latest_testflight_candidate": {
+    "version": "0.1",
+    "build": "1",
+    "id": "da915436-eb86-4eeb-86f0-2c215211d397",
+    "is_primary_evidence": true
+  }
+}
