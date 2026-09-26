@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "app_id": "hydro-deck",
+  "environment": "simulator",
+  "measured_at": "2026-09-26T23:55:55.216173+08:00",
+  "version": "0.1 (1)",
+  "configuration": "Release",
+  "bundle_id": "cyou.tianli.hydrodeck",
+  "binary_sha256": "c7b8c03033a2e7712b123d5212061886813a06836eb660c4d6e9dc5de8097541",
+  "source": {
+    "input_globs": [
+      "Sources/**",
+      "Shared/**",
+      "Resources/**",
+      "Widget/**",
+      "ShareExtension/**",
+      "project.yml",
+      "*.entitlements"
+    ],
+    "sha256": "22b7af770b5c79e1e251c06621d00541912eb03e0d14dd269a5d002f98e33039",
+    "file_count": 31,
+    "commit": "73630b6f98a1b61129d61122dd1864df4efbb27c",
+    "dirty_scope": "组件当前 Git 工作树；跨仓/软链输入的实际内容由 sha256 核验",
+    "dirty": false
+  },
+  "app_path": "~/Apps/hydro-assistant/ios/01-源程序/.dd-iphone/Build/Products/Release-iphonesimulator/HydroDeck.app",
+  "simulator_udid": "C6F5D655-20E3-4CEE-89FF-3C8C20AB6D3B",
+  "simulator_device": "iPhone 17 Pro",
+  "simulator_os": "iOS 27.0",
+  "host": "Mac16,12 / Apple M4 / macOS 27.2",
+  "load_average_at_start": [
+    6.80712890625,
+    40.826171875,
+    39.3984375
+  ],
+  "measurement_tool_sha256": "0393a632f3e0a2d2551ecb173704f195c3f9da743d0a49bad0492c1e0b669698",
+  "scope": "Simulator App process only; excludes CoreSimulator, Simulator GUI, system services and inactive extensions",
+  "data": "Fresh app container on isolated simulator; default first-run data; no production user data imported",
+  "build_receipt": {
+    "exit": 0,
+    "configuration": "Release",
+    "command": [
+      "xcrun",
+      "xcodebuild",
+      "-project",
+      "HydroDeck.xcodeproj",
+      "-scheme",
+      "HydroDeck",
+      "-configuration",
+      "Release",
+      "-sdk",
+      "iphonesimulator",
+      "-destination",
+      "id=C6F5D655-20E3-4CEE-89FF-3C8C20AB6D3B",
+      "-derivedDataPath",
+      "~/Apps/hydro-assistant/ios/01-源程序/.dd-iphone",
+      "CODE_SIGNING_ALLOWED=NO",
+      "build"
+    ],
+    "seconds": 13.36,
+    "source_before_sha256": "22b7af770b5c79e1e251c06621d00541912eb03e0d14dd269a5d002f98e33039",
+    "source_after_sha256": "22b7af770b5c79e1e251c06621d00541912eb03e0d14dd269a5d002f98e33039",
+    "source_unchanged": true,
+    "load_average_after_build": [
+      6.80712890625,
+      40.826171875,
+      39.3984375
+    ]
+  },
+  "size": {
+    "download_bytes": 868908,
+    "installed_bytes": 3629056,
+    "kind": "Local simulator .app ZIP; not an App Store IPA or device slice"
+  },
+  "installed_binary_sha256": "c7b8c03033a2e7712b123d5212061886813a06836eb660c4d6e9dc5de8097541",
+  "launch": {
+    "samples": [
+      {
+        "ms": 1347.2826659999555,
+        "pid": 59690
+      },
+      {
+        "ms": 113.59691599864163,
+        "pid": 59723
+      },
+      {
+        "ms": 110.38487500263727,
+        "pid": 59747
+      }
+    ],
+    "median_ms": 113.59691599864163,
+    "runs": 3,
+    "method": "simctl launch wall time through process PID acknowledgement after terminate; includes CLI overhead and warm filesystem cache; not first-frame or interactive-ready time",
+    "command": [
+      "xcrun",
+      "simctl",
+      "launch",
+      "C6F5D655-20E3-4CEE-89FF-3C8C20AB6D3B",
+      "cyou.tianli.hydrodeck"
+    ],
+    "foreground_request": "simctl default; --background not supplied",
+    "limitations": "Process acknowledgement only, not first-frame/interactive readiness; host load is included in raw evidence."
+  },
+  "idle": {
+    "process": "59747",
+    "footprint_mb": 27.0,
+    "cpu_pct": 0.0,
+    "window_s": 60,
+    "settle_s": 45,
+    "method": "Shared measure.py: CPU time delta / 60s wall; 3 phys_footprint samples after CPU window, maximum reported",
+    "scope": "Simulator App process only; excludes CoreSimulator, Simulator GUI, system services and inactive extensions",
+    "limitations": "Post-launch simulator process sampling; simctl requested foreground by default; UIApplication/RunningBoard activation state was not observed and this is not a complete foreground business test."
+  },
+  "source_unchanged_during_measurement": true,
+  "binary_unchanged_during_measurement": true,
+  "completed_at": "2026-09-26T23:57:53.893513+08:00"
+}
