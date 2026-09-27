@@ -58,13 +58,13 @@ MIT © 2026 Tianli Zeng
 <!-- lightweight:start -->
 ## Resource use
 
-| Download | Idle memory | Idle CPU | Speed |
+Download size is App Store data; memory, CPU and launch time are iOS Simulator measurements, not physical-device figures.
+
+| Download | Idle memory | Idle CPU | Simulator cold launch to first screen ready |
 |---|---|---|---|
-| **0.3 MB** (installed 0.8 MB) | **Not measured** | **Not measured** | **Not measured** |
+| **0.3 MB** (installed 0.8 MB) | **28.3 MB** | **0%** | **1.5 s** |
 
-Sizes are read back for this exact distribution build. Memory, CPU and launch time remain explicitly unmeasured.
+Sizes are read back for this exact distribution build. The physical device is not yet measured, so memory, CPU and launch time come from the iOS Simulator and are labelled as such.
 
-Items marked Not measured have no measurement record for this version.
-
-<sub>v0.1 (1) · iPhone 17（iPhone18,3）；体积为 Apple 设备切片记录，运行性能尚未真机实测 · TestFlight VALID（未上架）; package sizes exclude user data and caches; installed phone version not verified · measured 2026-09-26. Sizes come from Apple App Store Connect device slices for this build. Physical-device performance measurement is incomplete; unmeasured does not mean zero use. sizes in decimal MB. Raw data: [perf/lightweight.json](perf/lightweight.json).</sub>
+<sub>v0.1 (1) · iPhone 17（iPhone18,3）；体积为 Apple 设备切片记录，运行性能尚未真机实测 · TestFlight VALID（未上架）; package sizes exclude user data and caches; installed phone version not verified · measured 2026-09-26. Sizes come from Apple App Store Connect device slices for this build. Memory, CPU and launch time were measured on iPhone 17 Pro / iOS 27.0 Simulator / Mac16,12 / Apple M4 / macOS 27.2 with a local Release build v0.1 (1) (2026-09-26), App process only; these are not physical-device figures, which are still unmeasured. Memory uses phys_footprint; CPU is CPU time ÷ wall time over a 60-second sampling window; sizes in decimal MB. Raw data: [perf/lightweight.json](perf/lightweight.json).</sub>
 <!-- lightweight:end -->

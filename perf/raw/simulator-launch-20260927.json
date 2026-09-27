@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "app_id": "hydro-deck",
+  "environment": "simulator",
+  "mode": "launch",
+  "measured_at": "2026-09-27T14:04:06.678239+08:00",
+  "version": "0.1 (1)",
+  "configuration": "Release",
+  "bundle_id": "cyou.tianli.hydrodeck",
+  "binary_sha256": "1706162a145d115c9ff68408947588fa4de6a7e679a58ae308583535ede5dd13",
+  "build_receipt": {
+    "configuration": "Release",
+    "seconds": 21.7,
+    "source_sha256": "22b7af770b5c79e1e251c06621d00541912eb03e0d14dd269a5d002f98e33039",
+    "source_unchanged": true,
+    "built_from": "working tree"
+  },
+  "git_head": "a849f0628c4a0912941add592e02a4a971996dfc",
+  "simulator_device": "iPhone 17 Pro",
+  "simulator_os": "iOS 27.0",
+  "host": "Mac16,12 / Apple M4 / macOS 27.2",
+  "load_average_at_start": [
+    117.79443359375,
+    164.93310546875,
+    85.0380859375
+  ],
+  "measurement_tool_sha256": "0393a632f3e0a2d2551ecb173704f195c3f9da743d0a49bad0492c1e0b669698",
+  "probe_sha256": "04e8e990c1a6c393d9b49bf91ac8b4f799588f181ea10657f38517cdf281c129",
+  "scope": "Simulator App process only; excludes CoreSimulator, Simulator GUI, system services and inactive extensions",
+  "launch": {
+    "samples": [
+      {
+        "run": 0,
+        "pid": 76948,
+        "host_call_epoch": 1790489050.055968,
+        "request_to_ready_ms": 3100.7,
+        "request_to_launch_complete_ms": 3306.9
+      },
+      {
+        "run": 1,
+        "pid": 77052,
+        "host_call_epoch": 1790489058.59495,
+        "request_to_ready_ms": 1515.8,
+        "request_to_launch_complete_ms": 2372.5
+      },
+      {
+        "run": 2,
+        "pid": 77141,
+        "host_call_epoch": 1790489066.7530398,
+        "request_to_ready_ms": 1546.3,
+        "request_to_launch_complete_ms": 2374.1
+      },
+      {
+        "run": 3,
+        "pid": 77220,
+        "host_call_epoch": 1790489074.915822,
+        "request_to_ready_ms": 1513.7,
+        "request_to_launch_complete_ms": 2369.7
+      },
+      {
+        "run": 4,
+        "pid": 77427,
+        "host_call_epoch": 1790489083.049332,
+        "request_to_ready_ms": 1506.3,
+        "request_to_launch_complete_ms": 2363.0
+      },
+      {
+        "run": 5,
+        "pid": 77531,
+        "host_call_epoch": 1790489091.2083552,
+        "request_to_ready_ms": 1494.2,
+        "request_to_launch_complete_ms": 2356.2
+      }
+    ],
+    "discarded_runs": 1,
+    "runs": 5,
+    "ready_median_ms": 1513.7,
+    "launch_complete_median_ms": 2369.7,
+    "method": "Simulator unified log: CoreSimulator \"Requesting launch of <bundle>\" -> SpringBoard scene content state \"ready\" (app committed its first scene content) / FrontBoard \"Dropping launch assertion\" (launch finished). App process terminated 3 s before each run; system caches warm; first run after install discarded.",
+    "marker_lines": {
+      "0": [
+        {
+          "timestamp": "2026-09-27 14:04:10.184088+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:10.401998+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 76948"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:13.284770+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:13.490986+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:76948] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-27 14:04:13.640429+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:76948] Dropping launch assertion."
+        }
+      ],
+      "1": [
+        {
+          "timestamp": "2026-09-27 14:04:18.709567+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:18.747961+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 77052"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:20.225398+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:21.082088+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:77052] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-27 14:04:21.115592+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:77052] Dropping launch assertion."
+        }
+      ],
+      "2": [
+        {
+          "timestamp": "2026-09-27 14:04:26.871684+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:26.908460+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 77141"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:28.417947+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:29.245745+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:77141] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-27 14:04:29.281982+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:77141] Dropping launch assertion."
+        }
+      ],
+      "3": [
+        {
+          "timestamp": "2026-09-27 14:04:35.022927+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:35.056551+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 77220"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:36.536675+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:37.392658+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:77220] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-27 14:04:37.431404+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:77220] Dropping launch assertion."
+        }
+      ],
+      "4": [
+        {
+          "timestamp": "2026-09-27 14:04:43.168961+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:43.203169+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 77427"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:44.675281+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:45.531917+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:77427] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-27 14:04:45.570377+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:77427] Dropping launch assertion."
+        }
+      ],
+      "5": [
+        {
+          "timestamp": "2026-09-27 14:04:51.324151+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:51.358296+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 77531"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:52.818357+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-27 14:04:53.680313+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:77531] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-27 14:04:53.715096+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:77531] Dropping launch assertion."
+        }
+      ]
+    }
+  },
+  "source_unchanged_during_measurement": true,
+  "completed_at": "2026-09-27T14:04:56.295459+08:00",
+  "calibration": {
+    "measured_at": "2026-09-27T14:04:00+08:00",
+    "device": "iPhone 17 Pro / iOS 27.0 Simulator (same device as app runs)",
+    "app": "com.apple.Preferences (system Settings)",
+    "settings_ready_samples_ms": [
+      3626.3,
+      2505.8,
+      2529.9,
+      2517.9,
+      2589.8,
+      2507.6
+    ],
+    "settings_launch_complete_samples_ms": [
+      3424.6,
+      2911.7,
+      2917.7,
+      2906.9,
+      2977.7,
+      2887.3
+    ],
+    "settings_ready_median_ms": 2517.9,
+    "settings_launch_complete_median_ms": 2911.7,
+    "note": "Same probe and markers as the app runs; first sample discarded. Shows the simulator's own launch overhead; not a physical-device figure."
+  },
+  "idle_evidence_kept": "perf/raw/simulator-20260926.json"
+}
