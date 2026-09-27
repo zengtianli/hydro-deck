@@ -63,7 +63,8 @@ enum ChatStream {
     static let base = "https://hydro-agent.tianli.cyou"
 
     /// 共享 session：cookie jar 跨启动保留（闸会话 cookie 住这里）。
-    static let session: URLSession = {
+    /// var 只为验收脚本在进程内换成本地 URLProtocol 传输（scripts/accept）；App 内不改写。
+    static var session: URLSession = {
         let c = URLSessionConfiguration.default
         c.httpCookieStorage = .shared
         c.httpShouldSetCookies = true

@@ -1,0 +1,6 @@
+{
+  "check": "recovery",
+  "ok": true,
+  "summary": "recovery: 14 项断言通过；故障与恢复 8 类场景，用时 3.3s",
+  "scope": "生产 ChatModel/ChatStream/Backend/Store/AIConsent 在 macOS 编译运行，本地 URLProtocol 代替后端；SwiftUI 渲染与真机不在本项范围"
+}

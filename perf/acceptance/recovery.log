@@ -1,0 +1,16 @@
+PASS 断流后轮询 /api/runs/{id}/events?after_seq=<最后seq> 续取
+PASS 取回终态后以 run.end 成稿固化、不进错误态
+PASS 同一问只固化一次：盘上无残留欠账，再次 resume 不补 turn、不再取回
+PASS 停止：已流出部分同步固化为 aborted 轮，欠账清零
+PASS 停止后不取回、不进错误态
+PASS 孤儿合成终态：固化为 aborted 句号，failure 为空（非红错）
+PASS 非孤儿 fatal 后跟 run.end：以 run.end 成稿/终态为准，清掉 failure，不取回
+PASS HTTP 500：进入可读错误态（failure 含状态码），不固化空轮、不盲取回
+PASS HTTP 500：未成功发出的问题保留在 unsentQuestion 供重发
+PASS HTTP 500 后重发成功，失败态清除
+PASS 闸拦截（302→/_gate/）且无闸密码：进入 needGatePassword，不崩、不盲轮询、不重复发问
+PASS 流中途结构性事件即落盘 pendingRun（runId/lastSeq/问题/步骤）
+PASS 重启后 resumePendingIfAny 按落盘 lastSeq 取回并固化成稿，欠账清零
+PASS 坏 JSON 会话文件被跳过且保留在盘上，好会话照常加载并成为当前会话
+SUMMARY 故障与恢复 8 类场景，用时 3.3s
+✅ recovery: 14 项断言通过；故障与恢复 8 类场景，用时 3.3s

@@ -26,7 +26,7 @@ import UIKit
 @Observable
 final class ChatModel {
     // 会话
-    let store = SessionStore()
+    let store: SessionStore
     private(set) var session: ChatSession
     var turns: [TurnRecord] { session.turns }
 
@@ -116,11 +116,13 @@ final class ChatModel {
     private var runFinalized = false
     private var deltasSincePersist = 0
 
-    init() {
+    /// store 注入给验收脚本用临时目录（同 SessionStore.baseDir 的理由）；App 用缺省目录。
+    init(store: SessionStore? = nil) {
+        self.store = store ?? SessionStore()
         // 起在最近一个会话上（历史即上下文）；一个都没有才新建。
         session = ChatSession(id: UUID().uuidString, serverSessionId: nil,
                               createdAt: Date(), updatedAt: Date())
-        if let latest = store.sessions.first { session = latest }
+        if let latest = self.store.sessions.first { session = latest }
     }
 
     /// 终态 → 给人看的标注。answered 不标（正常）；其余如实，别把「有保留」抹成完成。
@@ -355,7 +357,11 @@ final class ChatModel {
     /// 断流后的分诊：拿到过 run_id 就取回，一个事件都没收到就报错（无从取回）。
     private func recoverOrShow(_ error: Error) async {
         if runId != nil { await catchUp() }
-        else { show(error) }
+        else {
+            // 没发成功的问题退回输入框（ChatView 已清空输入）；附件本就在 run.start 前保留。
+            if !activeQuestion.isEmpty { unsentQuestion = activeQuestion }
+            show(error)
+        }
     }
 
     /// 轮询取回（web catchup.ts 同款：500ms 间隔，15min 上限，complete=true 收工）。

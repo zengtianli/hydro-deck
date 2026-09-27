@@ -1,0 +1,6 @@
+{
+  "check": "privacy",
+  "ok": true,
+  "summary": "privacy: 62 项断言通过；privacy：同意前零请求/同意后白名单 HTTPS 且最小字段/撤销与旧代际拦截/本地存储与删除/钥匙串静态/隐私清单",
+  "scope": "生产 ChatModel/ChatStream/Backend/Store/AIConsent 在 macOS 编译运行，本地 URLProtocol 代替后端；SwiftUI 渲染与真机不在本项范围"
+}
