@@ -44,7 +44,7 @@ targets:
         INFOPLIST_KEY_NSCameraUsageDescription: 拍照上传给助手读图（表格/现场照片）
 
         MARKETING_VERSION: "0.1"
-        CURRENT_PROJECT_VERSION: "1"
+        CURRENT_PROJECT_VERSION: "2"
     scheme:
       testTargets: []
       configVariants: []
