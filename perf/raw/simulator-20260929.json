@@ -1,0 +1,520 @@
+{
+  "schema_version": 1,
+  "app_id": "hydro-deck",
+  "environment": "simulator",
+  "mode": "launch+idle",
+  "measured_at": "2026-09-29T01:44:11.124052+08:00",
+  "version": "0.1 (2)",
+  "configuration": "Release",
+  "bundle_id": "cyou.tianli.hydrodeck",
+  "binary_sha256": "f9a43e8dff9fde9beb360ab80bbf5dc3c5b258f0c440be78414c0db6363f689b",
+  "installed_binary_sha256": "f9a43e8dff9fde9beb360ab80bbf5dc3c5b258f0c440be78414c0db6363f689b",
+  "source": {
+    "input_globs": [
+      "Sources/**",
+      "Shared/**",
+      "Resources/**",
+      "Widget/**",
+      "ShareExtension/**",
+      "project.yml",
+      "*.entitlements"
+    ],
+    "sha256": "e6dd8e113eb7ae4db94a5e71491081c878451bda9cc121ced776a9c2268b97f6",
+    "file_count": 32,
+    "commit": "67709afea91014f881f30963163d1c4247ab6dca",
+    "dirty_scope": "组件当前 Git 工作树；跨仓/软链输入的实际内容由 sha256 核验",
+    "dirty": false
+  },
+  "git_head": "67709afea91014f881f30963163d1c4247ab6dca",
+  "app_path": "~/Apps/hydro-assistant/ios/01-源程序/.dd-iphone/Build/Products/Release-iphonesimulator/HydroDeck.app",
+  "simulator_name": "HydroDeck Perf",
+  "simulator_udid": "E14146D7-6B2D-4A9A-872E-7BBB32105E2D",
+  "simulator_device": "iPhone 17 Pro",
+  "simulator_os": "iOS 27.0",
+  "simulator_runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+  "host": "Mac16,12 / Apple M4 / macOS 27.2",
+  "load_average_at_start": [
+    4.43701171875,
+    78.517578125,
+    114.23046875
+  ],
+  "gate": {
+    "steady": true,
+    "reason": "空闲 947 秒、负载 4.4",
+    "forced": false
+  },
+  "measurement_tool_sha256": "3115df55ec28d689b9ce35692aea748604588cd0819316b2d43548b632b68d02",
+  "measurement_tools": {
+    "scripts/perf/sim_measure.py": "2c732808dc19d42285ea4bcde85a655262bd113b8b0c91948d86b2ab82f46929",
+    "~/Apps/.claude/skills/app-lightweight/scripts/measure.py": "0393a632f3e0a2d2551ecb173704f195c3f9da743d0a49bad0492c1e0b669698"
+  },
+  "scope": "Simulator App process only; excludes CoreSimulator, Simulator GUI, system services and inactive extensions",
+  "data": "Fresh app container on isolated simulator; default first-run data; no production user data imported",
+  "build_receipt": {
+    "exit": 0,
+    "configuration": "Release",
+    "generate": {
+      "command": [
+        "xcodegen",
+        "generate",
+        "--spec",
+        "project.yml"
+      ],
+      "exit": 0,
+      "seconds": 0.03
+    },
+    "command": [
+      "xcrun",
+      "xcodebuild",
+      "-project",
+      "HydroDeck.xcodeproj",
+      "-scheme",
+      "HydroDeck",
+      "-configuration",
+      "Release",
+      "-sdk",
+      "iphonesimulator",
+      "-destination",
+      "id=E14146D7-6B2D-4A9A-872E-7BBB32105E2D",
+      "-derivedDataPath",
+      "~/Apps/hydro-assistant/ios/01-源程序/.dd-iphone",
+      "CODE_SIGNING_ALLOWED=NO",
+      "build"
+    ],
+    "seconds": 2.64,
+    "source_before_sha256": "e6dd8e113eb7ae4db94a5e71491081c878451bda9cc121ced776a9c2268b97f6",
+    "source_after_sha256": "e6dd8e113eb7ae4db94a5e71491081c878451bda9cc121ced776a9c2268b97f6",
+    "source_unchanged": true,
+    "load_average_after_build": [
+      4.40185546875,
+      77.2802734375,
+      113.58447265625
+    ],
+    "built_from": "working tree"
+  },
+  "size": {
+    "download_bytes": 870215,
+    "installed_bytes": 3633152,
+    "kind": "Local simulator .app ZIP; not an App Store IPA or device slice",
+    "method": "download_bytes = ditto -c -k --keepParent ZIP of the built .app; installed_bytes = du -sk of the built .app x 1024",
+    "installed_copy_du_bytes": 3633152
+  },
+  "launch": {
+    "samples": [
+      {
+        "run": 0,
+        "pid": 98821,
+        "host_call_epoch": 1790617454.54255,
+        "request_to_ready_ms": 4468.2,
+        "request_to_launch_complete_ms": 4488.2
+      },
+      {
+        "run": 1,
+        "pid": 99021,
+        "host_call_epoch": 1790617463.5990222,
+        "request_to_ready_ms": 4655.5,
+        "request_to_launch_complete_ms": 5203.7
+      },
+      {
+        "run": 2,
+        "pid": 99206,
+        "host_call_epoch": 1790617476.170013,
+        "request_to_ready_ms": 5899.7,
+        "request_to_launch_complete_ms": 6040.9
+      },
+      {
+        "run": 3,
+        "pid": 99424,
+        "host_call_epoch": 1790617488.332243,
+        "request_to_ready_ms": 4216.6,
+        "request_to_launch_complete_ms": 4766.6
+      },
+      {
+        "run": 4,
+        "pid": 99622,
+        "host_call_epoch": 1790617499.421857,
+        "request_to_ready_ms": 4267.0,
+        "request_to_launch_complete_ms": 4737.7
+      },
+      {
+        "run": 5,
+        "pid": 99877,
+        "host_call_epoch": 1790617510.709121,
+        "request_to_ready_ms": 4182.5,
+        "request_to_launch_complete_ms": 4704.0
+      }
+    ],
+    "discarded_runs": 1,
+    "runs": 5,
+    "ready_median_ms": 4267.0,
+    "launch_complete_median_ms": 4766.6,
+    "method": "Simulator unified log: CoreSimulator \"Requesting launch of <bundle>\" -> SpringBoard scene content state \"ready\" (app committed its first scene content) / FrontBoard \"Dropping launch assertion\" (launch finished). App process terminated 3 s before each run; system caches warm; first run after install discarded.",
+    "command": [
+      "xcrun",
+      "simctl",
+      "launch",
+      "E14146D7-6B2D-4A9A-872E-7BBB32105E2D",
+      "cyou.tianli.hydrodeck"
+    ],
+    "foreground_request": "simctl default; --background not supplied",
+    "marker_lines": {
+      "0": [
+        {
+          "timestamp": "2026-09-29 01:44:14.678153+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:14.764182+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 98821"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:19.146380+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:19.166357+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:98821] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:44:19.270132+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:98821] Dropping launch assertion."
+        }
+      ],
+      "1": [
+        {
+          "timestamp": "2026-09-29 01:44:24.036978+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:24.087304+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 99021"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:28.692503+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:29.240654+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:99021] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:44:29.302158+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:99021] Dropping launch assertion."
+        }
+      ],
+      "2": [
+        {
+          "timestamp": "2026-09-29 01:44:36.494498+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:37.442528+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 99206"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:42.394182+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:42.535374+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:99206] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:44:42.712066+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:99206] Dropping launch assertion."
+        }
+      ],
+      "3": [
+        {
+          "timestamp": "2026-09-29 01:44:48.593545+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:48.639022+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 99424"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:52.810168+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:53.360095+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:99424] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:44:53.418500+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:99424] Dropping launch assertion."
+        }
+      ],
+      "4": [
+        {
+          "timestamp": "2026-09-29 01:44:59.778521+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:59.832934+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 99622"
+        },
+        {
+          "timestamp": "2026-09-29 01:45:04.045529+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-29 01:45:04.516249+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:99622] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:45:04.635043+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:99622] Dropping launch assertion."
+        }
+      ],
+      "5": [
+        {
+          "timestamp": "2026-09-29 01:45:11.020567+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of cyou.tianli.hydrodeck with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:45:11.063744+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'cyou.tianli.hydrodeck', pid: 99877"
+        },
+        {
+          "timestamp": "2026-09-29 01:45:15.203112+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:cyou.tianli.hydrodeck-default] scene content state changed: ready"
+        },
+        {
+          "timestamp": "2026-09-29 01:45:15.724611+0800",
+          "process": "SpringBoard",
+          "message": "[app<cyou.tianli.hydrodeck>:99877] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:45:15.824176+0800",
+          "process": "InputUI",
+          "message": "[app<cyou.tianli.hydrodeck>:99877] Dropping launch assertion."
+        }
+      ]
+    }
+  },
+  "calibration": {
+    "measured_at": "2026-09-29T01:42:39.975553+08:00",
+    "device": "iPhone 17 Pro / iOS 27.0 Simulator (same device as app runs)",
+    "app": "com.apple.Preferences (system Settings)",
+    "settings_ready_samples_ms": [
+      9663.1,
+      6589.5,
+      6816.5,
+      6484.6,
+      7139.5,
+      7719.8
+    ],
+    "settings_launch_complete_samples_ms": [
+      7515.2,
+      5953.9,
+      6174.6,
+      6223.7,
+      6377.9,
+      6644.1
+    ],
+    "settings_ready_median_ms": 6816.5,
+    "settings_launch_complete_median_ms": 6223.7,
+    "note": "Same probe and markers as the app runs; first 1 sample(s) discarded. Shows the simulator's own launch overhead; not a physical-device figure.",
+    "marker_lines": {
+      "0": [
+        {
+          "timestamp": "2026-09-29 01:42:46.154453+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of com.apple.Preferences with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:42:46.745735+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'com.apple.Preferences', pid: 97374"
+        },
+        {
+          "timestamp": "2026-09-29 01:42:53.669635+0800",
+          "process": "SpringBoard",
+          "message": "[app<com.apple.Preferences>:97374] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:42:54.106687+0800",
+          "process": "InputUI",
+          "message": "[app<com.apple.Preferences>:97374] Dropping launch assertion."
+        }
+      ],
+      "1": [
+        {
+          "timestamp": "2026-09-29 01:43:10.144555+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of com.apple.Preferences with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:43:10.230661+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'com.apple.Preferences', pid: 97717"
+        },
+        {
+          "timestamp": "2026-09-29 01:43:16.098433+0800",
+          "process": "SpringBoard",
+          "message": "[app<com.apple.Preferences>:97717] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:43:16.317001+0800",
+          "process": "InputUI",
+          "message": "[app<com.apple.Preferences>:97717] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:43:16.734011+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:com.apple.Preferences-default] scene content state changed: ready"
+        }
+      ],
+      "2": [
+        {
+          "timestamp": "2026-09-29 01:43:22.226344+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of com.apple.Preferences with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:43:22.284396+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'com.apple.Preferences', pid: 97920"
+        },
+        {
+          "timestamp": "2026-09-29 01:43:28.400908+0800",
+          "process": "SpringBoard",
+          "message": "[app<com.apple.Preferences>:97920] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:43:28.627081+0800",
+          "process": "InputUI",
+          "message": "[app<com.apple.Preferences>:97920] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:43:29.042807+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:com.apple.Preferences-default] scene content state changed: ready"
+        }
+      ],
+      "3": [
+        {
+          "timestamp": "2026-09-29 01:43:33.326405+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of com.apple.Preferences with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:43:33.399148+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'com.apple.Preferences', pid: 98064"
+        },
+        {
+          "timestamp": "2026-09-29 01:43:39.550072+0800",
+          "process": "SpringBoard",
+          "message": "[app<com.apple.Preferences>:98064] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:43:39.727801+0800",
+          "process": "InputUI",
+          "message": "[app<com.apple.Preferences>:98064] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:43:39.811003+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:com.apple.Preferences-default] scene content state changed: ready"
+        }
+      ],
+      "4": [
+        {
+          "timestamp": "2026-09-29 01:43:43.937685+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of com.apple.Preferences with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:43:44.233585+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'com.apple.Preferences', pid: 98236"
+        },
+        {
+          "timestamp": "2026-09-29 01:43:50.315618+0800",
+          "process": "SpringBoard",
+          "message": "[app<com.apple.Preferences>:98236] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:43:50.533625+0800",
+          "process": "InputUI",
+          "message": "[app<com.apple.Preferences>:98236] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:43:51.077144+0800",
+          "process": "SpringBoard",
+          "message": "[(FBSceneManager):sceneID:com.apple.Preferences-default] scene content state changed: ready"
+        }
+      ],
+      "5": [
+        {
+          "timestamp": "2026-09-29 01:43:58.363592+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Requesting launch of com.apple.Preferences with options: {\n    environment =     {\n        TERM = \"xterm-ghostty\";\n    };\n}"
+        },
+        {
+          "timestamp": "2026-09-29 01:43:58.408308+0800",
+          "process": "CoreSimulatorBridge",
+          "message": "Launch successful for 'com.apple.Preferences', pid: 98465"
+        },
+        {
+          "timestamp": "2026-09-29 01:44:05.007645+0800",
+          "process": "SpringBoard",
+          "message": "[app<com.apple.Preferences>:98465] Dropping launch assertion."
+        },
+        {
+          "timestamp": "2026-09-29 01:44:05.294412+0800",
+          "process": "InputUI",
+          "message": "[app<com.apple.Preferences>:98465] Dropping launch assertion."
+        }
+      ]
+    }
+  },
+  "idle": {
+    "process": "99877",
+    "footprint_mb": 27.0,
+    "footprint_bytes": 28311552,
+    "cpu_pct": 0.02,
+    "cpu_seconds_delta": 0.01,
+    "wall_s": 60.06,
+    "window_s": 60,
+    "settle_s": 45,
+    "method": "Shared measure.py: CPU time delta / 60s wall; 3 phys_footprint samples after CPU window, maximum reported",
+    "units": "footprint_mb is MiB (KB/1024, measure.py convention); footprint_bytes for decimal MB",
+    "scope": "Simulator App process only; excludes CoreSimulator, Simulator GUI, system services and inactive extensions",
+    "limitations": "Post-launch simulator process sampling; simctl requested foreground by default; UIApplication/RunningBoard activation state was not observed and this is not a complete foreground business test."
+  },
+  "source_unchanged_during_measurement": true,
+  "binary_unchanged_during_measurement": true,
+  "completed_at": "2026-09-29T01:47:06.262385+08:00"
+}
