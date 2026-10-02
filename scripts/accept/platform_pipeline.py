@@ -16,8 +16,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 HQ = Path.home() / "Dev/tools/dev/lib/tools/macapp/ios"
 ENGINE = Path.home() / "Apps/chapter/engine/app_sop.py"
-sys.path[:0] = [str(HQ), str(ENGINE.parent)]
+PERF_TOOLS = Path.home() / "Apps/.claude/skills/app-lightweight/scripts"
+sys.path[:0] = [str(HQ), str(ENGINE.parent), str(PERF_TOOLS)]
 import app_sop
+import platform_measure
 import sim_lane
 import store_shots
 
@@ -64,14 +66,8 @@ def call(command, env=None, capture=False, acceptance=False):
 
 
 def measured(lane):
-    try:
-        doc = json.loads((ROOT / f"perf/platforms/{lane}.json").read_text())
-        rm = doc["runtime_measurement"]
-        raw = ROOT / rm["evidence"]
-        return (doc["input_sha256"] == SOURCE and sim_lane.sha256(raw) == rm["evidence_sha256"]
-                and not bool((rm.get("build") or {}).get("compilation_conditions")))
-    except (OSError, ValueError, KeyError):
-        return False
+    cfg = platform_measure.lane_config(ROOT, lane)
+    return platform_measure.current_evidence(ROOT, lane, cfg, SOURCE, fixture_debug=False) is not None
 
 
 def capture_lane(lane, cfg, built):
