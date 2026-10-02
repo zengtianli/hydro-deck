@@ -100,7 +100,11 @@ struct ChatView: View {
         .sheet(isPresented: $model.showAIConsent) { AIDataConsentSheet(model: model) }
         .sheet(isPresented: $showHistory) { HistoryView(model: model) }
         .sheet(item: $citationDoc) { c in CitationSheet(citation: c) }
+        .onAppear { LaneSignal.ready(model.turns.isEmpty ? "chat-empty" : "chat-history") }
         .task {
+            LaneSignal.applyOrientation()
+            LaneSignal.applyWindowFrame()
+            guard !LaneDemo.enabled else { return }
             await Gate.seedFromLaunchArg(session: ChatStream.session)
             await model.resumePendingIfAny()
             // 验证通道（同 day-deck 的 `-tab N`）：`-ask <问题>` 启动即自动发一问，
@@ -115,7 +119,7 @@ struct ChatView: View {
         }
         .onChange(of: scenePhase) { _, p in
             // 回前台：iOS 切后台几秒就掐 SSE；run 还在服务端跑，回来接着取。
-            guard p == .active else { return }
+            guard p == .active, !LaneDemo.enabled else { return }
             Task { await model.resumePendingIfAny() }
         }
         .onChange(of: pickedPhotos) {

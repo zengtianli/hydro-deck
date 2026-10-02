@@ -1,3 +1,83 @@
+name: hydro-deck
 name_en: Water Assistant
 name_zh: 水利助手
 display_name: Water Assistant · 水利助手
+family: hydro-assistant
+form: ios
+platforms: [iphone, ipad, mac, vision]   # 跑在哪（正交于 form=源码住哪）；multiplatform.py audit 与 project.yml 对账
+lifecycle: active
+bundle_id: cyou.tianli.hydrodeck
+origin: own
+sop:
+  test: bash Tests/check-consent.sh
+  ui:
+  - Sources/**
+  - Shared/**
+  source:
+  - Sources/**
+  - Shared/**
+  - Resources/**
+  - Widget/**
+  - ShareExtension/**
+  - project.yml
+  - '*.entitlements'
+  test_inputs:
+  - Tests/**
+  - ref/**
+  - test-contract.py
+  - test_check_markdown_drift.py
+  - scripts/tests/**
+  - scripts/accept/**
+  - Package.swift
+  media:
+  - shots
+  release: perf/asc-release.json
+  runtime_note: 四条适用平台线采用隔离的虚构会话；iPhone/iPad/Vision 为模拟器、Mac 为本机静默原生，真机仍未验证。旧 iPhone 模拟器证据覆盖原版本，本轮平台输入等待实测。
+  accept:
+    functionality: bash scripts/accept/_common.sh functionality
+    recovery: bash scripts/accept/_common.sh recovery
+    privacy: bash scripts/accept/_common.sh privacy
+    launch_iphone: bash scripts/accept/launch.sh iphone
+    launch_ipad: bash scripts/accept/launch.sh ipad
+    launch_mac: bash scripts/accept/launch.sh mac
+    launch_vision: bash scripts/accept/launch.sh vision
+  platforms:
+    iphone:
+      simulator: {device_type: iPhone-17-Pro}
+      launch_args: [-lane_demo, 'YES']
+      store_shots: shots/appstore/iphone/*.png
+      budget: {memory_mb: 80, cpu: 0.5}
+      distribution: testflight
+    ipad:
+      simulator: {device_type: iPad-Pro-13-inch-M5-12GB}
+      launch_args: [-lane_demo, 'YES']
+      orientation: landscape
+      store_shots: shots/appstore/ipad/*.png
+      budget: {memory_mb: 100, cpu: 0.5}
+      distribution: testflight
+    mac:
+      launch_args: [-lane_demo, 'YES', -lane_window, 1440x900]
+      store_shots: shots/appstore/mac/*.png
+      budget: {memory_mb: 100, cpu: 0.5}
+      distribution: none
+    watch:
+      not_applicable: 核心工作流为带表格与引文的长答案阅读、会话比对和现场照片上传；Apple Watch 的屏幕和输入方式不适合该完整工作流，现无可独立使用的手表任务，不做空壳。
+    vision:
+      simulator: {device_type: Apple-Vision-Pro-4K}
+      launch_args: [-lane_demo, 'YES']
+      store_shots: shots/appstore/vision/*.png
+      budget: {memory_mb: 80, cpu: 0.5}
+      distribution: none
+  measure:
+    command: ~/Dev/.venv/bin/python scripts/perf/measure_platforms.py
+    outputs: [perf/platforms, perf/simulator.json, perf/lightweight.json]
+    in_use: true
+  budget: {memory_mb: 80, cpu: 0.5}
+  runtime:
+    kind: ios
+    readback: builtin:asc-device
+  product:
+    distribution: personal
+    source_visibility: private
+    source_url: ''
+    rationale: 水利助手的手机端薄客户端：向自建水利 Agent 提问，流式显示步骤与带引文的答案，业务逻辑全在后端；目前 TestFlight 内测，后端私有、不开放试用，不作为公开发行产品推广。源码政策登记为私有；GitHub 仓 zengtianli/hydro-deck 当前仍为公开，是否转为私有由本人决定，本次未改动仓库可见性。

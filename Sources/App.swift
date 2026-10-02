@@ -2,6 +2,9 @@ import SwiftUI
 
 @main
 struct HydroDeckApp: App {
+    #if os(macOS)
+    @NSApplicationDelegateAdaptor(LaneAppDelegate.self) private var laneDelegate
+    #endif
     var body: some Scene {
         WindowGroup {
             RootView()
@@ -22,15 +25,19 @@ struct HydroDeckApp: App {
 // =============================================================================
 
 struct RootView: View {
-    @State private var model = ChatModel()
+    @State private var model = LaneDemo.makeModel()
     @Environment(\.horizontalSizeClass) private var hSize
 
     var body: some View {
+        #if os(macOS) || os(visionOS)
+        WideLayout(model: model)
+        #else
         if hSize == .regular {
             WideLayout(model: model)
         } else {
             ChatView(model: model)
         }
+        #endif
     }
 }
 

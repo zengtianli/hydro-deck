@@ -2,7 +2,7 @@
 
 <p align="center"><img src="Resources/icon-1024.png" width="96" alt="水利助手"></p>
 
-# 水利助手 · hydro-deck
+# Water Assistant · 水利助手
 
 **水利问题问一句，十几秒拿到带引文的答案。**
 
@@ -43,6 +43,21 @@ xcodebuild -scheme HydroDeck -destination 'generic/platform=iOS Simulator' build
 
 开发细节（回归、验证通道、约束）见 [DEVELOPING.md](DEVELOPING.md)。
 
+## Apple 平台
+
+同一份对话模型和会话存储用于 iPhone、iPad、Mac 与原生 Vision Pro。iPhone 保留打开即聊的窄屏；iPad 宽屏、Mac 与 Vision Pro 常驻会话侧栏，长答案限宽阅读。Mac 版由本工程的原生 macOS target 构建。
+
+| 平台 | 当前源码 | 本轮运行与资源验收 |
+|---|---|---|
+| iPhone / iPad | iOS 18+，原生目标 | 待模拟器验收 |
+| Mac | macOS 15+，原生目标 | 待静默运行验收 |
+| Vision Pro | visionOS 26+，原生目标 | 待模拟器验收，尚未发行 |
+| Apple Watch | 不适用 | 长答案、表格、引文和现场图片不适合手表屏幕；暂无独立的手表任务 |
+
+平台验收用 `-lane_demo YES` 载入三条明确标注虚构的会话，存储在临时目录，网络请求在进程内被拦截，不读取闸密码或写入正式会话。该入口用于界面与资源验收，不代表已连接真实后端。
+
+下方资源区块来自此前 0.1 (2) 的发行与 iPhone 模拟器记录；本轮新增平台的资源待测，旧数字不作为四平台实测。
+
 ## 相关
 
 - 产品页：<https://apps.tianli.cyou/p/hydro-deck-ios.html>
@@ -60,9 +75,9 @@ MIT © 2026 曾田力 (Tianli Zeng)
 
 | 安装包 | 空闲内存 | 空闲 CPU | 模拟器冷启动到首屏就绪 |
 |---|---|---|---|
-| **0.3 MB**（装好后 0.8 MB） | **28.3 MB** | **0%** | **1.5 s** |
+| **0.3 MB**（装好后 0.9 MB） | **28.3 MB** | **0.02%** | **4.3 s** |
 
 体积按具体发行构建回读；真机尚未测量，内存、CPU 与启动时间先用 iOS 模拟器实测并标明环境。
 
-<sub>v0.1 (1) · iPhone 17（iPhone18,3）；体积为 Apple 设备切片记录，运行性能尚未真机实测 · TestFlight VALID（未上架）；体积不含用户数据与后续缓存；手机实际安装版本尚未核验 · 2026-09-26。体积来自 Apple App Store Connect 对应构建的设备切片记录。内存、CPU 与启动时间是 iPhone 17 Pro / iOS 27.0 Simulator / Mac16,12 / Apple M4 / macOS 27.2 上本地源码 Release 构建 v0.1 (1) 的实测（2026-09-26），只统计 App 进程，不等于真机数值；真机测量尚未完成。内存口径为 phys_footprint；CPU 为 60 秒采样窗内 CPU 时间 ÷ 墙钟；大小按十进制 MB。原始数据见 [perf/lightweight.json](perf/lightweight.json)。</sub>
+<sub>v0.1 (2) · iPhone 17（iPhone18,3）；体积为 Apple 设备切片记录，运行性能尚未真机实测 · TestFlight VALID（未上架，仅内测组）；体积不含用户数据与后续缓存；手机实际安装版本尚未核验 · 2026-09-29。体积来自 Apple App Store Connect 对应构建的设备切片记录。内存、CPU 与启动时间是 iPhone 17 Pro / iOS 27.0 Simulator / Mac16,12 / Apple M4 / macOS 27.2 上本地源码 Release 构建 v0.1 (2) 的实测（2026-09-29），只统计 App 进程，不等于真机数值；真机测量尚未完成。内存口径为 phys_footprint；CPU 为 60 秒采样窗内 CPU 时间 ÷ 墙钟；大小按十进制 MB。原始数据见 [perf/lightweight.json](perf/lightweight.json)。</sub>
 <!-- lightweight:end -->

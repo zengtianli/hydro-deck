@@ -295,7 +295,30 @@ private func contains(_ url: URL, _ needle: String) -> Bool {
                           "隐私清单被纳入构建资源（project.yml）")
         }
 
+        // 平台截图入口也必须隔离：合成会话独立存储，任何 URL 都在进程内被拒绝。
+        let originalTransport = ChatStream.session
+        UserDefaults.standard.set(true, forKey: "lane_demo")
+        let demo = LaneDemo.makeModel()
+        Accept.expect(demo.store.sessions.count == 3 && !demo.turns.isEmpty,
+                      "平台演示有三条合成会话且首屏有内容")
+        Accept.expect(demo.turns.allSatisfy { $0.answer.contains("虚构") },
+                      "平台演示内容明确标注虚构")
+        Accept.expect(demo.store.sessions.allSatisfy { $0.pendingRun == nil && $0.serverSessionId == nil },
+                      "平台演示不含待恢复的服务端运行")
+        let requestsBeforeDemo = FakeBackend.requests.count
+        var blockedDemo = false
+        do { _ = try await ChatStream.session.data(from: URL(string: "https://lane.invalid/never-send")!) }
+        catch { blockedDemo = (error as? URLError)?.code == .notConnectedToInternet }
+        Accept.expect(blockedDemo && FakeBackend.requests.count == requestsBeforeDemo,
+                      "平台演示 URLProtocol 拦住请求并报告离线")
+        Accept.expect(Set(files(under: realAppSupport).map(\.path)) == realBefore,
+                      "平台演示没有写正式会话目录")
+        UserDefaults.standard.removeObject(forKey: "lane_demo")
+        ChatStream.session.invalidateAndCancel()
+        ChatStream.session = originalTransport
+        try? FileManager.default.removeItem(at: FileManager.default.temporaryDirectory
+            .appendingPathComponent("hydro-lane-demo-\(ProcessInfo.processInfo.processIdentifier)"))
         AIConsent.revoke()
-        Accept.finish("privacy：同意前零请求/同意后白名单 HTTPS 且最小字段/撤销与旧代际拦截/本地存储与删除/钥匙串静态/隐私清单")
+        Accept.finish("privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离")
     }
 }

@@ -1,7 +1,7 @@
 name: HydroDeck
 options:
   bundleIdPrefix: cyou.tianli
-  deploymentTarget: { iOS: "18.0", macOS: "15.0" }
+  deploymentTarget: { iOS: "18.0", macOS: "15.0", visionOS: "26.0" }
   createIntermediateGroups: true
 settings:
   base:
@@ -13,10 +13,11 @@ settings:
 targets:
   HydroDeck:
     type: application
-    supportedDestinations: [iOS, macOS]
+    supportedDestinations: [iOS, macOS, visionOS]
     sources:
       # 总部共享：macOS 侧给 iOS-only SwiftUI 修饰符提供同名 no-op，调用点不改（multiplatform.py 注入）
       - path: Shared/PlatformCompat.swift
+      - path: Shared/LaneSignal.swift
       - path: Sources
       - path: Resources/Assets.xcassets
         buildPhase: resources

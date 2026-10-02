@@ -5,32 +5,32 @@
       "result": "passed",
       "scope": "code",
       "method": "real_product",
-      "checked_at": "2026-09-29T01:52:21.733472+08:00",
-      "input_sha256": "865ed2f9b6d5cb01116cceb253bc304fe5c32599e6aade6a8f10676224286639",
+      "checked_at": "2026-10-03T00:02:55.903668+08:00",
+      "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
       "evidence": "perf/acceptance/functionality.json",
-      "evidence_sha256": "55c6b13b8957d01ae9b0f4ecea31670a0eb52d7964a3f1fd6ec5f4b59247f664",
+      "evidence_sha256": "742e8b4599b344e972efb29c0faf651ba0c645bd68eab91eee1be179d0986727",
       "detail": "sop.accept：bash scripts/accept/_common.sh functionality → functionality: 38 项断言通过；生产 send/attach/readDoc 路径 + SessionStore 持久化与多会话，共 10 次本地请求"
     },
     "recovery": {
       "result": "passed",
       "scope": "code",
       "method": "real_product",
-      "checked_at": "2026-09-29T01:52:29.230581+08:00",
-      "input_sha256": "865ed2f9b6d5cb01116cceb253bc304fe5c32599e6aade6a8f10676224286639",
+      "checked_at": "2026-10-03T00:04:30.033310+08:00",
+      "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
       "evidence": "perf/acceptance/recovery.json",
-      "evidence_sha256": "a71900a605e3bd301fd8feafcd1719badba70824ca135bff742190ccafe76560",
+      "evidence_sha256": "60fe6a3a82409776ebc81e98f774f6ebc19d2d78f16a46c3c004ebc4af199158",
       "detail": "sop.accept：bash scripts/accept/_common.sh recovery → recovery: 14 项断言通过；故障与恢复 8 类场景，用时 3.3s"
     },
     "privacy": {
       "result": "passed",
       "scope": "code",
       "method": "real_product",
-      "checked_at": "2026-09-29T01:52:33.538677+08:00",
-      "input_sha256": "865ed2f9b6d5cb01116cceb253bc304fe5c32599e6aade6a8f10676224286639",
+      "checked_at": "2026-10-03T00:05:13.081751+08:00",
+      "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
       "evidence": "perf/acceptance/privacy.json",
-      "evidence_sha256": "6f26dc013332ead0f4df8fe6531111586c02f58485358928ab9f00a5affc32eb",
-      "detail": "sop.accept：bash scripts/accept/_common.sh privacy → privacy: 62 项断言通过；privacy：同意前零请求/同意后白名单 HTTPS 且最小字段/撤销与旧代际拦截/本地存储与删除/钥匙串静态/隐私清单"
+      "evidence_sha256": "ca88ded6779f78939a9a96d876c8ea4d05fc996fdff3c8ded36d327f22acc9b4",
+      "detail": "sop.accept：bash scripts/accept/_common.sh privacy → privacy: 67 项断言通过；privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离"
     }
   },
-  "updated_at": "2026-09-29T01:52:33.549434+08:00"
+  "updated_at": "2026-10-03T00:05:13.108606+08:00"
 }

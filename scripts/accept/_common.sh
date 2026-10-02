@@ -17,7 +17,8 @@ bin="hydro-deck-accept-$check"
 trap 'defaults delete "$bin" >/dev/null 2>&1; rm -f "$HOME/Library/Preferences/$bin.plist"; rm -rf "$scratch"' EXIT
 
 PROD=(Shared/PlatformCompat.swift Sources/AIConsent.swift Sources/ChatStream.swift Sources/Backend.swift
-      Sources/Gate.swift Sources/Store.swift Sources/ChatModel.swift Sources/Speaker.swift Sources/MarkdownView.swift)
+      Sources/Gate.swift Sources/Store.swift Sources/ChatModel.swift Sources/Speaker.swift Sources/MarkdownView.swift
+      Sources/LaneDemo.swift)
 finish() {  # ok summary log
   python3 - "$out_dir/$check.detail.json" "$check" "$1" "$2" <<'PY'
 import json, sys

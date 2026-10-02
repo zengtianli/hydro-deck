@@ -43,6 +43,7 @@ enum Gate {
     static var hasPassword: Bool { password != nil }
 
     static var password: String? {
+        guard !UserDefaults.standard.bool(forKey: "lane_demo") else { return nil }
         var q: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                 kSecAttrService as String: service,
                                 kSecAttrAccount as String: account]
@@ -55,6 +56,7 @@ enum Gate {
     }
 
     static func savePassword(_ pw: String) {
+        guard !UserDefaults.standard.bool(forKey: "lane_demo") else { return }
         let q: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                 kSecAttrService as String: service,
                                 kSecAttrAccount as String: account]
@@ -71,6 +73,7 @@ enum Gate {
     }
 
     static func forgetPassword() {
+        guard !UserDefaults.standard.bool(forKey: "lane_demo") else { return }
         SecItemDelete([kSecClass as String: kSecClassGenericPassword,
                        kSecAttrService as String: service,
                        kSecAttrAccount as String: account] as CFDictionary)

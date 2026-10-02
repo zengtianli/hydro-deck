@@ -5,16 +5,16 @@
   "command": "bash scripts/accept/_common.sh privacy",
   "exit_code": 0,
   "status": "passed",
-  "started_at": "2026-09-29T01:52:30.061718+08:00",
-  "finished_at": "2026-09-29T01:52:33.538677+08:00",
-  "input_sha256": "865ed2f9b6d5cb01116cceb253bc304fe5c32599e6aade6a8f10676224286639",
+  "started_at": "2026-10-03T00:04:56.330198+08:00",
+  "finished_at": "2026-10-03T00:05:13.081751+08:00",
+  "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
   "log": "perf/acceptance/privacy.log",
-  "log_sha256": "a23eaeb5edcb5e0bb03990bbe2852ef76d548871665ecef5049bc5f47be0fcf0",
-  "summary": "privacy: 62 项断言通过；privacy：同意前零请求/同意后白名单 HTTPS 且最小字段/撤销与旧代际拦截/本地存储与删除/钥匙串静态/隐私清单",
+  "log_sha256": "1e0e746d1ff50afa2caf246006b9c730130545923bd0b09cf257df67e49341c6",
+  "summary": "privacy: 67 项断言通过；privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离",
   "detail": {
     "check": "privacy",
     "ok": true,
-    "summary": "privacy: 62 项断言通过；privacy：同意前零请求/同意后白名单 HTTPS 且最小字段/撤销与旧代际拦截/本地存储与删除/钥匙串静态/隐私清单",
+    "summary": "privacy: 67 项断言通过；privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离",
     "scope": "生产 ChatModel/ChatStream/Backend/Store/AIConsent 在 macOS 编译运行，本地 URLProtocol 代替后端；SwiftUI 渲染与真机不在本项范围"
   }
 }

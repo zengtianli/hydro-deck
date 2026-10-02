@@ -21,6 +21,8 @@ ref/actual.json
 # 图标是**构建输入**:build.sh 调 actool 读它,不进仓则 clone 下来编出来的 app 没图标。
 !Resources/icon-1024.png
 !Resources/Assets.xcassets/AppIcon.appiconset/icon-1024.png
+!Resources/Assets.xcassets/AppIcon.appiconset/mac-*.png
+!Resources/Assets.xcassets/AppIcon.solidimagestack/**/*.png
 # shots/ 是验收证据(四档屏 + 主屏图标),几 MB,按上面那条策略留本地不进仓;
 # 要复现:./build.sh && xcrun simctl install/launch,再 simctl io screenshot。
 

@@ -25,3 +25,28 @@ bash seed-gate.sh            # 装机后喂一次闸密码
 ```
 
 验证通道（launch 参数，生产路径恒空）：`-gatepw <pw>` 喂闸密码、`-ask <问题>` 启动即自动发问。
+
+## 四条平台线
+
+`project.yml` 的同一 `HydroDeck` target 支持 iOS、macOS、visionOS；Watch 不适用原因记录在本机 `project.yaml`。不带车道参数时照常加载正式会话。
+
+`-lane_demo YES` 使用隔离的合成会话和阻断网络的 URLProtocol；图片上传、问答及引文网络在该演示模式均不连接生产服务。Mac 的 `-lane_quiet YES`、`-lane_snapshot <png>` 由总部 `Shared/LaneSignal.swift` 执行，不上屏、不进 Dock；共享文件只经总部 `multiplatform.py` 刷新。
+
+作者工作区的可复现入口：
+
+```bash
+# 编译始终在仓外副本中，不启动模拟器。
+~/Dev/.venv/bin/python ~/Dev/tools/dev/lib/tools/macapp/ios/sim_lane.py build \
+  --project-dir "$PWD" --scheme HydroDeck --platform vision --configuration Release --json
+# 平台线测量由总部串行调度，跳过已有当前证据；Watch 自动跳过。
+~/Dev/.venv/bin/python scripts/perf/measure_platforms.py
+# 单线补测。
+~/Dev/.venv/bin/python scripts/perf/measure_platforms.py --platform vision
+# 调度后生成单平台商店原片；忙时退出 75，不起等待队列。
+~/Dev/.venv/bin/python scripts/media/store_shots.py vision
+# 绑定本轮功能、恢复与隐私证据；平台启动必须由 Chapter 调用。
+~/Dev/.venv/bin/python ~/Apps/chapter/engine/app_sop.py accept --app hydro-deck --check privacy
+~/Dev/.venv/bin/python ~/Apps/chapter/engine/app_sop.py accept --app hydro-deck --check launch_vision
+```
+
+同机其他产品在用模拟器时不启动新车道等待批次；由主会话统一调度。商店原片写 `shots/appstore/<平台>/`，规格检查复用总部 `ios/store_shots.py`，不得放大截图来凑尺寸。
