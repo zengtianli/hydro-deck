@@ -92,8 +92,10 @@ def capture_lane(lane, cfg, built):
         if cfg.get("orientation"):
             command += ["--orientation", cfg["orientation"]]
         sim = cfg.get("simulator") or {}
-        if sim.get("device_type"):
-            command += ["--device-type", sim["device_type"]]
+        # 商店 iPhone 6.9 寸原片用 Pro Max；性能仍沿登记的 Pro，不重测。
+        device_type = "iPhone-17-Pro-Max" if lane == "iphone" else sim.get("device_type")
+        if device_type:
+            command += ["--device-type", device_type]
         result = call(command, capture=True)
         proof = json.loads(result.stdout)
         if proof.get("ok") is not True or not proof.get("ready_signal"):
