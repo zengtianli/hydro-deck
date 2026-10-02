@@ -143,6 +143,8 @@ def main():
         app, cfg, built = current(lane)
         measure = [sys.executable, MEASURE, "--platform", lane, "--reuse-size-build", receipt(lane),
                    "--lock-wait", "0", "--load-wait", "0"]
+        if lane != "mac":
+            measure += ["--warmup-settle", "120"]
         accept = [sys.executable, ENGINE, "accept", "--app", APP_ID, "--check", f"launch_{lane}", "--json"]
         if options.prepare_only:
             launch_env = {"HYDRO_LANE_REUSE_BUILD": str(receipt(lane)), "HYDRO_LANE_NO_WAIT": "1"}
