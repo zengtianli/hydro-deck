@@ -3,8 +3,10 @@
 
 --prepare-only 只核缓存和显示命令，不请求锁、不启动 App。
 运行须 HYDRO_PLATFORM_SLOT=granted；任一步忙即退出 75，不轮询。
+HYDRO_PLATFORM_NO_HEAVY_AFTER 为带时区的截止时间；预留下一重阶段的完整时段。
 """
 import argparse
+import datetime as dt
 import json
 import os
 import shutil
@@ -70,6 +72,20 @@ def measured(lane):
     return platform_measure.current_evidence(ROOT, lane, cfg, SOURCE, fixture_debug=False) is not None
 
 
+def heavy_boundary(reserve_seconds):
+    """Do not begin a stage which may overlap an existing scheduled business run."""
+    deadline = os.environ.get("HYDRO_PLATFORM_NO_HEAVY_AFTER")
+    if not deadline:
+        return
+    end = dt.datetime.fromisoformat(deadline)
+    if end.tzinfo is None:
+        raise RuntimeError("重作业截止时间必须带时区")
+    remaining = (end - dt.datetime.now(dt.timezone.utc)).total_seconds()
+    if remaining < reserve_seconds:
+        print(f"保留已有结果；距正式业务窗口仅 {remaining:.0f}s，不启动下一重阶段", flush=True)
+        raise SystemExit(75)
+
+
 def capture_lane(lane, cfg, built):
     output = ROOT / f"shots/appstore/{lane}"
     target = output / "01-chat.png"
@@ -83,6 +99,7 @@ def capture_lane(lane, cfg, built):
                 return
     except (OSError, ValueError):
         pass
+    heavy_boundary(600)
     with tempfile.TemporaryDirectory(prefix=f"hydro-shot-{lane}.") as scratch:
         image = Path(scratch) / "01-chat.png"
         command = [sys.executable, HQ / "sim_lane.py", "run", "--platform", lane, "--app", built["app_path"],
@@ -128,12 +145,16 @@ def main():
                    "--lock-wait", "0", "--load-wait", "0"]
         accept = [sys.executable, ENGINE, "accept", "--app", APP_ID, "--check", f"launch_{lane}", "--json"]
         if options.prepare_only:
+            launch_env = {"HYDRO_LANE_REUSE_BUILD": str(receipt(lane)), "HYDRO_LANE_NO_WAIT": "1"}
+            if lane != "mac":
+                launch_env["SOP_PLATFORM_REUSE_RUN"] = str(ROOT / f"shots/appstore/{lane}/capture.json")
             print(json.dumps({"lane": lane, "source": SOURCE, "receipt": str(receipt(lane)),
                               "measure": list(map(str, measure)), "accept": list(map(str, accept)),
-                              "launch_env": {"HYDRO_LANE_REUSE_BUILD": str(receipt(lane)), "HYDRO_LANE_NO_WAIT": "1"}},
+                              "launch_env": launch_env},
                              ensure_ascii=False))
             continue
         if not measured(lane):
+            heavy_boundary(1200)
             call(measure)
         else:
             print(f"＝ {lane} 当前资源原件，跳过", flush=True)
@@ -142,7 +163,12 @@ def main():
         state = app_sop.read_state()
         inputs = app_sop.monitor_inputs(app, state)
         if f"launch_{lane}" in app_sop.delivery_coverage(app, inputs, state):
-            call(accept, env={**os.environ, "HYDRO_LANE_REUSE_BUILD": str(receipt(lane)), "HYDRO_LANE_NO_WAIT": "1"},
+            launch_env = {**os.environ, "HYDRO_LANE_REUSE_BUILD": str(receipt(lane)), "HYDRO_LANE_NO_WAIT": "1"}
+            if lane != "mac":
+                launch_env["SOP_PLATFORM_REUSE_RUN"] = str(ROOT / f"shots/appstore/{lane}/capture.json")
+            else:
+                heavy_boundary(600)
+            call(accept, env=launch_env,
                  capture=True, acceptance=True)
         else:
             print(f"＝ {lane} 当前启动验收，跳过", flush=True)
