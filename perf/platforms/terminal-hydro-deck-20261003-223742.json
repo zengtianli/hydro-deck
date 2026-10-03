@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "kind": "post-producer read-only terminal and SDK reuse proof; not new measurement",
+  "checked_at": "2026-10-03T22:58:35.130684+08:00",
+  "app_id": "hydro-deck",
+  "producer_log": {
+    "original_path": "/Users/tianli/Library/Logs/app-sop/hydro-deck-measure-20261003-223742.log",
+    "preserved_path": "perf/platforms/producer-hydro-deck-measure-20261003-223742.log",
+    "sha256": "8d95050c10aea9f5fa8a4dd52007981f724eddeefe6558a69ca010733989dfe7"
+  },
+  "originals_sha256": {
+    "perf/platforms/ipad.json": "1bd768f8c9a2c202092ae7861898e033ea05f569c529372f8e6f6e0f31a9ddcd",
+    "perf/platforms/mac.json": "3c06a3982b1c5a1805c4e64b70d224f326269e5102c93d8e73224b7035bc0560",
+    "perf/platforms/ipad/measure-20261003-223745.json": "4a423fa1014b341201d6e8a48758244491490516f07cd93fa3684c8f10d7e68d",
+    "perf/platforms/mac/measure-20261003-224511.json": "15378e1178cca2da802bf376dc121e542acf9cb61e535c18ab8daf0223c00c60"
+  },
+  "own_pids": {
+    "checked": [
+      99147,
+      3207,
+      92916,
+      92459
+    ],
+    "ps_returncode": 1,
+    "output": "",
+    "absent": true
+  },
+  "own_ipad_device": {
+    "source": "/Users/tianli/Library/Developer/CoreSimulator/Devices/A19C635F-A987-4E08-931A-A5874216E34D/device.plist",
+    "source_sha256": "60fe5ee4d39b10e002e837f471357a73b3e562f1849bbd729d2c093ddf327b7d",
+    "UDID": "A19C635F-A987-4E08-931A-A5874216E34D",
+    "name": "iPad Pro 13-inch (M5)",
+    "state": 1,
+    "state_meaning": "Shutdown"
+  },
+  "raw_shutdown_verified_preserved": {
+    "platform": "ipad",
+    "original_raw_value": false,
+    "original_raw_modified": false
+  },
+  "vision_terminal": {
+    "verified": false,
+    "reason": "75 producer log preserves no exact Vision UDID; no unknown device queried or shutdown inferred"
+  },
+  "global_lock": {
+    "verified": false,
+    "reason": "global/native resource state belongs to root; no claim of current free"
+  },
+  "strict_existing_sdk_reuse": {
+    "ipad": {
+      "receipt": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.e6b5352ec90c7055ff3f514e5d3b77f6b4a3f3c6395f85a9c9a059869e44d56f/sim-lane-build.ovbp9h9h/build.json",
+      "receipt_sha256": "e7056b580baeb009e01ab01d0fc3d7b53f69d16f7f73f240d709dd79987326aa",
+      "verified_at": "2026-10-03T22:58:32.858325+08:00",
+      "platform": "ipad",
+      "configuration": "Release",
+      "compilation_conditions": [],
+      "sdk": "iphonesimulator27.0",
+      "bundle_id": "cyou.tianli.hydrodeck",
+      "version": "0.1",
+      "build": "2",
+      "executable_sha256": "60a584857c0bb7d1e0cb7c2efec1b452f66ef14cd5e091c9e388870a64383242",
+      "reuse": {
+        "receipt": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.e6b5352ec90c7055ff3f514e5d3b77f6b4a3f3c6395f85a9c9a059869e44d56f/sim-lane-build.ovbp9h9h/build.json",
+        "receipt_sha256": "e7056b580baeb009e01ab01d0fc3d7b53f69d16f7f73f240d709dd79987326aa",
+        "source_copy": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.e6b5352ec90c7055ff3f514e5d3b77f6b4a3f3c6395f85a9c9a059869e44d56f/sim-lane-build.ovbp9h9h/src",
+        "input_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+        "source_file_count": 44
+      }
+    },
+    "mac": {
+      "receipt": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.95493beb9f8aea120c8aef9096ed5f57cebff2fa93a6acffa1c578220856debe/sim-lane-build.vhiw9suh/build.json",
+      "receipt_sha256": "c50e0b4d7da024cb8b2998fa21a76d34452ef9bb7442d877331f103a796cd5db",
+      "verified_at": "2026-10-03T22:58:33.800772+08:00",
+      "platform": "mac",
+      "configuration": "Release",
+      "compilation_conditions": [],
+      "sdk": "macosx27.0",
+      "bundle_id": "cyou.tianli.hydrodeck",
+      "version": "0.1",
+      "build": "2",
+      "executable_sha256": "ac79c47ba0a10378b7bdfcfbe8d19b4fc0506d61c640d5860a46bad13dfe1bef",
+      "reuse": {
+        "receipt": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.95493beb9f8aea120c8aef9096ed5f57cebff2fa93a6acffa1c578220856debe/sim-lane-build.vhiw9suh/build.json",
+        "receipt_sha256": "c50e0b4d7da024cb8b2998fa21a76d34452ef9bb7442d877331f103a796cd5db",
+        "source_copy": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.95493beb9f8aea120c8aef9096ed5f57cebff2fa93a6acffa1c578220856debe/sim-lane-build.vhiw9suh/src",
+        "input_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+        "source_file_count": 44
+      }
+    },
+    "vision": {
+      "receipt": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.76cgz52_/build.json",
+      "receipt_sha256": "f4ddcca641ab27faaca5b5c853368a93a4f68c3454398863c85d6b931719c456",
+      "verified_at": "2026-10-03T22:58:35.036654+08:00",
+      "platform": "vision",
+      "configuration": "Release",
+      "compilation_conditions": [],
+      "sdk": "xrsimulator27.0",
+      "bundle_id": "cyou.tianli.hydrodeck",
+      "version": "0.1",
+      "build": "2",
+      "executable_sha256": "88f12334cd848dc54591d3e0cd6018c88917b990ee5cb9ea09fea547bc44e4b5",
+      "reuse": {
+        "receipt": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.76cgz52_/build.json",
+        "receipt_sha256": "f4ddcca641ab27faaca5b5c853368a93a4f68c3454398863c85d6b931719c456",
+        "source_copy": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.76cgz52_/src",
+        "input_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+        "source_file_count": 44
+      }
+    }
+  },
+  "vision_measurement": {
+    "status": "deferred",
+    "exit_code": 75,
+    "new_valid_samples": 0,
+    "reason": "post-boot load 29.2 did not fall to 15.0 within 180s; preserved original producer log"
+  }
+}

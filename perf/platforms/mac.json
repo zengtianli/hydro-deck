@@ -1,0 +1,39 @@
+{
+ "schema_version": 1,
+ "platform": "mac",
+ "app_id": "hydro-deck",
+ "version": "0.1",
+ "build": "2",
+ "input_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+ "runtime_measurement": {
+  "environment": "native",
+  "device": "Mac16,12 / Apple M4",
+  "os": "macOS 27.2",
+  "xcode": "Xcode 27.0 (27A266a)",
+  "evidence": "perf/platforms/mac/measure-20261003-224511.json",
+  "evidence_sha256": "15378e1178cca2da802bf376dc121e542acf9cb61e535c18ab8daf0223c00c60"
+ },
+ "size": {
+  "download_bytes": 1034051,
+  "installed_bytes": 3983335,
+  "download_mb": 1.03,
+  "installed_mb": 3.98,
+  "kind": "local ad-hoc Release .app, not a store package"
+ },
+ "speed": {
+  "cold_launch_ms": 487.0,
+  "runs": 5,
+  "discarded_runs": 1,
+  "ready_signal": "os_log",
+  "method": "launch command issued -> App os_log \"lane-ready\" (first data-bearing screen), App terminated 3 s before each run, first run after install discarded, median"
+ },
+ "idle": {
+  "memory_mb": 43.0,
+  "cpu_pct": 0.02,
+  "window_s": 60,
+  "settle_s": 45,
+  "method": "shared measure.py idle: CPU-time delta / wall window; phys_footprint peak of 3 samples after the window",
+  "scope": "Local ad-hoc Release build, main process only, quiet launch (hidden, no Dock icon, window never on screen)"
+ },
+ "measured_at": "2026-10-03T22:45:11+08:00"
+}
