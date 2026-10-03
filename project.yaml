@@ -70,6 +70,7 @@ sop:
       distribution: none
   measure:
     command: ~/Dev/.venv/bin/python scripts/perf/measure_platforms.py
+    platform_env: SOP_PERF_PLATFORM
     outputs: [perf/platforms, perf/simulator.json, perf/lightweight.json]
     in_use: true
   budget: {memory_mb: 80, cpu: 0.5}
