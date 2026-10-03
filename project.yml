@@ -18,6 +18,9 @@ targets:
       # 总部共享：macOS 侧给 iOS-only SwiftUI 修饰符提供同名 no-op，调用点不改（multiplatform.py 注入）
       - path: Shared/PlatformCompat.swift
       - path: Shared/LaneSignal.swift
+      - path: Shared/AppLifecycle.swift
+      - path: Shared/AppConfiguration.swift
+      - path: Shared/AppLifecycleMobile.swift
       - path: Sources
       - path: Resources/Assets.xcassets
         buildPhase: resources
@@ -29,6 +32,7 @@ targets:
         # ── Mac 侧（multiplatform.py 注入）：沙盒 + 加固运行时是 TestFlight for Mac 的硬门槛；
         #    entitlements 按 sdk 分开给，iOS 的 profile 不认 app-sandbox 这个键。
         "CODE_SIGN_ENTITLEMENTS[sdk=macosx*]": Mac.entitlements
+        "SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=macosx*]": "$(inherited) APP_LIFECYCLE_KVS"
         "ENABLE_HARDENED_RUNTIME[sdk=macosx*]": YES
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
@@ -44,8 +48,8 @@ targets:
         INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: 把说的话转成文字填进输入框（发送仍由你确认）
         INFOPLIST_KEY_NSCameraUsageDescription: 拍照上传给助手读图（表格/现场照片）
 
-        MARKETING_VERSION: "0.1"
-        CURRENT_PROJECT_VERSION: "2"
+        MARKETING_VERSION: "0.1.1"
+        CURRENT_PROJECT_VERSION: "3"
     scheme:
       testTargets: []
       configVariants: []

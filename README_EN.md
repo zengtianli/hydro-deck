@@ -83,3 +83,16 @@ Sizes are read back for this exact distribution build. The physical device is no
 
 <sub>v0.1 (2) · iPhone 17（iPhone18,3）；体积为 Apple 设备切片记录，运行性能尚未真机实测 · TestFlight VALID (not on the App Store; internal testers only); package sizes exclude user data and caches; installed phone version not verified · measured 2026-09-29. Sizes come from Apple App Store Connect device slices for this build. Memory, CPU and launch time were measured on iPhone 17 Pro / iOS 27.0 Simulator / Mac16,12 / Apple M4 / macOS 27.2 with a local Release build v0.1 (2) (2026-09-29), App process only; these are not physical-device figures, which are still unmeasured. Memory uses phys_footprint; CPU is CPU time ÷ wall time over a 60-second sampling window; sizes in decimal MB. Raw data: [perf/lightweight.json](perf/lightweight.json).</sub>
 <!-- lightweight:end -->
+
+
+## Configuration and app updates
+
+New builds include a “Configuration and Updates” button below the main interface. The installed version and build come from the app bundle.
+
+This app has no independent portable preference settings. Credentials, permissions, device identifiers and user content continue to use their existing entry points.
+
+“Check for updates in TestFlight” opens the system TestFlight app, which checks and installs internal releases. It does not claim an unverified latest build. App-version checking is separate from refreshing study materials or backend data.
+
+A source version bump does not mean a new phone build has already been distributed; release and installation records identify the available build.
+
+Mac updates come from private packages in the owner's iCloud Drive. Select the system iCloud Drive root once in “Choose iCloud Drive Update Folder”; its security bookmark stays on this Mac. After a real release is available, open its verified ZIP and move the app into Applications to upgrade. This Mac target has no portable preference settings and shows no settings-sync toggle.
