@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "name": "launch_mac",
+  "app_id": "hydro-deck",
+  "command": "bash scripts/accept/launch.sh mac",
+  "exit_code": 0,
+  "status": "passed",
+  "started_at": "2026-10-03T17:55:01.266813+08:00",
+  "finished_at": "2026-10-03T17:55:11.054604+08:00",
+  "input_sha256": "a317c3824d39581d37b033f93ebfad4c51dd2562a7fe176248c4227911be5214",
+  "log": "perf/acceptance/launch_mac.log",
+  "log_sha256": "714068bd385231916a893367926ae04ec456f35b8d2c9d16605efedb2f53e111",
+  "summary": "Mac 本机 启动冒烟通过：os_log 2.405 s，截图 2880×1800",
+  "detail": {
+    "summary": "Mac 本机 启动冒烟通过：os_log 2.405 s，截图 2880×1800",
+    "passed": true,
+    "platform": "mac",
+    "environment": "native",
+    "scheme": "HydroDeck",
+    "sim_lane": "/Users/tianli/Dev/tools/dev/lib/tools/macapp/ios/sim_lane.py",
+    "method": "核验仓外构建回执与当前源码、产物及工具链后复用；沿共享 sim_lane 静默启动并截图，不抢焦点",
+    "build": {
+      "app_path": "/Users/tianli/Library/Caches/sim-lane/hydro-mac-20261003/dd/Build/Products/Release/HydroDeck.app",
+      "bundle_id": "cyou.tianli.hydrodeck",
+      "version": "0.1",
+      "build": "2",
+      "configuration": "Release",
+      "executable_sha256": "f894aad2cb22854439c555b494bbe8e3658b0a6ba594a738f5497ea2ad3c710d",
+      "sdk": "macosx27.0",
+      "xcode": {
+        "name": "Xcode.app",
+        "version": "27.0",
+        "build": "27A266a",
+        "developer_dir": "/Applications/Xcode.app/Contents/Developer"
+      },
+      "log": "/Users/tianli/Library/Caches/sim-lane/hydro-mac-20261003/build-mac-Release.log",
+      "reuse": {
+        "receipt": "/Users/tianli/Library/Caches/sim-lane/hydro-mac-20261003/reuse-mac.json",
+        "receipt_sha256": "ef3bdd9cf9cc8b92076bb87f10815d8d4926451d7cd26aa2410e9d8762ae824d",
+        "source_copy": "/Users/tianli/Library/Caches/sim-lane/hydro-mac-20261003/src",
+        "input_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+        "source_file_count": 44
+      }
+    },
+    "launch_args": [
+      "-lane_demo",
+      "YES",
+      "-lane_window",
+      "1440x900"
+    ],
+    "waits": {
+      "lock_seconds": 0.0,
+      "load_seconds": 0.0
+    },
+    "run": {
+      "udid": null,
+      "pid": null,
+      "ready_seconds": 2.405,
+      "ready_signal": "os_log",
+      "size": [
+        2880,
+        1800
+      ],
+      "runtime": null,
+      "device": null
+    },
+    "verdict": {
+      "non_blank": true,
+      "changed_from_baseline": null,
+      "stable": false,
+      "diff_baseline": null,
+      "diff_prev": null
+    },
+    "screenshot": "perf/platforms/mac/launch.png",
+    "screenshot_sha256": "f0403c7369e5aa6009c309e2f0d54e00f5e2dd0f2e6ea6ffaf441319d809b91a"
+  }
+}

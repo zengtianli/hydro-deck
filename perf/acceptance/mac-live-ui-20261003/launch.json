@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "platform": "mac",
+  "udid": null,
+  "pid": 54125,
+  "bundle_id": "cyou.tianli.hydrodeck.lane",
+  "run_bundle_id": "cyou.tianli.hydrodeck.lane",
+  "version": "0.1",
+  "build": "2",
+  "launch_args": [
+    "-lane_demo",
+    "YES",
+    "-lane_window",
+    "1440x900"
+  ],
+  "ready_seconds": 1.14,
+  "ready_signal": "os_log",
+  "screenshot": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/mac-live-ui-20261003/initial-live-window.png",
+  "size": [
+    1440,
+    900
+  ],
+  "verdict": {
+    "non_blank": true,
+    "changed_from_baseline": null,
+    "stable": true,
+    "diff_baseline": null,
+    "diff_prev": 0.0
+  },
+  "front_unchanged": true,
+  "focus_taken": false,
+  "front_app": "com.mitchellh.ghostty",
+  "notes": [],
+  "environment": "native",
+  "errors": [],
+  "snapshot_background": "black",
+  "source_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+  "executable_sha256": "f894aad2cb22854439c555b494bbe8e3658b0a6ba594a738f5497ea2ad3c710d",
+  "actual_gui_scope": "live app window; await CUA sidebar and chat navigation",
+  "started": 1791021129.198648
+}
