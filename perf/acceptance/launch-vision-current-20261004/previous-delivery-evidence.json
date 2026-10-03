@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "checks": {
+    "functionality": {
+      "result": "passed",
+      "scope": "code",
+      "method": "real_product",
+      "checked_at": "2026-10-03T00:02:55.903668+08:00",
+      "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
+      "evidence": "perf/acceptance/functionality.json",
+      "evidence_sha256": "742e8b4599b344e972efb29c0faf651ba0c645bd68eab91eee1be179d0986727",
+      "detail": "sop.accept：bash scripts/accept/_common.sh functionality → functionality: 38 项断言通过；生产 send/attach/readDoc 路径 + SessionStore 持久化与多会话，共 10 次本地请求"
+    },
+    "recovery": {
+      "result": "passed",
+      "scope": "code",
+      "method": "real_product",
+      "checked_at": "2026-10-03T00:04:30.033310+08:00",
+      "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
+      "evidence": "perf/acceptance/recovery.json",
+      "evidence_sha256": "60fe6a3a82409776ebc81e98f774f6ebc19d2d78f16a46c3c004ebc4af199158",
+      "detail": "sop.accept：bash scripts/accept/_common.sh recovery → recovery: 14 项断言通过；故障与恢复 8 类场景，用时 3.3s"
+    },
+    "privacy": {
+      "result": "passed",
+      "scope": "code",
+      "method": "real_product",
+      "checked_at": "2026-10-03T00:05:13.081751+08:00",
+      "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
+      "evidence": "perf/acceptance/privacy.json",
+      "evidence_sha256": "ca88ded6779f78939a9a96d876c8ea4d05fc996fdff3c8ded36d327f22acc9b4",
+      "detail": "sop.accept：bash scripts/accept/_common.sh privacy → privacy: 67 项断言通过；privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离"
+    },
+    "launch_iphone": {
+      "result": "passed",
+      "scope": "platform_iphone",
+      "method": "ui_automation",
+      "checked_at": "2026-10-03T03:02:09.986121+08:00",
+      "input_sha256": "f127edbb727f0486110188a59d42334db1c3cf00f287442c7c84bbb7e6128979",
+      "evidence": "perf/acceptance/launch_iphone.json",
+      "evidence_sha256": "b19a791b4b4be48fe5aa4df87216593d3def724cd51fec9ad076fbebdb4c7466",
+      "detail": "sop.accept：bash scripts/accept/launch.sh iphone → iPhone 复用历史模拟器启动冒烟通过：os_log，截图 1320×2868"
+    },
+    "launch_mac": {
+      "result": "passed",
+      "scope": "platform_mac",
+      "method": "ui_automation",
+      "checked_at": "2026-10-03T17:55:11.054604+08:00",
+      "input_sha256": "a317c3824d39581d37b033f93ebfad4c51dd2562a7fe176248c4227911be5214",
+      "evidence": "perf/acceptance/launch_mac.json",
+      "evidence_sha256": "2da78bebbf9753e318adf3c1b8d51325a56f2afe51931a52249770c63279aa4a",
+      "detail": "sop.accept：bash scripts/accept/launch.sh mac → Mac 本机 启动冒烟通过：os_log 2.405 s，截图 2880×1800"
+    }
+  },
+  "updated_at": "2026-10-03T17:55:11.121224+08:00"
+}

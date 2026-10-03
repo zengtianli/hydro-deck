@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "platform": "vision",
+  "udid": "4EA6A65D-4301-4527-B125-152AC0076CAF",
+  "device": "Apple Vision Pro",
+  "device_type": "Apple-Vision-Pro-4K",
+  "runtime": "xrOS-27-0",
+  "bundle_id": "cyou.tianli.hydrodeck",
+  "version": "0.1",
+  "build": "2",
+  "launch_args": [
+    "-lane_demo",
+    "YES"
+  ],
+  "environment": "simulator",
+  "errors": [],
+  "boot_seconds": 86.2,
+  "install_seconds": 21.4,
+  "baseline_stable": true,
+  "size": [
+    3840,
+    2160
+  ],
+  "pid": 54412,
+  "ready_seconds": 9.555,
+  "ready_signal": "os_log",
+  "screenshot": "perf/platforms/vision/launch.png",
+  "verdict": {
+    "non_blank": true,
+    "changed_from_baseline": true,
+    "stable": true,
+    "diff_baseline": 0.168,
+    "diff_prev": 0.0
+  },
+  "notes": [],
+  "shutdown": true,
+  "input_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+  "executable_sha256": "88f12334cd848dc54591d3e0cd6018c88917b990ee5cb9ea09fea547bc44e4b5",
+  "screenshot_sha256": "43bb07144099fea9f71ae7c55f8c6c92234f8d3527d5dacbd5df3d19425bab97"
+}

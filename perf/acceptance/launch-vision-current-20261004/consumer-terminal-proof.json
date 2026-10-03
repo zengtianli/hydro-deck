@@ -1,0 +1,53 @@
+{
+  "at": "2026-10-04T01:29:49.075639+08:00",
+  "job_id": "4a77307dbb8b40a2b2af3183f36919fb",
+  "actual_scope": "current stock vision27 simulator Release launch and byte-identical Store image, no performance completion",
+  "source_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+  "source_file_count": 44,
+  "receipt_sha256": "f4ddcca641ab27faaca5b5c853368a93a4f68c3454398863c85d6b931719c456",
+  "executable_sha256": "88f12334cd848dc54591d3e0cd6018c88917b990ee5cb9ea09fea547bc44e4b5",
+  "launch": {
+    "pid": 54412,
+    "ready_seconds": 9.555,
+    "ready_signal": "os_log",
+    "verdict": {
+      "non_blank": true,
+      "changed_from_baseline": true,
+      "stable": true,
+      "diff_baseline": 0.168,
+      "diff_prev": 0.0
+    },
+    "shutdown": true
+  },
+  "store_sha256": "43bb07144099fea9f71ae7c55f8c6c92234f8d3527d5dacbd5df3d19425bab97",
+  "store_item": {
+    "stage": "media",
+    "key": "platform-vision-shots",
+    "status": "ok",
+    "detail": "Apple Vision Pro：1 张商店截图尺寸与格式合规",
+    "fix": null,
+    "auto": null,
+    "platform": "vision"
+  },
+  "delivery_coverage": [
+    "launch_ipad"
+  ],
+  "other_ledger_entries_unchanged": {
+    "functionality": true,
+    "recovery": true,
+    "privacy": true,
+    "launch_iphone": true,
+    "launch_mac": true
+  },
+  "terminal": {
+    "device": "4EA6A65D-4301-4527-B125-152AC0076CAF",
+    "device_state": 1,
+    "native_directory_absent": true,
+    "canonical_nb_acquired": true
+  },
+  "root_visual": {
+    "performed": true,
+    "image": "perf/platforms/vision/launch.png",
+    "observed": "Real Hydro assistant window in stock Vision room, 3 synthetic chat histories and synthetic sample table/answer rendered; not home or blank; source fixture explicitly says not engineering conclusion"
+  }
+}
