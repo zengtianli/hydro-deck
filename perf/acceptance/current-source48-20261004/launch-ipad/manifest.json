@@ -1,0 +1,30 @@
+{
+  "perf/acceptance/launch_ipad.json": {
+    "sha256": "53735514c2a367365a8bc8cf08b17c7be551ca28c982467b75fc17e4c888975a",
+    "size": 3906
+  },
+  "perf/acceptance/launch_ipad.log": {
+    "sha256": "2f9bae975728e715f836d6e4a39a29df0a07aa8242a0bef28deaf39561b3f15f",
+    "size": 93
+  },
+  "perf/acceptance/launch_ipad.detail.json": {
+    "sha256": "6ad01c37bbe47201842aeac81ec541b33884a682b8cf11961ad9dec8c316dfcf",
+    "size": 2948
+  },
+  "perf/platforms/ipad/launch.png": {
+    "sha256": "bbfa75234b468e330b06a861f03aeea123a7f1d8d994e66a7ba1a69e7d15b7b5",
+    "size": 331625
+  },
+  "perf/platforms/ipad/launch-capture.json": {
+    "sha256": "52d04cd40b431ebcb32d4c8a664e73da8d20861493b2a3b2c06bddc3fbb01899",
+    "size": 1351
+  },
+  "perf/delivery-evidence.json": {
+    "sha256": "7054980a8a67cf31f7549b0176f05c94d46ff0ddb7d0c695df817216e67b0d67",
+    "size": 4168
+  },
+  "/Users/tianli/Library/Application Support/app-sop/workbench/logs/0e0b1a052b3b4a22944e721be88108f2.log": {
+    "sha256": "9e8e12a9204391724e5a1ccb5efe80fe27fe902299274b95ea7c6da91757971b",
+    "size": 294
+  }
+}
