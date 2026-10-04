@@ -1,0 +1,5 @@
+PASS default --app path keeps original default compositing/no reuse; mock zero SDK
+PASS non-Mac snapshot options rejected before SDK/run/output
+PASS strict receipt mismatch fails closed, zero SDK fallback/run/output
+PASS invalid raw output rejected before SDK/run
+PASS strict reuse before/after runner, original option forwarding and returned shutdown/stable unchanged
