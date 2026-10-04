@@ -1,0 +1,69 @@
+PASS 初始状态未同意
+PASS 未同意时 send 不发出任何请求
+PASS 未同意时问题保留在本地 unsentQuestion
+PASS 未同意时弹出 AI 数据同意
+PASS 未同意的问题不进入对话/流式状态
+PASS 未同意时图片选择拿不到授权（上传入口被拦）并弹同意
+PASS 未同意时无法生成上传授权凭据
+PASS 未同意阶段零请求（问答与图片）
+PASS 同意后状态生效
+PASS 同意动作本身不自动发送保留的问题或图片
+PASS 同意后图片上传成功
+PASS 同意后两问均完成
+PASS 同意后恰好 3 个请求（1 上传 + 2 提问）
+PASS 所有请求 host 均在白名单（hydro-agent.tianli.cyou / tianli.cyou）
+PASS 所有请求均为 HTTPS
+PASS tianli.cyou 只用于闸登录 /_gate
+PASS 请求均为 POST（无查询串携带数据）
+PASS 请求 URL 无查询参数
+PASS 提问 body 为 JSON 对象
+PASS 提问 body 只含 message/paradigm/session_id/image_ids
+PASS 首问只带问题与已上传图片 id，不带会话 id
+PASS 第二问带服务端会话 id、不重复带已交付的图片
+PASS 请求不含用户名/主机名/本机路径/密码/设备标识
+PASS 请求头只含内容协商类字段（无 Cookie/Authorization/自定义标识）
+PASS 图片上传只用固定文件名 photo.jpg 的单一 file 字段，不带原路径
+PASS 图片上传 multipart 只有一个字段
+PASS 撤销后同意状态清除
+PASS 撤销后新问题被拦、保留本地并重新弹同意
+PASS 撤销后新图片动作拿不到授权
+PASS 撤销后旧授权的图片上传被拦且提示
+PASS 撤销后旧授权的提问被拦
+PASS 重新同意不自动补发撤销期间的问题
+PASS 旧授权代际不能借用新同意（提问与上传均不发出）
+PASS 重新同意生成新的授权代际
+PASS 新的明确动作在新同意下可用
+PASS 会话只以 session-<id>.json 写入注入的 store 目录
+PASS 会话内容不出现在 store 目录以外的临时 HOME/临时目录文件
+PASS 临时 HOME 下除偏好设置外无新增文件
+PASS 未写入真实用户的 Application Support/hydro-deck
+PASS UserDefaults 不含会话内容
+PASS UserDefaults 无密码类键
+PASS 会话 JSON 只含会话字段（无凭证/设备字段）
+PASS 删除前会话文件存在
+PASS 删除会话后文件真正消失
+PASS 删除后 store 目录不再含该会话内容
+PASS 重新加载 store 不再出现已删会话
+PASS Gate.swift 用 kSecClassGenericPassword 保存密码
+PASS Gate 钥匙串 service 为 cyou.tianli.hydrodeck.gate
+PASS Store.swift 不含 password
+PASS 源码无把密码写入 UserDefaults/AppStorage
+PASS 源码中全部 URL 字面量均为白名单 HTTPS host
+PASS 闸登录端点为 https://tianli.cyou/_gate/…
+PASS 使用 UIImagePickerController 已声明 INFOPLIST_KEY_NSCameraUsageDescription
+PASS 使用 SFSpeechRecognizer 已声明 INFOPLIST_KEY_NSSpeechRecognitionUsageDescription
+PASS 使用 AVAudioEngine 已声明 INFOPLIST_KEY_NSMicrophoneUsageDescription
+PASS PrivacyInfo.xcprivacy 存在于 Resources/ 或 Sources/
+PASS 隐私清单声明不追踪
+PASS 隐私清单声明收集用户内容（问题文本）
+PASS 隐私清单声明收集照片（图片上传）
+PASS 隐私清单不声明实际未发送的设备标识/位置/通讯录/广告数据
+PASS 隐私清单声明 UserDefaults 必要理由 API
+PASS 隐私清单被纳入构建资源（project.yml）
+PASS 平台演示有三条合成会话且首屏有内容
+PASS 平台演示内容明确标注虚构
+PASS 平台演示不含待恢复的服务端运行
+PASS 平台演示 URLProtocol 拦住请求并报告离线
+PASS 平台演示没有写正式会话目录
+SUMMARY privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离
+✅ privacy: 67 项断言通过；privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离

@@ -1,0 +1,6 @@
+{
+  "check": "functionality",
+  "ok": true,
+  "summary": "functionality: 38 项断言通过；生产 send/attach/readDoc 路径 + SessionStore 持久化与多会话，共 10 次本地请求",
+  "scope": "生产 ChatModel/ChatStream/Backend/Store/AIConsent 在 macOS 编译运行，本地 URLProtocol 代替后端；SwiftUI 渲染与真机不在本项范围"
+}

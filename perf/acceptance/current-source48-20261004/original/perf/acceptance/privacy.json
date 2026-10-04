@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "name": "privacy",
+  "app_id": "hydro-deck",
+  "command": "bash scripts/accept/_common.sh privacy",
+  "exit_code": 0,
+  "status": "passed",
+  "started_at": "2026-10-04T12:03:36.273331+08:00",
+  "finished_at": "2026-10-04T12:03:54.993177+08:00",
+  "input_sha256": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
+  "log": "perf/acceptance/privacy.log",
+  "log_sha256": "1e0e746d1ff50afa2caf246006b9c730130545923bd0b09cf257df67e49341c6",
+  "summary": "privacy: 67 项断言通过；privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离",
+  "detail": {
+    "check": "privacy",
+    "ok": true,
+    "summary": "privacy: 67 项断言通过；privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离",
+    "scope": "生产 ChatModel/ChatStream/Backend/Store/AIConsent 在 macOS 编译运行，本地 URLProtocol 代替后端；SwiftUI 渲染与真机不在本项范围"
+  },
+  "previous_observation": {
+    "path": "perf/acceptance/attempts/privacy/20261004T120336271871+0800-x5hkum3z",
+    "manifest_sha256": "319ec8b162e317d3d72114729530081cf8ac3335f9474d51e5801c46778a66fb"
+  }
+}

@@ -1,0 +1,40 @@
+PASS send: 请求 body 含 message 与 paradigm=react
+PASS send: 首问不带 session_id / image_ids
+PASS send: 结束后流式态与草稿清空
+PASS send: 一问一答固化成 1 个 turn
+PASS turn: 问题/终态/wall_ms 正确
+PASS delta: 累积拼接且 reset=true 清掉旧稿重接（无 run.end.answer 时用拼接结果）
+PASS steps: step.start 进入 turn.steps
+PASS steps: tool.call/tool.result 记到对应步（名称、成败、耗时）
+PASS citations: run.end 引文保存进 turn
+PASS nonfatal error: 记为提示、不进错误态、run 继续到 answered
+PASS run.start: 记住服务端 session_id
+PASS run.end: 欠账清零
+PASS 多轮: 第二问 body 带 run.start 给的 session_id
+PASS 多轮: 已有 server session_id 不被后续 run.start 覆盖
+PASS run.end.answer: 覆盖 delta 拼接结果
+PASS 终态: answered_degraded 如实保存且有标注
+PASS fatal error 后跟 run.end: 权威终态清掉错误态
+PASS 持久化: 新 SessionStore(同目录) 读回会话、答案、引文、步骤
+PASS 持久化: 新 ChatModel 启动落在最近会话上
+PASS newSession: 新会话为空且无 server session_id
+PASS newSession: 空会话不落盘（首问后才保存）
+PASS newSession: 新会话首问不带旧 session_id
+PASS newSession: 首问后保存为第二个会话
+PASS switchTo: 切回旧会话，历史与 server session_id 恢复
+PASS switchTo: 未知 id 不切换
+PASS deleteSession: 删除非当前会话，文件与索引都移除，当前会话不动
+PASS deleteSession: 删除当前且唯一会话后落到新空会话
+PASS deleteSession: 盘上已无会话文件
+PASS attach: 走 /api/vision/upload multipart（字段 file、JPEG 内容）
+PASS attach: 拿到 image_id 作为附件
+PASS attach: 下一问 body 的 image_ids 带上该图
+PASS attach: run.start 后附件清空，turn 记图片数
+PASS uploadJPEG: 直调解析 image_id
+PASS uploadJPEG: 响应缺 image_id 报契约错误而非猜值
+PASS readDoc: POST kb.read_doc/invoke，args 含 doc_id/offset/max_chars
+PASS readDoc: 解析 title/display_path/text/next_offset
+PASS readDoc: 未截断时无下一页，标题缺省回 doc_id
+PASS readDoc: ok=false 抛出后端原话
+SUMMARY 生产 send/attach/readDoc 路径 + SessionStore 持久化与多会话，共 10 次本地请求
+✅ functionality: 38 项断言通过；生产 send/attach/readDoc 路径 + SessionStore 持久化与多会话，共 10 次本地请求

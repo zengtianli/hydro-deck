@@ -1,0 +1,25 @@
+{
+ "ok": true,
+ "platform": "iphone",
+ "configuration": "Release",
+ "scheme": "HydroDeck",
+ "compilation_conditions": [],
+ "app_path": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.e6b5352ec90c7055ff3f514e5d3b77f6b4a3f3c6395f85a9c9a059869e44d56f/sim-lane-build.bdp8bd0o/dd/Build/Products/Release-iphonesimulator/HydroDeck.app",
+ "bundle_id": "cyou.tianli.hydrodeck",
+ "version": "0.1.1",
+ "build": "3",
+ "executable_sha256": "b54425935bbe78e681a1a498b877402b5715af2cd0984167c6136cfaf4b0b636",
+ "sdk": "iphonesimulator27.0",
+ "xcode": {
+  "name": "Xcode.app",
+  "version": "27.0",
+  "build": "27A266a",
+  "developer_dir": "/Applications/Xcode.app/Contents/Developer"
+ },
+ "destination": "generic/platform=iOS Simulator",
+ "signing": "unsigned simulator build (CODE_SIGNING_ALLOWED=NO)",
+ "log": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.e6b5352ec90c7055ff3f514e5d3b77f6b4a3f3c6395f85a9c9a059869e44d56f/sim-lane-build.bdp8bd0o/build-iphone-Release.log",
+ "work_dir": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.e6b5352ec90c7055ff3f514e5d3b77f6b4a3f3c6395f85a9c9a059869e44d56f/sim-lane-build.bdp8bd0o",
+ "seconds": 58.2,
+ "generated_info_plists": []
+}

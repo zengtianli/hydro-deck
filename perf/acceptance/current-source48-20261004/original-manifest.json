@@ -1,0 +1,50 @@
+{
+  "original/perf/acceptance/functionality.json": {
+    "sha256": "c03a547c5a1dc7dfd87be7819736eb1a9889ac59eb71dc0c646c60b79c5ddab9",
+    "size": 1245
+  },
+  "original/perf/acceptance/functionality.log": {
+    "sha256": "85dbf838db6a2a41c2b88b01d455bbe27cc99017df2b425ab10c0d43eee353a1",
+    "size": 2418
+  },
+  "original/perf/acceptance/functionality.detail.json": {
+    "sha256": "bc635d0a1f05dfd6aca2854244c9d3bd3dee393fb555b2eda6943e246ceb4cea",
+    "size": 359
+  },
+  "original/perf/acceptance/recovery.json": {
+    "sha256": "e1928ef87bd68fcd3ec0ca8ac5b79e19ce5e1259310d63900d9da5126b0bc26d",
+    "size": 1102
+  },
+  "original/perf/acceptance/recovery.log": {
+    "sha256": "f0fa578bf7899aa06febfbba10db9ddb79e1b65e5c8e6e12905bddf141490262",
+    "size": 1263
+  },
+  "original/perf/acceptance/recovery.detail.json": {
+    "sha256": "3ce1cc148e4da466765097455e4afbd97cf153567c79c5f63a74c4d5f94c5d9f",
+    "size": 295
+  },
+  "original/perf/acceptance/privacy.json": {
+    "sha256": "f93f5c69e324c38798ccafbc0f446e3b0c48b2ca8bab1db0ab4940e7918cad03",
+    "size": 1261
+  },
+  "original/perf/acceptance/privacy.log": {
+    "sha256": "1e0e746d1ff50afa2caf246006b9c730130545923bd0b09cf257df67e49341c6",
+    "size": 3914
+  },
+  "original/perf/acceptance/privacy.detail.json": {
+    "sha256": "d2a74f66d288ee693b2658081e76a3b707a67e2a03671a2c9132c832cd85befe",
+    "size": 376
+  },
+  "original/perf/delivery-evidence.json": {
+    "sha256": "c3b3228761f8db3c4616943deabf5798f00ad7e998fcf4dd40d2b9a865e87b71",
+    "size": 4168
+  },
+  "original/ordinary-release-current-build.json": {
+    "sha256": "a12bc3387cfcddb8ebba45a8b7619aea933e7395eb6b89097ac5fb618282dda3",
+    "size": 1229
+  },
+  "original/hydro-deck-measure-20261004-120418.log": {
+    "sha256": "b587fcdce5b9131340315807fd31b231a13dd0b52bf5558572548507945bcbb3",
+    "size": 584
+  }
+}

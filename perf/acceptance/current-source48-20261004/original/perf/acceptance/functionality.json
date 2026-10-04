@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "name": "functionality",
+  "app_id": "hydro-deck",
+  "command": "bash scripts/accept/_common.sh functionality",
+  "exit_code": 0,
+  "status": "passed",
+  "started_at": "2026-10-04T12:02:48.414399+08:00",
+  "finished_at": "2026-10-04T12:03:03.720954+08:00",
+  "input_sha256": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
+  "log": "perf/acceptance/functionality.log",
+  "log_sha256": "85dbf838db6a2a41c2b88b01d455bbe27cc99017df2b425ab10c0d43eee353a1",
+  "summary": "functionality: 38 项断言通过；生产 send/attach/readDoc 路径 + SessionStore 持久化与多会话，共 10 次本地请求",
+  "detail": {
+    "check": "functionality",
+    "ok": true,
+    "summary": "functionality: 38 项断言通过；生产 send/attach/readDoc 路径 + SessionStore 持久化与多会话，共 10 次本地请求",
+    "scope": "生产 ChatModel/ChatStream/Backend/Store/AIConsent 在 macOS 编译运行，本地 URLProtocol 代替后端；SwiftUI 渲染与真机不在本项范围"
+  },
+  "previous_observation": {
+    "path": "perf/acceptance/attempts/functionality/20261004T120248411420+0800-cq8mu84q",
+    "manifest_sha256": "03771e7e87b5dc8c28911e5dfecb72413c4c1584905df5bfaa027f3595ab462c"
+  }
+}

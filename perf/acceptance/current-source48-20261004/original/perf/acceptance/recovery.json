@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "name": "recovery",
+  "app_id": "hydro-deck",
+  "command": "bash scripts/accept/_common.sh recovery",
+  "exit_code": 0,
+  "status": "passed",
+  "started_at": "2026-10-04T12:03:08.698511+08:00",
+  "finished_at": "2026-10-04T12:03:31.970802+08:00",
+  "input_sha256": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
+  "log": "perf/acceptance/recovery.log",
+  "log_sha256": "f0fa578bf7899aa06febfbba10db9ddb79e1b65e5c8e6e12905bddf141490262",
+  "summary": "recovery: 14 项断言通过；故障与恢复 8 类场景，用时 4.2s",
+  "detail": {
+    "check": "recovery",
+    "ok": true,
+    "summary": "recovery: 14 项断言通过；故障与恢复 8 类场景，用时 4.2s",
+    "scope": "生产 ChatModel/ChatStream/Backend/Store/AIConsent 在 macOS 编译运行，本地 URLProtocol 代替后端；SwiftUI 渲染与真机不在本项范围"
+  },
+  "previous_observation": {
+    "path": "perf/acceptance/attempts/recovery/20261004T120308695114+0800-h9ncbyal",
+    "manifest_sha256": "af3970fe062525fad81e7ff766993b71a1637b370581d984edeaeb384fa262a3"
+  }
+}
