@@ -1,0 +1,22 @@
+{
+  "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/platforms/mac.json": {
+    "sha256": "17cbdb7f87d5a51e71ccf3b16d853eeffaccf943441cc7a90eda211e8f72e174",
+    "size": 1326,
+    "copy": "mac.json"
+  },
+  "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/platforms/mac/measure-20261004-124239.json": {
+    "sha256": "596b5f71f9bd09f4081ee052f65668ea3ae2b3ea82a33611c6d58a7662667bf5",
+    "size": 2854,
+    "copy": "measure-20261004-124239.json"
+  },
+  "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.95493beb9f8aea120c8aef9096ed5f57cebff2fa93a6acffa1c578220856debe/sim-lane-build.2861kl5v/build.json": {
+    "sha256": "87b980be2e2463c5a985fb206f7d2cdf8385a56269508bfa0356a31c154d294b",
+    "size": 1224,
+    "copy": "build.json"
+  },
+  "/Users/tianli/Library/Logs/app-sop/hydro-deck-measure-20261004-124239.log": {
+    "sha256": "0e88fba8f5bad22e778fc0a93cd3fb4878c0a258bab68d09be1e2a579aa21d1f",
+    "size": 1424,
+    "copy": "hydro-deck-measure-20261004-124239.log"
+  }
+}

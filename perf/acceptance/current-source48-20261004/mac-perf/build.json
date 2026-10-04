@@ -1,0 +1,25 @@
+{
+ "ok": true,
+ "platform": "mac",
+ "configuration": "Release",
+ "scheme": "HydroDeck",
+ "compilation_conditions": [],
+ "app_path": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.95493beb9f8aea120c8aef9096ed5f57cebff2fa93a6acffa1c578220856debe/sim-lane-build.2861kl5v/dd/Build/Products/Release/HydroDeck.app",
+ "bundle_id": "cyou.tianli.hydrodeck",
+ "version": "0.1.1",
+ "build": "3",
+ "executable_sha256": "b158efdb81a44bf4fde64c34af999edde843da157119dfc55b07ce352a5e918e",
+ "sdk": "macosx27.0",
+ "xcode": {
+  "name": "Xcode.app",
+  "version": "27.0",
+  "build": "27A266a",
+  "developer_dir": "/Applications/Xcode.app/Contents/Developer"
+ },
+ "destination": "platform=macOS,arch=arm64",
+ "signing": "ad-hoc, entitlements stripped, no sandbox, no hardened runtime (local lane build)",
+ "log": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.95493beb9f8aea120c8aef9096ed5f57cebff2fa93a6acffa1c578220856debe/sim-lane-build.2861kl5v/build-mac-Release.log",
+ "work_dir": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.95493beb9f8aea120c8aef9096ed5f57cebff2fa93a6acffa1c578220856debe/sim-lane-build.2861kl5v",
+ "seconds": 78.6,
+ "generated_info_plists": []
+}
