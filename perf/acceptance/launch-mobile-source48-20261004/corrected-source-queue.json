@@ -1,0 +1,79 @@
+{
+  "scope": "Current source08c27 product UI fix frozen before single original queue entries; not an actual SDK/test pass. Existing four perf jobs continue, no new worker/SDK/device.",
+  "source_commit": "5df571f6fdf58e0cda74898c422f6e386d09308d",
+  "source_input": "08c27c7f962f19f0d9878c311cc7d984cc9b58f9b9a3868e5291e6005fd10b53",
+  "entries": {
+    "functionality": {
+      "ok": true,
+      "deduplicated": false,
+      "job": {
+        "id": "c762df410df54a9c868e2b195b53b453",
+        "app_id": "hydro-deck",
+        "action": "accept",
+        "stage": null,
+        "check": "functionality",
+        "retry": false,
+        "reuse_builds_manifest": null,
+        "reuse_builds_manifest_sha256": null,
+        "reuse_build_receipt": null,
+        "reuse_build_receipt_sha256": null,
+        "tmpdir": "/private/tmp",
+        "status": "queued",
+        "created_at": "2026-10-04T11:59:12+08:00",
+        "started_at": null,
+        "finished_at": null,
+        "log_path": "/Users/tianli/Library/Application Support/app-sop/workbench/logs/c762df410df54a9c868e2b195b53b453.log",
+        "message": "等待执行",
+        "next_attempt_at": null
+      }
+    },
+    "recovery": {
+      "ok": true,
+      "deduplicated": false,
+      "job": {
+        "id": "e44117a461d04a2e88a7f055a16bed30",
+        "app_id": "hydro-deck",
+        "action": "accept",
+        "stage": null,
+        "check": "recovery",
+        "retry": false,
+        "reuse_builds_manifest": null,
+        "reuse_builds_manifest_sha256": null,
+        "reuse_build_receipt": null,
+        "reuse_build_receipt_sha256": null,
+        "tmpdir": "/private/tmp",
+        "status": "queued",
+        "created_at": "2026-10-04T11:59:13+08:00",
+        "started_at": null,
+        "finished_at": null,
+        "log_path": "/Users/tianli/Library/Application Support/app-sop/workbench/logs/e44117a461d04a2e88a7f055a16bed30.log",
+        "message": "等待执行",
+        "next_attempt_at": null
+      }
+    },
+    "privacy": {
+      "ok": true,
+      "deduplicated": false,
+      "job": {
+        "id": "e37fc53eb9534550a680385b57bec569",
+        "app_id": "hydro-deck",
+        "action": "accept",
+        "stage": null,
+        "check": "privacy",
+        "retry": false,
+        "reuse_builds_manifest": null,
+        "reuse_builds_manifest_sha256": null,
+        "reuse_build_receipt": null,
+        "reuse_build_receipt_sha256": null,
+        "tmpdir": "/private/tmp",
+        "status": "queued",
+        "created_at": "2026-10-04T11:59:13+08:00",
+        "started_at": null,
+        "finished_at": null,
+        "log_path": "/Users/tianli/Library/Application Support/app-sop/workbench/logs/e37fc53eb9534550a680385b57bec569.log",
+        "message": "等待执行",
+        "next_attempt_at": null
+      }
+    }
+  }
+}

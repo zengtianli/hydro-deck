@@ -96,6 +96,42 @@
       "file": "pre-source/Shared/AppLifecycleMobile.swift",
       "size": 24283,
       "sha256": "7db84e3a2aeb6e4d4b58bca8792aa6135eb9a3a2a6914911fa10f439cc301122"
+    },
+    {
+      "file": "5d3e2af02bfc48acb304e5ae34559c35.job.json",
+      "size": 791,
+      "sha256": "a8816bce74f2ae5aeaee251b3131e62ebecad767dac9f997b4c2364568e60c97",
+      "scope": "Separate observed source-fix/check/queue preparation, not original startup bytes"
+    },
+    {
+      "file": "81e6d5e529694a22b053f7cf0075b032.job.json",
+      "size": 793,
+      "sha256": "7b20d46c7fcd9f927883cf83708549d27a9b477d47f03bfd5f2e1cafc8533096",
+      "scope": "Separate observed source-fix/check/queue preparation, not original startup bytes"
+    },
+    {
+      "file": "corrected-source-queue.json",
+      "size": 2789,
+      "sha256": "1785438ccc9d418cc6b3d2921b42d93d777493f91926645bb665f8dcff11ce92",
+      "scope": "Separate observed source-fix/check/queue preparation, not original startup bytes"
+    },
+    {
+      "file": "source-fix-proof.json",
+      "size": 14209,
+      "sha256": "ef460f880429c3d880172bfc1be381815470af343c6fc33b19cdaa434996c87c",
+      "scope": "Separate observed source-fix/check/queue preparation, not original startup bytes"
+    },
+    {
+      "file": "source-parse.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "Separate observed source-fix/check/queue preparation, not original startup bytes"
+    },
+    {
+      "file": "visual-source-proof.json",
+      "size": 9512,
+      "sha256": "89c6ae20ecf565b384d90077c5261e54a03c2bf0caffcf68126578c62ce3333a",
+      "scope": "Separate observed source-fix/check/queue preparation, not original startup bytes"
     }
   ]
 }
