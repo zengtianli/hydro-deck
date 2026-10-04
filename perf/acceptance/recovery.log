@@ -12,5 +12,5 @@ PASS 闸拦截（302→/_gate/）且无闸密码：进入 needGatePassword，不
 PASS 流中途结构性事件即落盘 pendingRun（runId/lastSeq/问题/步骤）
 PASS 重启后 resumePendingIfAny 按落盘 lastSeq 取回并固化成稿，欠账清零
 PASS 坏 JSON 会话文件被跳过且保留在盘上，好会话照常加载并成为当前会话
-SUMMARY 故障与恢复 8 类场景，用时 3.3s
-✅ recovery: 14 项断言通过；故障与恢复 8 类场景，用时 3.3s
+SUMMARY 故障与恢复 8 类场景，用时 4.4s
+✅ recovery: 14 项断言通过；故障与恢复 8 类场景，用时 4.4s

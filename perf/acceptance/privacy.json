@@ -5,9 +5,9 @@
   "command": "bash scripts/accept/_common.sh privacy",
   "exit_code": 0,
   "status": "passed",
-  "started_at": "2026-10-03T00:04:56.330198+08:00",
-  "finished_at": "2026-10-03T00:05:13.081751+08:00",
-  "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
+  "started_at": "2026-10-04T10:50:01.838317+08:00",
+  "finished_at": "2026-10-04T10:50:20.041785+08:00",
+  "input_sha256": "567f2a92101fefa64844cf87e8a0f8d9a92f678b8e45366bd8c98c37bba6450c",
   "log": "perf/acceptance/privacy.log",
   "log_sha256": "1e0e746d1ff50afa2caf246006b9c730130545923bd0b09cf257df67e49341c6",
   "summary": "privacy: 67 项断言通过；privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离",
@@ -16,5 +16,9 @@
     "ok": true,
     "summary": "privacy: 67 项断言通过；privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离",
     "scope": "生产 ChatModel/ChatStream/Backend/Store/AIConsent 在 macOS 编译运行，本地 URLProtocol 代替后端；SwiftUI 渲染与真机不在本项范围"
+  },
+  "previous_observation": {
+    "path": "perf/acceptance/attempts/privacy/20261004T105001835515+0800-vr72knxf",
+    "manifest_sha256": "5cadb3809caa98a7007f5f227b73ed9a0194c7d5645768b31ecf6152c43598af"
   }
 }

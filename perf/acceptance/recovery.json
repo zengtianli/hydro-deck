@@ -5,16 +5,20 @@
   "command": "bash scripts/accept/_common.sh recovery",
   "exit_code": 0,
   "status": "passed",
-  "started_at": "2026-10-03T00:04:19.128086+08:00",
-  "finished_at": "2026-10-03T00:04:30.033310+08:00",
-  "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
+  "started_at": "2026-10-04T10:49:36.401240+08:00",
+  "finished_at": "2026-10-04T10:49:57.775409+08:00",
+  "input_sha256": "567f2a92101fefa64844cf87e8a0f8d9a92f678b8e45366bd8c98c37bba6450c",
   "log": "perf/acceptance/recovery.log",
-  "log_sha256": "afc318091c64227431f31051f058fa377689ef26697ae30c25945fcdd3016395",
-  "summary": "recovery: 14 项断言通过；故障与恢复 8 类场景，用时 3.3s",
+  "log_sha256": "2bca134d57fd142051ed99ebb6b612e306921e7371e6af1b66c206349396ffa8",
+  "summary": "recovery: 14 项断言通过；故障与恢复 8 类场景，用时 4.4s",
   "detail": {
     "check": "recovery",
     "ok": true,
-    "summary": "recovery: 14 项断言通过；故障与恢复 8 类场景，用时 3.3s",
+    "summary": "recovery: 14 项断言通过；故障与恢复 8 类场景，用时 4.4s",
     "scope": "生产 ChatModel/ChatStream/Backend/Store/AIConsent 在 macOS 编译运行，本地 URLProtocol 代替后端；SwiftUI 渲染与真机不在本项范围"
+  },
+  "previous_observation": {
+    "path": "perf/acceptance/attempts/recovery/20261004T104936398220+0800-4kg4krxb",
+    "manifest_sha256": "e0080c91d12efb8f3d2d1e58eac00f27abf7d956bfebc60f57831e6b1197bdce"
   }
 }
