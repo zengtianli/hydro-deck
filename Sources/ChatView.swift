@@ -20,6 +20,7 @@ struct ChatView: View {
     @State private var input = ""
     @State private var autoFollow = true
     @State private var showHistory = false
+    @State private var showLifecycle = false
     @State private var citationDoc: TurnRecord.CitationRecord?
     @State private var pickedPhotos: [PhotosPickerItem] = []
     @State private var showPhotos = false
@@ -28,6 +29,7 @@ struct ChatView: View {
     @State private var cameraAuthorization: AIConsent.Authorization?
     @FocusState private var inputFocused: Bool
     @Environment(\.scenePhase) private var scenePhase
+    @EnvironmentObject private var lifecycle: MobileLifecycleModel
 
     var body: some View {
         NavigationStack {
@@ -92,6 +94,8 @@ struct ChatView: View {
                         Button("AI 数据处理", systemImage: "hand.raised") {
                             model.showAIConsent = true
                         }
+                        Button("配置与更新", systemImage: "gearshape") { showLifecycle = true }
+                            .accessibilityIdentifier("app.configurationAndUpdates")
                     } label: { Image(systemName: "ellipsis.circle") }
                 }
             }
@@ -99,6 +103,7 @@ struct ChatView: View {
         .sheet(isPresented: $model.needGatePassword) { GateSheet(model: model) }
         .sheet(isPresented: $model.showAIConsent) { AIDataConsentSheet(model: model) }
         .sheet(isPresented: $showHistory) { HistoryView(model: model) }
+        .sheet(isPresented: $showLifecycle) { AppLifecycleMobilePanel(model: lifecycle) }
         .sheet(item: $citationDoc) { c in CitationSheet(citation: c) }
         .onAppear { LaneSignal.ready(model.turns.isEmpty ? "chat-empty" : "chat-history") }
         .task {

@@ -1,0 +1,17 @@
+{
+  "id": "81e6d5e529694a22b053f7cf0075b032",
+  "app_id": "hydro-deck",
+  "action": "accept",
+  "stage": null,
+  "status": "succeeded",
+  "created_at": "2026-10-04T11:12:01+08:00",
+  "started_at": "2026-10-04T11:49:47+08:00",
+  "finished_at": "2026-10-04T11:51:48+08:00",
+  "log_path": "/Users/tianli/Library/Application Support/app-sop/workbench/logs/81e6d5e529694a22b053f7cf0075b032.log",
+  "message": "验收通过",
+  "check": "launch_iphone",
+  "retry": false,
+  "reuse_build_receipt": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.e6b5352ec90c7055ff3f514e5d3b77f6b4a3f3c6395f85a9c9a059869e44d56f/sim-lane-build.j4by5zpf/build.json",
+  "reuse_build_receipt_sha256": "63311aff1c0a276c6336732120e6d3056dda724f3a170f247d0af76dca5374dc",
+  "tmpdir": "/private/tmp"
+}

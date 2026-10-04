@@ -1,0 +1,101 @@
+{
+  "scope": "Original bytes preserved privately before product UI source change",
+  "files": [
+    {
+      "original_path": "/Users/tianli/Library/Application Support/app-sop/workbench/logs/81e6d5e529694a22b053f7cf0075b032.log",
+      "file": "81e6d5e529694a22b053f7cf0075b032.job.log",
+      "size": 292,
+      "sha256": "db642c2c18ed02f2fa37642b1be427996fbd8b34bb34fb2fd97f268e2fa1adf3"
+    },
+    {
+      "original_path": "/Users/tianli/Library/Application Support/app-sop/workbench/logs/5d3e2af02bfc48acb304e5ae34559c35.log",
+      "file": "5d3e2af02bfc48acb304e5ae34559c35.job.log",
+      "size": 294,
+      "sha256": "6b5f28886d449601b63748574811cb02aa14cccda98d512df367250cfc070d3e"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_iphone.json",
+      "file": "iphone/launch.json",
+      "size": 3855,
+      "sha256": "724a1fcaaeb37b326d1327a35e6b2f07e065bd9343db8b0402d38b346b854612"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_iphone.log",
+      "file": "iphone/launch.log",
+      "size": 87,
+      "sha256": "95d7f92e541dadab6f99e33709378763eb85b768ab480b175ccb8d7da23d1ccd"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_iphone.detail.json",
+      "file": "iphone/launch.detail.json",
+      "size": 2897,
+      "sha256": "5c38708dd815f2289003a1f825a3aadbfde1b5d86bca0c7aff0e071216649a97"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/platforms/iphone/launch.png",
+      "file": "iphone/launch.png",
+      "size": 350306,
+      "sha256": "548a8b3d2efda858f3dadb5a9d533f09a48de8710e8b3652fedfcb4d6d41114c"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_ipad.json",
+      "file": "ipad/launch.json",
+      "size": 3693,
+      "sha256": "f666dcb1c13f0cc4dbc7b6c01ee96a02a5a84b24f8b9f2510d0c180499fced46"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_ipad.log",
+      "file": "ipad/launch.log",
+      "size": 93,
+      "sha256": "0705d1cb4a42e269963df1ca5d0ac473309f2fd42ed9f18d5590fe6f4c352fa5"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_ipad.detail.json",
+      "file": "ipad/launch.detail.json",
+      "size": 2946,
+      "sha256": "6f43878f8f289e675f0d03fbdcb8dcd45c64a1818183ded086f1bf4a55a4c407"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/platforms/ipad/launch.png",
+      "file": "ipad/launch.png",
+      "size": 379437,
+      "sha256": "cbe7103e46a7f832679815cee5c93f30cce8dc3b373023cc2949678743f805a1"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/platforms/ipad/launch-capture.json",
+      "file": "ipad/launch-capture.json",
+      "size": 1351,
+      "sha256": "ccfd4cee5c5893ca2ca36b44abc02097e0a9199d25840151297f6be57764102b"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/delivery-evidence.json",
+      "file": "delivery-evidence.json",
+      "size": 4168,
+      "sha256": "4e6cb8b7b1b6da9b52b3232adbfa42facd785316076b4fcefcf3d48474c4bd77"
+    },
+    {
+      "original_path": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.e6b5352ec90c7055ff3f514e5d3b77f6b4a3f3c6395f85a9c9a059869e44d56f/sim-lane-build.j4by5zpf/build.json",
+      "file": "actual-release-sdk.json",
+      "size": 1225,
+      "sha256": "63311aff1c0a276c6336732120e6d3056dda724f3a170f247d0af76dca5374dc"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/Sources/App.swift",
+      "file": "pre-source/Sources/App.swift",
+      "size": 2182,
+      "sha256": "44269404b485e4dce2da120819db8148c78001b2b113baedf29836cc22235981"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/Sources/ChatView.swift",
+      "file": "pre-source/Sources/ChatView.swift",
+      "size": 25168,
+      "sha256": "cf95c0d8920d3c698792c69b7f92d670173dff1722a6571a60b2bbf13e16d25a"
+    },
+    {
+      "original_path": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/Shared/AppLifecycleMobile.swift",
+      "file": "pre-source/Shared/AppLifecycleMobile.swift",
+      "size": 24283,
+      "sha256": "7db84e3a2aeb6e4d4b58bca8792aa6135eb9a3a2a6914911fa10f439cc301122"
+    }
+  ]
+}

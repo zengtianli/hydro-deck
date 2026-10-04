@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "platform": "ipad",
+  "udid": "A19C635F-A987-4E08-931A-A5874216E34D",
+  "device": "iPad Pro 13-inch (M5)",
+  "device_type": "iPad-Pro-13-inch-M5-12GB",
+  "runtime": "iOS-27-0",
+  "bundle_id": "cyou.tianli.hydrodeck",
+  "version": "0.1.1",
+  "build": "3",
+  "launch_args": [
+    "-lane_demo",
+    "YES",
+    "-lane_orientation",
+    "landscape"
+  ],
+  "environment": "simulator",
+  "errors": [],
+  "boot_seconds": 33.9,
+  "rotation": {
+    "ok": true,
+    "orientation": "landscape",
+    "seconds": 42.5,
+    "screen": [
+      2752,
+      2064
+    ],
+    "load_1_5_15": [
+      113.0,
+      66.5,
+      46.8
+    ],
+    "errors": []
+  },
+  "install_seconds": 2.7,
+  "baseline_stable": true,
+  "size": [
+    2752,
+    2064
+  ],
+  "screen_orientation": "landscape",
+  "pid": 26760,
+  "ready_seconds": 2.951,
+  "ready_signal": "os_log",
+  "screenshot": "perf/platforms/ipad/launch.png",
+  "verdict": {
+    "non_blank": true,
+    "changed_from_baseline": true,
+    "stable": true,
+    "diff_baseline": 0.9641,
+    "diff_prev": 0.0
+  },
+  "notes": [],
+  "shutdown": true,
+  "input_sha256": "83cc6619fcc48e9e1508a76cd5dc1cf6c2442888b1ace678b21f23f9303df0e1",
+  "executable_sha256": "0de110a63c6909e648543922fcbb4a2d2807c9144a2b7f11a390a171d2d9a9a8",
+  "screenshot_sha256": "cbe7103e46a7f832679815cee5c93f30cce8dc3b373023cc2949678743f805a1"
+}
