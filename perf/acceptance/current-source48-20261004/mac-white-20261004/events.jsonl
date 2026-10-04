@@ -1,0 +1,20 @@
+{"at": "2026-10-04T16:34:15.704499+08:00", "producer_started": false, "reason": "original canonical busy; actual no-build gate false", "active_builder_identity": [], "audit_error": "pre-producer timestamp serialization corrected; no helper output existed"}
+{"at": "2026-10-04T16:34:50.060949+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:35:00.064943+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:35:10.071243+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:35:20.076063+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:35:30.082523+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:35:40.088348+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:35:50.093823+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:36:00.104369+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:36:10.108554+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:36:20.116048+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:36:30.122407+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:36:40.133153+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:36:50.144364+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:37:00.164211+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:37:10.178801+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:37:20.183623+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:37:30.192450+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:37:40.203021+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}
+{"at": "2026-10-04T16:37:50.213642+08:00", "producer_started": false, "canonical_held": false, "reason": "original canonical busy"}

@@ -1,0 +1,52 @@
+{
+  "files": {
+    "actual-ordinary-sdk-build.json": {
+      "sha256": "87b980be2e2463c5a985fb206f7d2cdf8385a56269508bfa0356a31c154d294b",
+      "bytes": 1224
+    },
+    "actual-proof.json": {
+      "sha256": "89c7df08f7a7fd5794a0bdfb576f3a24663d2ea05d04c841d0bae827bcec4fbd",
+      "bytes": 19603
+    },
+    "current-capture.json": {
+      "sha256": "26de811bb2097b9e6a634c153184d3dd0bbb586a64aca88a84ec607cacd1daa8",
+      "bytes": 2167
+    },
+    "current-white.png": {
+      "sha256": "1579e75e25613ae474190ce0a6093353eeb93b5636c929b7a0e657845053dba8",
+      "bytes": 221543
+    },
+    "events.jsonl": {
+      "sha256": "02e6bf9fdc1f37b17638c273f6c5b13604da1f9a0a9c11c4f95d096a902f1d97",
+      "bytes": 2765
+    },
+    "five-item-proof.json": {
+      "sha256": "9abf5877166130039947361b5882171932e82ad644b7baee4d6dff574fc6f9b0",
+      "bytes": 5942
+    },
+    "original-alpha.png": {
+      "sha256": "0c6f67db34135e917a48f2a7a71d1ba582be49f2496f39d451459fdad5dc5f85",
+      "bytes": 286207
+    },
+    "original-helper.log": {
+      "sha256": "0621b8ce97e159beb7fae772990a2e7274096f9b1fe0b8869c1333eb253c4a63",
+      "bytes": 1286
+    },
+    "previous-current-launch-black.png": {
+      "sha256": "1cb40636bc30937f6051ac19b4b74b07dc009cacf8be2c8e8ee845235ca93474",
+      "bytes": 85912
+    },
+    "previous-store/01-chat.png": {
+      "sha256": "d17307137574c2138a718a27a6534148d91ce86eae20494ce458565a005effc9",
+      "bytes": 84324
+    },
+    "previous-store/capture.json": {
+      "sha256": "04d03a9325cb354f25c6c049d65ccb2c804e1f205dc637f7687b43b896e5e29a",
+      "bytes": 1408
+    },
+    "proof.json": {
+      "sha256": "9368aaa871966dfaf15cc9ffeafabd259db015502ddc8009801d3a69c9df010b",
+      "bytes": 1253
+    }
+  }
+}

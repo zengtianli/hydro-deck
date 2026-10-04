@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-10-04T16:45:46.247490+08:00",
+  "product": "hydro-deck",
+  "scope": "20261002 batch five necessary functional items; performance/material/promo/full backend and cloud sync not claimed",
+  "source_sha256": "08c27c7f962f19f0d9878c311cc7d984cc9b58f9b9a3868e5291e6005fd10b53",
+  "source_file_count": 48,
+  "actual_delivery_entries": {
+    "functionality": {
+      "valid": true,
+      "scope": "code",
+      "checked_at": "2026-10-04T12:03:03.720954+08:00",
+      "input_sha256": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
+      "evidence": "perf/acceptance/functionality.json",
+      "evidence_sha256": "c03a547c5a1dc7dfd87be7819736eb1a9889ac59eb71dc0c646c60b79c5ddab9"
+    },
+    "recovery": {
+      "valid": true,
+      "scope": "code",
+      "checked_at": "2026-10-04T12:03:31.970802+08:00",
+      "input_sha256": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
+      "evidence": "perf/acceptance/recovery.json",
+      "evidence_sha256": "e1928ef87bd68fcd3ec0ca8ac5b79e19ce5e1259310d63900d9da5126b0bc26d"
+    },
+    "privacy": {
+      "valid": true,
+      "scope": "code",
+      "checked_at": "2026-10-04T12:03:54.993177+08:00",
+      "input_sha256": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
+      "evidence": "perf/acceptance/privacy.json",
+      "evidence_sha256": "f93f5c69e324c38798ccafbc0f446e3b0c48b2ca8bab1db0ab4940e7918cad03"
+    },
+    "launch_iphone": {
+      "valid": true,
+      "scope": "platform_iphone",
+      "checked_at": "2026-10-04T12:21:30.186724+08:00",
+      "input_sha256": "07284f63b5b575e57471ac6d75e338cb2f28d631db552473780436cbd0d591fe",
+      "evidence": "perf/acceptance/launch_iphone.json",
+      "evidence_sha256": "1482eaf9efb992b56327aa25f60e9cf36e20dd45b67523787301e8c5250b0cbd"
+    },
+    "launch_ipad": {
+      "valid": true,
+      "scope": "platform_ipad",
+      "checked_at": "2026-10-04T12:26:06.127386+08:00",
+      "input_sha256": "d44a3d2a1b932cc158c935c64dba50b4f3b1bd9ae64526c1747de02fb4298c38",
+      "evidence": "perf/acceptance/launch_ipad.json",
+      "evidence_sha256": "53735514c2a367365a8bc8cf08b17c7be551ca28c982467b75fc17e4c888975a"
+    },
+    "launch_mac": {
+      "valid": true,
+      "scope": "platform_mac",
+      "checked_at": "2026-10-04T13:04:35.146189+08:00",
+      "input_sha256": "f5e32581dfbdb42420ca7b3c676145e1db77d78818dd6dbabb8f52b91920d8dc",
+      "evidence": "perf/acceptance/launch_mac.json",
+      "evidence_sha256": "c7605c25f88edd6b95e394cce0c81118a09ca67b56b7c346e031e1dbe856eb27"
+    },
+    "launch_vision": {
+      "valid": true,
+      "scope": "platform_vision",
+      "checked_at": "2026-10-04T13:08:01.528745+08:00",
+      "input_sha256": "9e08d8347e70d3d932608b1c3104c9b9c11f4e8ff13a908ee01d601ce3e34ae8",
+      "evidence": "perf/acceptance/launch_vision.json",
+      "evidence_sha256": "3ae893cac1f80c99c4fffac759c1db5fa9d1c2e0817dd57c07bb6d1a7f92fb31"
+    }
+  },
+  "five_items": {
+    "build": {
+      "passed": true,
+      "method": "original strict ordinary Release receipt before/after exact source/binary validation",
+      "sdk_recompiled": false
+    },
+    "startup_ui": {
+      "passed": true,
+      "method": "four original current actual launches plus same-current Mac offscreen white snapshot visually checked",
+      "observed_current_mac": "question/answer/table, microphone/photo/input/send visible and readable; no blank primary content or blocked chat input",
+      "white_png_sha256": "1579e75e25613ae474190ce0a6093353eeb93b5636c929b7a0e657845053dba8",
+      "raw_alpha_sha256": "0c6f67db34135e917a48f2a7a71d1ba582be49f2496f39d451459fdad5dc5f85",
+      "capture_stable": false,
+      "render_artifact_remaining": "Selected history row remains black in cacheDisplay-only snapshot; unchanged sidebar actual live UI scope is retained, no App crash or blocked core action proved."
+    },
+    "core_functionality": {
+      "passed": true,
+      "evidence": "current actual production ChatModel/ChatStream/Backend/SessionStore 38 assertions, local URLProtocol/isolated store"
+    },
+    "save_recovery": {
+      "passed": true,
+      "evidence": "current production persistence and eight failure/recovery cases, 14 assertions"
+    },
+    "privacy": {
+      "passed": true,
+      "evidence": "current 67 assertions consent/minimal fields/revoke/local storage boundaries; no production data/backend request"
+    }
+  },
+  "unchanged_sidebar_scope": {
+    "source_path": "Sources/HistoryView.swift",
+    "current_and_actual_old_src_sha256": "d68ad3793139d8f37746bc50c03855da0cbceba5de23580b949964aa68840ed0",
+    "original_gui_proof": "perf/acceptance/mac-live-ui-20261003/gui-proof.json",
+    "original_gui_proof_sha256": "85433cb931aa15b540fcb146dbf705d5cb6702a7f80cb08a9ec2a547f8741ac8",
+    "original_live_png_sha256": "d17307137574c2138a718a27a6534148d91ce86eae20494ce458565a005effc9",
+    "original_at": "2026-10-03 17:52",
+    "covered": "history row switches/sidebar hide-show and consent decline retaining draft",
+    "not_claimed": "old whole SDK/current whole UI binding"
+  },
+  "actual_owner_cleanup": {
+    "helper_gone": true,
+    "own_app_pids_gone": true,
+    "native_lock_absent": true
+  },
+  "actual_app_processes": [
+    {
+      "pid": 11159,
+      "pid_started": "Sun Oct  4 16:42:38 2026",
+      "executable": "/private/var/folders/x7/qptxw08j00v__67yzr3gcd000000gp/T/sim-lane-mac.9onx81tk/HydroDeck.app/Contents/MacOS/HydroDeck"
+    }
+  ],
+  "canonical_released_at": "2026-10-04T16:42:42.693872+08:00",
+  "sdk_receipt_sha256": "87b980be2e2463c5a985fb206f7d2cdf8385a56269508bfa0356a31c154d294b",
+  "limitations": [
+    "synthetic demo data/local request fixture; no live engineering material or credentials",
+    "performance cold median, full resource aggregate, repeated Store/promotional acceptance not completed by this proof",
+    "no real backend, speech/photo OS permission or cross-device cloud sync pass"
+  ]
+}

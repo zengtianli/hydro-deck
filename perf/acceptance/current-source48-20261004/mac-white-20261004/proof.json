@@ -1,0 +1,32 @@
+{
+  "started_at": "2026-10-04T16:34:50.060781+08:00",
+  "command": [
+    "/Users/tianli/Dev/.venv/bin/python",
+    "scripts/media/store_shots.py",
+    "mac",
+    "--reuse-build",
+    "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.95493beb9f8aea120c8aef9096ed5f57cebff2fa93a6acffa1c578220856debe/sim-lane-build.2861kl5v/build.json",
+    "--snapshot-background",
+    "white",
+    "--raw-snapshot-out",
+    "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/current-source48-20261004/mac-white-20261004/original-alpha.png"
+  ],
+  "sdk_build_executed": false,
+  "producer_started": false,
+  "scope": "same-current-Release actual quiet Mac UI snapshot; no performance or backend request",
+  "actual_processes": [],
+  "error": "pre-producer original admission unavailable in bounded180s",
+  "finished_at": "2026-10-04T16:37:50.213897+08:00",
+  "exit_code": 75,
+  "canonical_released": true,
+  "artifacts": {
+    "shots/appstore/mac/01-chat.png": {
+      "sha256": "d17307137574c2138a718a27a6534148d91ce86eae20494ce458565a005effc9",
+      "bytes": 84324
+    },
+    "shots/appstore/mac/capture.json": {
+      "sha256": "04d03a9325cb354f25c6c049d65ccb2c804e1f205dc637f7687b43b896e5e29a",
+      "bytes": 1408
+    }
+  }
+}
