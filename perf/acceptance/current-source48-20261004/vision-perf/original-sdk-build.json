@@ -1,0 +1,25 @@
+{
+ "ok": true,
+ "platform": "vision",
+ "configuration": "Release",
+ "scheme": "HydroDeck",
+ "compilation_conditions": [],
+ "app_path": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.adh4mux1/dd/Build/Products/Release-xrsimulator/HydroDeck.app",
+ "bundle_id": "cyou.tianli.hydrodeck",
+ "version": "0.1.1",
+ "build": "3",
+ "executable_sha256": "d0622ee28d8a2444621c655c882183a63913b347a4cecabe69dff8de0bb4e343",
+ "sdk": "xrsimulator27.0",
+ "xcode": {
+  "name": "Xcode.app",
+  "version": "27.0",
+  "build": "27A266a",
+  "developer_dir": "/Applications/Xcode.app/Contents/Developer"
+ },
+ "destination": "generic/platform=visionOS Simulator",
+ "signing": "unsigned simulator build (CODE_SIGNING_ALLOWED=NO)",
+ "log": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.adh4mux1/build-vision-Release.log",
+ "work_dir": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.adh4mux1",
+ "seconds": 69.0,
+ "generated_info_plists": []
+}

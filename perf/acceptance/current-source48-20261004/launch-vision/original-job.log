@@ -1,0 +1,12 @@
+{
+ "ok": true,
+ "app_id": "hydro-deck",
+ "results": {
+  "launch_vision": {
+   "status": "passed",
+   "method": "ui_automation",
+   "evidence": "perf/acceptance/launch_vision.json",
+   "detail": "Apple Vision Pro 模拟器 Apple Vision Pro 启动冒烟通过：os_log 9.742 s，截图 3840×2160"
+  }
+ }
+}

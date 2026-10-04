@@ -1,0 +1,193 @@
+{
+ "at": "2026-10-04T13:04:25+08:00",
+ "offline": false,
+ "mode": "run",
+ "scope": "当前登记组件的增量观察；保留异时点证据，不等同本轮全量验收",
+ "families": 1,
+ "apps": [
+  {
+   "id": "hydro-deck",
+   "name": "Water Assistant · 水利助手",
+   "repo": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序",
+   "form": "ios",
+   "family": "hydro-assistant",
+   "current": "0.1 (2)",
+   "items": [
+    {
+     "stage": "perf",
+     "key": "test",
+     "status": "stale",
+     "detail": "相关输入内容变化，待按影响范围检查",
+     "fix": "运行单 App 对应阶段",
+     "auto": null
+    },
+    {
+     "stage": "media",
+     "key": "changed",
+     "status": "stale",
+     "detail": "相关输入内容变化，待按影响范围检查",
+     "fix": "运行单 App 对应阶段",
+     "auto": null
+    },
+    {
+     "stage": "promo",
+     "key": "changed",
+     "status": "stale",
+     "detail": "相关输入内容变化，待按影响范围检查",
+     "fix": "运行单 App 对应阶段",
+     "auto": null
+    },
+    {
+     "stage": "ship",
+     "key": "changed",
+     "status": "stale",
+     "detail": "相关输入内容变化，待按影响范围检查",
+     "fix": "运行单 App 对应阶段",
+     "auto": null
+    },
+    {
+     "stage": "perf",
+     "key": "perf",
+     "status": "ok",
+     "detail": "0.1 (2) · 2026-09-29",
+     "fix": null,
+     "auto": null
+    },
+    {
+     "stage": "perf",
+     "key": "size",
+     "status": "ok",
+     "detail": "installed 0.91 MB · download 0.30 MB",
+     "fix": null,
+     "auto": null
+    },
+    {
+     "stage": "perf",
+     "key": "budget",
+     "status": "missing",
+     "detail": "模拟器实测尚未绑定当前实际源码输入；缺少完整历史输入归一证明",
+     "fix": "补注明真机/模拟器环境的实际资源记录",
+     "auto": "measure",
+     "environment": null
+    },
+    {
+     "stage": "perf",
+     "key": "speed",
+     "status": "missing",
+     "detail": "模拟器实测尚未绑定当前实际源码输入；缺少完整历史输入归一证明",
+     "fix": "补注明真机/模拟器环境的实际资源记录",
+     "auto": "measure",
+     "environment": null
+    },
+    {
+     "stage": "perf",
+     "key": "platform-iphone-perf",
+     "status": "stale",
+     "detail": "iPhone：实测输入 289ff0bb… 与当前 08c27c7f… 不同，历史输入契约证明未通过（平台未登记完整 input_normalization proof/sha256）",
+     "fix": "按平台线测量并写 perf/platforms/iphone.json（共享测量脚本：sim_lane 构建运行 + footprint/ps；input_sha256 取 app_sop.py lane-inputs --app hydro-deck --platform iphone）",
+     "auto": "measure",
+     "platform": "iphone",
+     "environment": "simulator"
+    },
+    {
+     "stage": "perf",
+     "key": "platform-ipad-perf",
+     "status": "stale",
+     "detail": "iPad：实测输入 289ff0bb… 与当前 08c27c7f… 不同，历史输入契约证明未通过（平台未登记完整 input_normalization proof/sha256）",
+     "fix": "按平台线测量并写 perf/platforms/ipad.json（共享测量脚本：sim_lane 构建运行 + footprint/ps；input_sha256 取 app_sop.py lane-inputs --app hydro-deck --platform ipad）",
+     "auto": "measure",
+     "platform": "ipad",
+     "environment": "simulator"
+    },
+    {
+     "stage": "perf",
+     "key": "platform-mac-perf",
+     "status": "ok",
+     "detail": "Mac 本机 Mac16,12 / Apple M4 · macOS 27.2：空闲内存 43MiB · 空闲 CPU 0% · 压缩包体 1.34556MB · 冷启动中位数 364ms；资源范围：Local ad-hoc Release build, main process only, quiet launch (hidden, no Dock icon, window never on screen)；本项为平台技术性能，不代表完整轻量合计",
+     "fix": null,
+     "auto": null,
+     "platform": "mac",
+     "environment": "native"
+    },
+    {
+     "stage": "perf",
+     "key": "platform-vision-perf",
+     "status": "ok",
+     "detail": "Apple Vision Pro 模拟器 Apple Vision Pro (Apple-Vision-Pro-4K) · visionOS 27.0：空闲内存 50MiB · 空闲 CPU 0.05% · 压缩包体 1.14458MB · 冷启动中位数 4501ms；资源范围：Simulator App host process only; excludes CoreSimulator, system services and inactive extensions；本项为平台技术性能，不代表完整轻量合计（模拟器数值不代表真机）",
+     "fix": null,
+     "auto": null,
+     "platform": "vision",
+     "environment": "simulator"
+    },
+    {
+     "stage": "perf",
+     "key": "input-binding",
+     "status": "stale",
+     "detail": "产品输入已变化，现有实测/素材证据未更新",
+     "fix": "补受影响的实测或素材复核证据",
+     "auto": null
+    },
+    {
+     "stage": "perf",
+     "key": "auto-measure",
+     "status": "fail",
+     "detail": "测量失败：命令退出成功但证据未通过回读：模拟器实测尚未绑定当前实际源码输入；缺少完整历史输入归一证明（/Users/tianli/Library/Logs/app-sop/hydro-deck-measure-20261004-125507.log）",
+     "fix": "输入/条件变化后再查，或单 App --retry",
+     "auto": null
+    }
+   ],
+   "input_fingerprints": {
+    "stages": {
+     "test": "d7754c412129fbce910eed2f28fa402327d22b3d831c15b107a8aa4946dc8a1c",
+     "perf": "289f67c95f791d99112b441c181bd8bb7a7b65c1e9e58f103bde8d68b5ba1027",
+     "media": "2604e8fbb85bcde5db0e57cfe8577966bef60860fba4713113aabd839593bab6",
+     "promo": "675a1a9be3fbd93b1ca98af8205821b83d3069db6072cc03de36770cc3ef6146",
+     "ship": "e6d8afb17d3808fa356dd9a1fde0ced8448c0ff5d7363269eec28fe1f21697cf"
+    },
+    "bindings": {
+     "business": "462b88a146b9045efd418e633f944a781788c14526d8ce3800c3f0bb64c4953b",
+     "code": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
+     "ui": "8091b551aea9ea8964767d50d597fa2e1ef3cfdd4bc32bd7bc6c9e2397de30d4",
+     "promo_ui": "eda401429e984d86b4216ec5ee9fac4712b9e3d66153b543fe916e22517708d9",
+     "media": "b4ecc78195c871e431d9f7af03a41c7e55651aec15cc3bbdb3dee70342a798a7",
+     "icon": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+     "installed_icon": "dee36ace772e1ed71145ee73f01e32ff75f471341ab8aa67fb7efebb93796fe5",
+     "cli_entry": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+     "platform_iphone": "07284f63b5b575e57471ac6d75e338cb2f28d631db552473780436cbd0d591fe",
+     "platform_ipad": "d44a3d2a1b932cc158c935c64dba50b4f3b1bd9ae64526c1747de02fb4298c38",
+     "platform_mac": "f5e32581dfbdb42420ca7b3c676145e1db77d78818dd6dbabb8f52b91920d8dc",
+     "platform_vision": "9e08d8347e70d3d932608b1c3104c9b9c11f4e8ff13a908ee01d601ce3e34ae8"
+    },
+    "icon_inputs": {},
+    "installed_icon_inputs": {},
+    "product_policy_sha256": "7b6e37b0ff805a08545e7d26ac0de8126fe542a2ca0bfa814a8cbc1eb10503b2",
+    "product_naming_sha256": "49c5c67b19509d653e2c68d95f2483638cd34ae8cfc47cd1bd2e7f27b6edc2a3",
+    "icon_complete": false,
+    "installed_icon_matches": false,
+    "components": {
+     "business": "462b88a146b9045efd418e633f944a781788c14526d8ce3800c3f0bb64c4953b",
+     "code": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
+     "perf": "ba4bbce6903caeb785357882d35042cefad488bbac98a0e375f7d5972efccf20",
+     "ui": "6db11e48da784320344d58b7341a48257ade077bb78f9b57d73643781f28cdbb",
+     "media": "03717479870c65265e9160d7a781594cc94fb6ce206fce28a093a1310c4ac895"
+    }
+   },
+   "machine_state": "needs_check",
+   "delivery_state": "pending_test",
+   "coverage": [
+    "launch_mac",
+    "launch_vision"
+   ],
+   "resource_environments": [
+    "native",
+    "simulator"
+   ],
+   "scope_notes": [
+    "本次资源验收含用户接受的模拟器范围；真机资源尚未验证，模拟器数值不代表真机"
+   ]
+  }
+ ],
+ "actions": [
+  "Water Assistant · 水利助手 测量失败：命令退出成功但证据未通过回读：模拟器实测尚未绑定当前实际源码输入；缺少完整历史输入归一证明（/Users/tianli/Library/Logs/app-sop/hydro-deck-measure-20261004-125507.log）"
+ ]
+}

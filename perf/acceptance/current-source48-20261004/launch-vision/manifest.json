@@ -1,0 +1,52 @@
+{
+  "perf/acceptance/launch_vision.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_vision.json",
+    "sha256": "3ae893cac1f80c99c4fffac759c1db5fa9d1c2e0817dd57c07bb6d1a7f92fb31",
+    "size": 3912
+  },
+  "perf/acceptance/launch_vision.log": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_vision.log",
+    "sha256": "f11f59abcc53f9c61efc852dd1ead06d3da2f662b109f452b833476a1ca68f7d",
+    "size": 100
+  },
+  "perf/acceptance/launch_vision.detail.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_vision.detail.json",
+    "sha256": "38fce0926240601fe16d200a2c505d5753d5afba46f1cdd41354cb7e8dab9aa4",
+    "size": 2939
+  },
+  "perf/platforms/vision/launch.png": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/platforms/vision/launch.png",
+    "sha256": "a3e4f10cc6b3c2f94e2c7c0c9df569c76b026b4a886ccf8c01ea51ae71d4cc04",
+    "size": 5383411
+  },
+  "perf/delivery-evidence.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/delivery-evidence.json",
+    "sha256": "bae3892c43f6d83242e715497c08d0406c13356c5c2edbc127c12a02dec7b782",
+    "size": 4168
+  },
+  "original-job.log": {
+    "source": "/Users/tianli/Library/Application Support/app-sop/workbench/logs/d28b0ab6318d4560a219bd891dc7c995.log",
+    "sha256": "6fdcfb702563836c91100bf830e4c756d60b7a7fe7ae8b3a48e1e13f9a2e991b",
+    "size": 305
+  },
+  "perf/platforms/vision/launch-capture.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/platforms/vision/launch-capture.json",
+    "sha256": "bb219549b1d8b9855591e5543a62c68d22236c4a72973e51e5a128c13a4885b8",
+    "size": 1050
+  },
+  "previous-store/capture.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/shots/appstore/vision/capture.json",
+    "sha256": "643180d1d76994a8af04978b782aecf5fdeb20ec6a395275c89ed0384f037049",
+    "size": 1782
+  },
+  "adopted-store/01-chat.png": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/shots/appstore/vision/01-chat.png",
+    "sha256": "a3e4f10cc6b3c2f94e2c7c0c9df569c76b026b4a886ccf8c01ea51ae71d4cc04",
+    "size": 5383411
+  },
+  "adopted-store/capture.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/shots/appstore/vision/capture.json",
+    "sha256": "72adeaac4d93a82e1ba570a7929c6e9ccf2c4c2ee8b060d01be96c881dea4820",
+    "size": 1798
+  }
+}

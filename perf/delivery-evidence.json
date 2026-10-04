@@ -5,32 +5,72 @@
       "result": "passed",
       "scope": "code",
       "method": "real_product",
-      "checked_at": "2026-10-03T00:02:55.903668+08:00",
-      "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
+      "checked_at": "2026-10-04T12:03:03.720954+08:00",
+      "input_sha256": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
       "evidence": "perf/acceptance/functionality.json",
-      "evidence_sha256": "742e8b4599b344e972efb29c0faf651ba0c645bd68eab91eee1be179d0986727",
+      "evidence_sha256": "c03a547c5a1dc7dfd87be7819736eb1a9889ac59eb71dc0c646c60b79c5ddab9",
       "detail": "sop.accept：bash scripts/accept/_common.sh functionality → functionality: 38 项断言通过；生产 send/attach/readDoc 路径 + SessionStore 持久化与多会话，共 10 次本地请求"
     },
     "recovery": {
       "result": "passed",
       "scope": "code",
       "method": "real_product",
-      "checked_at": "2026-10-03T00:04:30.033310+08:00",
-      "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
+      "checked_at": "2026-10-04T12:03:31.970802+08:00",
+      "input_sha256": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
       "evidence": "perf/acceptance/recovery.json",
-      "evidence_sha256": "60fe6a3a82409776ebc81e98f774f6ebc19d2d78f16a46c3c004ebc4af199158",
-      "detail": "sop.accept：bash scripts/accept/_common.sh recovery → recovery: 14 项断言通过；故障与恢复 8 类场景，用时 3.3s"
+      "evidence_sha256": "e1928ef87bd68fcd3ec0ca8ac5b79e19ce5e1259310d63900d9da5126b0bc26d",
+      "detail": "sop.accept：bash scripts/accept/_common.sh recovery → recovery: 14 项断言通过；故障与恢复 8 类场景，用时 4.2s"
     },
     "privacy": {
       "result": "passed",
       "scope": "code",
       "method": "real_product",
-      "checked_at": "2026-10-03T00:05:13.081751+08:00",
-      "input_sha256": "a21db7c227bbe17a6396a91973372ba1c8fc0613b105967cef447ddb0ef46293",
+      "checked_at": "2026-10-04T12:03:54.993177+08:00",
+      "input_sha256": "9abdab9a1dadc8c9e550b88acc223f9a1337c4ba58ab1d24c5bf7bcc98c50638",
       "evidence": "perf/acceptance/privacy.json",
-      "evidence_sha256": "ca88ded6779f78939a9a96d876c8ea4d05fc996fdff3c8ded36d327f22acc9b4",
+      "evidence_sha256": "f93f5c69e324c38798ccafbc0f446e3b0c48b2ca8bab1db0ab4940e7918cad03",
       "detail": "sop.accept：bash scripts/accept/_common.sh privacy → privacy: 67 项断言通过；privacy：同意、最小字段、撤销、本地存储、钥匙串静态、隐私清单、平台演示网络与数据隔离"
+    },
+    "launch_iphone": {
+      "result": "passed",
+      "scope": "platform_iphone",
+      "method": "ui_automation",
+      "checked_at": "2026-10-04T12:21:30.186724+08:00",
+      "input_sha256": "07284f63b5b575e57471ac6d75e338cb2f28d631db552473780436cbd0d591fe",
+      "evidence": "perf/acceptance/launch_iphone.json",
+      "evidence_sha256": "1482eaf9efb992b56327aa25f60e9cf36e20dd45b67523787301e8c5250b0cbd",
+      "detail": "sop.accept：bash scripts/accept/launch.sh iphone → iPhone 模拟器 iPhone 17 Pro 启动冒烟通过：os_log 3.052 s，截图 1206×2622"
+    },
+    "launch_mac": {
+      "result": "passed",
+      "scope": "platform_mac",
+      "method": "ui_automation",
+      "checked_at": "2026-10-04T13:04:35.146189+08:00",
+      "input_sha256": "f5e32581dfbdb42420ca7b3c676145e1db77d78818dd6dbabb8f52b91920d8dc",
+      "evidence": "perf/acceptance/launch_mac.json",
+      "evidence_sha256": "c7605c25f88edd6b95e394cce0c81118a09ca67b56b7c346e031e1dbe856eb27",
+      "detail": "sop.accept：bash scripts/accept/launch.sh mac → Mac 本机 启动冒烟通过：os_log 0.939 s，截图 2880×1800"
+    },
+    "launch_vision": {
+      "result": "passed",
+      "scope": "platform_vision",
+      "method": "ui_automation",
+      "checked_at": "2026-10-04T13:08:01.528745+08:00",
+      "input_sha256": "9e08d8347e70d3d932608b1c3104c9b9c11f4e8ff13a908ee01d601ce3e34ae8",
+      "evidence": "perf/acceptance/launch_vision.json",
+      "evidence_sha256": "3ae893cac1f80c99c4fffac759c1db5fa9d1c2e0817dd57c07bb6d1a7f92fb31",
+      "detail": "sop.accept：bash scripts/accept/launch.sh vision → Apple Vision Pro 模拟器 Apple Vision Pro 启动冒烟通过：os_log 9.742 s，截图 3840×2160"
+    },
+    "launch_ipad": {
+      "result": "passed",
+      "scope": "platform_ipad",
+      "method": "ui_automation",
+      "checked_at": "2026-10-04T12:26:06.127386+08:00",
+      "input_sha256": "d44a3d2a1b932cc158c935c64dba50b4f3b1bd9ae64526c1747de02fb4298c38",
+      "evidence": "perf/acceptance/launch_ipad.json",
+      "evidence_sha256": "53735514c2a367365a8bc8cf08b17c7be551ca28c982467b75fc17e4c888975a",
+      "detail": "sop.accept：bash scripts/accept/launch.sh ipad → iPad 模拟器 iPad Pro 13-inch (M5) 启动冒烟通过：os_log 8.295 s，截图 2752×2064"
     }
   },
-  "updated_at": "2026-10-03T00:05:13.108606+08:00"
+  "updated_at": "2026-10-04T13:08:01.609044+08:00"
 }

@@ -1,0 +1,27 @@
+{
+  "perf/platforms/vision.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/platforms/vision.json",
+    "sha256": "fbfd977664cb08beeeafad7be49dfb61e9c48f8f31c000945a0408eac714f271",
+    "size": 1346
+  },
+  "perf/platforms/vision/measure-20261004-125507.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/platforms/vision/measure-20261004-125507.json",
+    "sha256": "3638e8b39f51baceff05d9f5f8157beeb0cb8e478140062484ede4fedae9d7f4",
+    "size": 4195
+  },
+  "original-sdk-build.json": {
+    "source": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.adh4mux1/build.json",
+    "sha256": "3ef9701d7569f2da3c760e01ecdff5fa9fb1ff8ddb216c286f9844d570db0b21",
+    "size": 1226
+  },
+  "original-measure.log": {
+    "source": "/Users/tianli/Library/Logs/app-sop/hydro-deck-measure-20261004-125507.log",
+    "sha256": "60e8e0491b5c66375ab927900d5d0959b429f1cb7a75ff479fa7702d4271dd31",
+    "size": 1419
+  },
+  "original-job.log": {
+    "source": "/Users/tianli/Library/Application Support/app-sop/workbench/logs/d6ef2469955b4ef9a1e18067ae122a34.log",
+    "sha256": "d2a95295d7eb65f081f1fe0775c187f501603905c50ae1f929584bdc47fb650e",
+    "size": 8005
+  }
+}

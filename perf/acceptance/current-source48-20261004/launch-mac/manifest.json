@@ -1,0 +1,32 @@
+{
+  "perf/acceptance/launch_mac.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_mac.json",
+    "sha256": "c7605c25f88edd6b95e394cce0c81118a09ca67b56b7c346e031e1dbe856eb27",
+    "size": 3391
+  },
+  "perf/acceptance/launch_mac.log": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_mac.log",
+    "sha256": "37227a429941895a98dabeb8942fde1fbacee2b506dec799235eb7bfed8392a7",
+    "size": 67
+  },
+  "perf/acceptance/launch_mac.detail.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/acceptance/launch_mac.detail.json",
+    "sha256": "3e01ed5db9e386c0e36cb7b0f96950634c741338c0719ab7f05a10ccefa14d24",
+    "size": 2477
+  },
+  "perf/platforms/mac/launch.png": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/platforms/mac/launch.png",
+    "sha256": "1cb40636bc30937f6051ac19b4b74b07dc009cacf8be2c8e8ee845235ca93474",
+    "size": 85912
+  },
+  "perf/delivery-evidence.json": {
+    "source": "/Users/tianli/Apps/hydro-assistant/ios/01-源程序/perf/delivery-evidence.json",
+    "sha256": "bae3892c43f6d83242e715497c08d0406c13356c5c2edbc127c12a02dec7b782",
+    "size": 4168
+  },
+  "original-job.log": {
+    "source": "/Users/tianli/Library/Application Support/app-sop/workbench/logs/da35efc56d3f43b5b96d7b2ff2ac77e9.log",
+    "sha256": "f85fcd9a2af73625f36671e74c902bea56fbdb101e221f51de8c9c9d1a23d40c",
+    "size": 266
+  }
+}

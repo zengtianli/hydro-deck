@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "platform": "vision",
+  "udid": "4EA6A65D-4301-4527-B125-152AC0076CAF",
+  "device": "Apple Vision Pro",
+  "device_type": "Apple-Vision-Pro-4K",
+  "runtime": "xrOS-27-0",
+  "bundle_id": "cyou.tianli.hydrodeck",
+  "version": "0.1.1",
+  "build": "3",
+  "launch_args": [
+    "-lane_demo",
+    "YES"
+  ],
+  "environment": "simulator",
+  "errors": [],
+  "boot_seconds": 60.2,
+  "install_seconds": 93.4,
+  "baseline_stable": true,
+  "size": [
+    3840,
+    2160
+  ],
+  "pid": 72373,
+  "ready_seconds": 9.742,
+  "ready_signal": "os_log",
+  "screenshot": "shots/appstore/vision/01-chat.png",
+  "verdict": {
+    "non_blank": true,
+    "changed_from_baseline": true,
+    "stable": true,
+    "diff_baseline": 0.168,
+    "diff_prev": 0.0
+  },
+  "notes": [],
+  "shutdown": true,
+  "input_sha256": "08c27c7f962f19f0d9878c311cc7d984cc9b58f9b9a3868e5291e6005fd10b53",
+  "executable_sha256": "d0622ee28d8a2444621c655c882183a63913b347a4cecabe69dff8de0bb4e343",
+  "screenshot_sha256": "a3e4f10cc6b3c2f94e2c7c0c9df569c76b026b4a886ccf8c01ea51ae71d4cc04",
+  "reused_launch": {
+    "capture_json": "perf/platforms/vision/launch-capture.json",
+    "capture_sha256": "bb219549b1d8b9855591e5543a62c68d22236c4a72973e51e5a128c13a4885b8",
+    "source_screenshot": "perf/platforms/vision/launch.png",
+    "source_png_sha256": "a3e4f10cc6b3c2f94e2c7c0c9df569c76b026b4a886ccf8c01ea51ae71d4cc04",
+    "source_png_mtime_ns": 1791090475765160790,
+    "source_png_mtime": "2026-10-04T13:07:55.765161+08:00",
+    "captured_at": null,
+    "time_note": "历史运行原件；未提供精确 captured_at，mtime 仅为原片文件修改时间"
+  },
+  "verification_scope": "Original completed current Release launch copied byte-for-byte to Store; no second launch/build/render, original time preserved via provenance."
+}

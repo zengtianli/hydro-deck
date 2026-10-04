@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "name": "launch_vision",
+  "app_id": "hydro-deck",
+  "command": "bash scripts/accept/launch.sh vision",
+  "exit_code": 0,
+  "status": "passed",
+  "started_at": "2026-10-04T13:04:40.598108+08:00",
+  "finished_at": "2026-10-04T13:08:01.528745+08:00",
+  "input_sha256": "9e08d8347e70d3d932608b1c3104c9b9c11f4e8ff13a908ee01d601ce3e34ae8",
+  "log": "perf/acceptance/launch_vision.log",
+  "log_sha256": "f11f59abcc53f9c61efc852dd1ead06d3da2f662b109f452b833476a1ca68f7d",
+  "summary": "Apple Vision Pro 模拟器 Apple Vision Pro 启动冒烟通过：os_log 9.742 s，截图 3840×2160",
+  "detail": {
+    "summary": "Apple Vision Pro 模拟器 Apple Vision Pro 启动冒烟通过：os_log 9.742 s，截图 3840×2160",
+    "passed": true,
+    "platform": "vision",
+    "environment": "simulator",
+    "scheme": "HydroDeck",
+    "sim_lane": "/Users/tianli/Dev/tools/dev/lib/tools/macapp/ios/sim_lane.py",
+    "method": "核验仓外构建回执与当前源码、产物及工具链后复用；沿共享 sim_lane 静默启动并截图，不抢焦点",
+    "build": {
+      "app_path": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.adh4mux1/dd/Build/Products/Release-xrsimulator/HydroDeck.app",
+      "bundle_id": "cyou.tianli.hydrodeck",
+      "version": "0.1.1",
+      "build": "3",
+      "configuration": "Release",
+      "executable_sha256": "d0622ee28d8a2444621c655c882183a63913b347a4cecabe69dff8de0bb4e343",
+      "sdk": "xrsimulator27.0",
+      "xcode": {
+        "name": "Xcode.app",
+        "version": "27.0",
+        "build": "27A266a",
+        "developer_dir": "/Applications/Xcode.app/Contents/Developer"
+      },
+      "log": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.adh4mux1/build-vision-Release.log",
+      "reuse": {
+        "receipt": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.adh4mux1/build.json",
+        "receipt_sha256": "3ef9701d7569f2da3c760e01ecdff5fa9fb1ff8ddb216c286f9844d570db0b21",
+        "source_copy": "/Users/tianli/Library/Caches/sim-lane/platform-measure/sim-lane-build.c8e03bfdf31413d1822afba44e56d077b7a62514596b7d93794bb632550091ce/sim-lane-build.adh4mux1/src",
+        "input_sha256": "08c27c7f962f19f0d9878c311cc7d984cc9b58f9b9a3868e5291e6005fd10b53",
+        "source_file_count": 48
+      }
+    },
+    "device": {
+      "udid": "4EA6A65D-4301-4527-B125-152AC0076CAF",
+      "name": "Apple Vision Pro",
+      "runtime": "com.apple.CoreSimulator.SimRuntime.xrOS-27-0",
+      "device_type": "Apple-Vision-Pro-4K"
+    },
+    "launch_args": [
+      "-lane_demo",
+      "YES"
+    ],
+    "waits": {
+      "lock_seconds": 300,
+      "load_seconds": 300
+    },
+    "run": {
+      "udid": "4EA6A65D-4301-4527-B125-152AC0076CAF",
+      "pid": 72373,
+      "ready_seconds": 9.742,
+      "ready_signal": "os_log",
+      "size": [
+        3840,
+        2160
+      ],
+      "runtime": "xrOS-27-0",
+      "device": "Apple Vision Pro"
+    },
+    "verdict": {
+      "non_blank": true,
+      "changed_from_baseline": true,
+      "stable": true,
+      "diff_baseline": 0.168,
+      "diff_prev": 0.0
+    },
+    "screenshot": "perf/platforms/vision/launch.png",
+    "screenshot_sha256": "a3e4f10cc6b3c2f94e2c7c0c9df569c76b026b4a886ccf8c01ea51ae71d4cc04",
+    "capture_reusable": true,
+    "capture": "perf/platforms/vision/launch-capture.json",
+    "capture_sha256": "bb219549b1d8b9855591e5543a62c68d22236c4a72973e51e5a128c13a4885b8"
+  },
+  "previous_observation": {
+    "path": "perf/acceptance/attempts/launch_vision/20261004T130440594873+0800-qflagnd9",
+    "manifest_sha256": "63e71bcf5ae60900cfd21c2cb3ee799a86182eb83bcb838ef1d3d8cca1f7cadf"
+  }
+}
