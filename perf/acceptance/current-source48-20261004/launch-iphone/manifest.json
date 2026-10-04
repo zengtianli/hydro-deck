@@ -1,0 +1,26 @@
+{
+  "perf/acceptance/launch_iphone.json": {
+    "sha256": "1482eaf9efb992b56327aa25f60e9cf36e20dd45b67523787301e8c5250b0cbd",
+    "size": 3857
+  },
+  "perf/acceptance/launch_iphone.log": {
+    "sha256": "1caff6709ce77d7a1d9bee2cf57a35fbf24b4518ca02fa76f0b6f31eb81a3126",
+    "size": 87
+  },
+  "perf/acceptance/launch_iphone.detail.json": {
+    "sha256": "b3d305e361ebb18b0d905bf8030aa85ffe4df0410d75f68f33be7308c5b1dcce",
+    "size": 2899
+  },
+  "perf/platforms/iphone/launch.png": {
+    "sha256": "60f351ec5794695dda1e895bc405e7e29b23bd024e2c3a95f726e8839b0ed13c",
+    "size": 320598
+  },
+  "perf/delivery-evidence.json": {
+    "sha256": "deae7a2b0771f4b717ea0ca3379025d4027b8101ce1a66406e77286df48552cf",
+    "size": 4168
+  },
+  "/Users/tianli/Library/Application Support/app-sop/workbench/logs/3e9beb96159441e0b18f1e1cb086f6b5.log": {
+    "sha256": "f7a3dbbd77718fb14660e892b108a6ce78c04f0245645af3ee34435f9478885f",
+    "size": 292
+  }
+}
