@@ -1,0 +1,17 @@
+{
+  "kind": "previous actual material byte archive; no new capture",
+  "files": [
+    {
+      "source": "shots/appstore/mac/capture.json",
+      "copy": "perf/acceptance/current-source48-20261004/mac-raw-alpha/previous-store/capture.json",
+      "sha256": "04d03a9325cb354f25c6c049d65ccb2c804e1f205dc637f7687b43b896e5e29a",
+      "size": 1408
+    },
+    {
+      "source": "shots/appstore/mac/01-chat.png",
+      "copy": "perf/acceptance/current-source48-20261004/mac-raw-alpha/previous-store/01-chat.png",
+      "sha256": "d17307137574c2138a718a27a6534148d91ce86eae20494ce458565a005effc9",
+      "size": 84324
+    }
+  ]
+}
