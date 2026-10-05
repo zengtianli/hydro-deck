@@ -2,26 +2,26 @@
  "schema_version": 1,
  "platform": "mac",
  "app_id": "hydro-deck",
- "version": "0.1",
- "build": "2",
- "input_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+ "version": "0.1.1",
+ "build": "3",
+ "input_sha256": "08c27c7f962f19f0d9878c311cc7d984cc9b58f9b9a3868e5291e6005fd10b53",
  "runtime_measurement": {
   "environment": "native",
   "device": "Mac16,12 / Apple M4",
   "os": "macOS 27.2",
   "xcode": "Xcode 27.0 (27A266a)",
-  "evidence": "perf/platforms/mac/measure-20261003-224511.json",
-  "evidence_sha256": "15378e1178cca2da802bf376dc121e542acf9cb61e535c18ab8daf0223c00c60"
+  "evidence": "perf/platforms/mac/measure-20261004-124239.json",
+  "evidence_sha256": "596b5f71f9bd09f4081ee052f65668ea3ae2b3ea82a33611c6d58a7662667bf5"
  },
  "size": {
-  "download_bytes": 1034051,
-  "installed_bytes": 3983335,
-  "download_mb": 1.03,
-  "installed_mb": 3.98,
+  "download_bytes": 1345555,
+  "installed_bytes": 5016233,
+  "download_mb": 1.35,
+  "installed_mb": 5.02,
   "kind": "local ad-hoc Release .app, not a store package"
  },
  "speed": {
-  "cold_launch_ms": 487.0,
+  "cold_launch_ms": 364.0,
   "runs": 5,
   "discarded_runs": 1,
   "ready_signal": "os_log",
@@ -29,11 +29,11 @@
  },
  "idle": {
   "memory_mb": 43.0,
-  "cpu_pct": 0.02,
+  "cpu_pct": 0.0,
   "window_s": 60,
   "settle_s": 45,
   "method": "shared measure.py idle: CPU-time delta / wall window; phys_footprint peak of 3 samples after the window",
   "scope": "Local ad-hoc Release build, main process only, quiet launch (hidden, no Dock icon, window never on screen)"
  },
- "measured_at": "2026-10-03T22:45:11+08:00"
+ "measured_at": "2026-10-04T12:42:39+08:00"
 }

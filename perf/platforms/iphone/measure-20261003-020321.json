@@ -1,0 +1,126 @@
+{
+ "schema_version": 1,
+ "platform": "iphone",
+ "app_id": "hydro-deck",
+ "input_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+ "measured_at": "2026-10-03T02:03:21+08:00",
+ "completed_at": "2026-10-03T02:06:25+08:00",
+ "build": {
+  "configuration": "Release",
+  "scheme": "HydroDeck",
+  "bundle_id": "cyou.tianli.hydrodeck",
+  "version": "0.1",
+  "build": "2",
+  "sdk": "iphonesimulator27.0",
+  "executable_sha256": "8bae3ba05e3a2a9ef053300c87aeda28fa4f490be67a984b2477b25aa32fb667",
+  "signing": "unsigned simulator build (CODE_SIGNING_ALLOWED=NO)",
+  "seconds": 39.7,
+  "xcode": {
+   "name": "Xcode.app",
+   "version": "27.0",
+   "build": "27A266a",
+   "developer_dir": "/Applications/Xcode.app/Contents/Developer"
+  },
+  "reuse": {
+   "receipt": "/Users/tianli/Library/Caches/sim-lane/hydro-iphone-20261003/reuse-iphone.json",
+   "receipt_sha256": "89e531658760bd0fc0c87c715df4d0f50eea823606b34c66a0a8c8e30c9d3664",
+   "source_copy": "/Users/tianli/Library/Caches/sim-lane/hydro-iphone-20261003/src",
+   "input_sha256": "289ff0bba2e27ed21758131a7dca175fb4d410eebaa438ed45f496261cc8ced6",
+   "source_file_count": 44
+  }
+ },
+ "measurement": {
+  "environment": "simulator",
+  "device": "iPhone 17 Pro (iPhone-17-Pro)",
+  "os": "iOS 27.0",
+  "udid": "280663C5-C40F-4F3E-8E88-2EB031CA689D",
+  "install_seconds": 1.4,
+  "samples": [
+   {
+    "run": 0,
+    "pid": 42638,
+    "ready_seconds": 2.656,
+    "ready_signal": "os_log",
+    "errors": []
+   },
+   {
+    "run": 1,
+    "pid": 42839,
+    "ready_seconds": 1.558,
+    "ready_signal": "os_log",
+    "errors": []
+   },
+   {
+    "run": 2,
+    "pid": 43085,
+    "ready_seconds": 1.58,
+    "ready_signal": "os_log",
+    "errors": []
+   },
+   {
+    "run": 3,
+    "pid": 43473,
+    "ready_seconds": 1.596,
+    "ready_signal": "os_log",
+    "errors": []
+   },
+   {
+    "run": 4,
+    "pid": 43703,
+    "ready_seconds": 1.57,
+    "ready_signal": "os_log",
+    "errors": []
+   },
+   {
+    "run": 5,
+    "pid": 43925,
+    "ready_seconds": 1.571,
+    "ready_signal": "os_log",
+    "errors": []
+   }
+  ],
+  "idle": {
+   "process": "44241",
+   "footprint_mb": 28.0,
+   "cpu_pct": 0.0,
+   "window_s": 60
+  },
+  "loads": {
+   "before_launches": [
+    5.84912109375,
+    8.375,
+    21.19677734375
+   ],
+   "after_launches": [
+    4.8203125,
+    7.6904296875,
+    20.138671875
+   ],
+   "before_idle": [
+    3.77880859375,
+    6.876953125,
+    19.05322265625
+   ]
+  },
+  "scope": "Simulator App host process only; excludes CoreSimulator, system services and inactive extensions",
+  "settle_s": 45
+ },
+ "size": {
+  "download_bytes": 894854,
+  "installed_bytes": 3719672,
+  "download_mb": 0.89,
+  "installed_mb": 3.72
+ },
+ "speed": {
+  "cold_launch_ms": 1571.0,
+  "runs": 5,
+  "discarded_runs": 1,
+  "ready_signal": "os_log",
+  "method": "launch command issued -> App os_log \"lane-ready\" (first data-bearing screen), App terminated 3 s before each run, first run after install discarded, median"
+ },
+ "tool_sha256": {
+  "platform_measure.py": "66422f50f5060038b154daaff7840156d63d6ca21f00649da3907516f264fe52",
+  "measure.py": "0393a632f3e0a2d2551ecb173704f195c3f9da743d0a49bad0492c1e0b669698",
+  "sim_lane.py": "b8aad53c62f0ad72b5baa7e6db649a2d19669575af33d25e7af67671c5911e0d"
+ }
+}
