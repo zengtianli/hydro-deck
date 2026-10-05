@@ -32,7 +32,7 @@ sop:
   media:
   - shots
   release: perf/asc-release.json
-  runtime_note: 四条适用平台线采用隔离的虚构会话；iPhone/iPad/Vision 为模拟器、Mac 为本机静默原生，真机仍未验证。旧 iPhone 模拟器证据覆盖原版本，本轮平台输入等待实测。
+  runtime_note: 四条适用平台线均有当前源码输入的隔离虚构会话验收及资源实测；iPhone/iPad/Vision 为模拟器、Mac 为本机静默原生，真机仍未验证。iPhone/iPad 记录于2026-10-05，Mac/Vision沿用仍有效的原件；本地0.1.1(3)不代表已更新TestFlight的0.1(2)。
   accept:
     functionality: bash scripts/accept/_common.sh functionality
     recovery: bash scripts/accept/_common.sh recovery

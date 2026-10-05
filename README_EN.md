@@ -75,13 +75,13 @@ MIT © 2026 Tianli Zeng
 
 Download size is App Store data; memory, CPU and launch time are iOS Simulator measurements, not physical-device figures.
 
-| Download | Idle memory | Idle CPU | Simulator cold launch to first screen ready |
+| Download | Idle memory | Idle CPU | Simulator cold launch to first data-bearing screen |
 |---|---|---|---|
-| **0.3 MB** (installed 0.9 MB) | **28.3 MB** | **0.02%** | **4.3 s** |
+| **0.3 MB** (installed 0.9 MB) | **32.5 MB** | **0%** | **1.8 s** |
 
 Sizes are read back for this exact distribution build. The physical device is not yet measured, so memory, CPU and launch time come from the iOS Simulator and are labelled as such.
 
-<sub>v0.1 (2) · iPhone 17（iPhone18,3）；体积为 Apple 设备切片记录，运行性能尚未真机实测 · TestFlight VALID (not on the App Store; internal testers only); package sizes exclude user data and caches; installed phone version not verified · measured 2026-09-29. Sizes come from Apple App Store Connect device slices for this build. Memory, CPU and launch time were measured on iPhone 17 Pro / iOS 27.0 Simulator / Mac16,12 / Apple M4 / macOS 27.2 with a local Release build v0.1 (2) (2026-09-29), App process only; these are not physical-device figures, which are still unmeasured. Memory uses phys_footprint; CPU is CPU time ÷ wall time over a 60-second sampling window; sizes in decimal MB. Raw data: [perf/lightweight.json](perf/lightweight.json).</sub>
+<sub>v0.1 (2) · iPhone 17（iPhone18,3）；体积为 Apple 设备切片记录，运行性能尚未真机实测 · TestFlight VALID (not on the App Store; internal testers only); package sizes exclude user data and caches; installed phone version not verified · measured 2026-09-29. Sizes come from Apple App Store Connect device slices for this build. Memory, CPU and launch time were measured on iPhone 17 Pro (iPhone-17-Pro) / iOS 27.0 Simulator with a local Release build v0.1.1 (3) (2026-10-05), App process only; these are not physical-device figures, which are still unmeasured. Memory uses phys_footprint; CPU is CPU time ÷ wall time over a 60-second sampling window; sizes in decimal MB. Raw data: [perf/lightweight.json](perf/lightweight.json).</sub>
 <!-- lightweight:end -->
 
 
