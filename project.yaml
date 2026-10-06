@@ -5,7 +5,7 @@ display_name: Water Assistant · 水利助手
 family: hydro-assistant
 form: ios
 platforms: [iphone, ipad, mac, vision]   # 跑在哪（正交于 form=源码住哪）；multiplatform.py audit 与 project.yml 对账
-lifecycle: active
+lifecycle: frozen
 bundle_id: cyou.tianli.hydrodeck
 origin: own
 sop:
