@@ -58,7 +58,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
             case .quote(let t):             return stripInline(t)
             case .list(let items):          return items.map { stripInline($0.text) }.joined(separator: "；")
             case .table(let header, let rows):
-                return "（表格，\(rows.count) 行，维度：\(header.joined(separator: "、"))。详见屏幕。）"
+                return T("speech.table", "（表格，{rows} 行，维度：{columns}。详见屏幕。）",
+                         ["rows": String(rows.count), "columns": header.joined(separator: "、")])
             case .code:                     return nil       // 代码不读
             case .rule:                     return nil
             }

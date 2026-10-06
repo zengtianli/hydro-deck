@@ -123,21 +123,33 @@ final class ChatModel {
         session = ChatSession(id: UUID().uuidString, serverSessionId: nil,
                               createdAt: Date(), updatedAt: Date())
         if let latest = self.store.sessions.first { session = latest }
+        // 还没问第一句之前，首页先用上次后台给的说明文字与词表（演示车道固定用自带的）。
+        if !LaneDemo.enabled { ChatStream.restoreUI() }
     }
 
     /// 终态 → 给人看的标注。answered 不标（正常）；其余如实，别把「有保留」抹成完成。
+    /// 后端 `ui.json` 的 vocab 写了哪个终态就用它的名称，包括这里还不认识的新终态；
+    /// 下面这份只在后台没写时兜底。
     static func terminalLabel(_ t: String) -> String? {
+        let own: String
         switch t {
-        case "answered":             return nil
-        case "answered_degraded":    return "有保留：用到了量纲未验证的工具"
-        case "refused_missing_tool": return "拒答：所需工具当前不可用"
-        case "refused_no_evidence":  return "拒答：语料里没找到依据"
-        case "budget_exhausted":     return "预算耗尽，结果不完整"
-        case "verify_failed":        return "未通过数字核对门"
-        case "aborted":              return "已停止（保留已生成部分）"
-        case "error":                return "运行出错"
-        default:                     return t
+        case "answered":             own = ""
+        case "answered_degraded":    own = "有保留：用到了量纲未验证的工具"
+        case "refused_missing_tool": own = "拒答：所需工具当前不可用"
+        case "refused_no_evidence":  own = "拒答：语料里没找到依据"
+        case "budget_exhausted":     own = "预算耗尽，结果不完整"
+        case "verify_failed":        own = "未通过数字核对门"
+        case "aborted":              own = "已停止（保留已生成部分）"
+        case "error":                own = "运行出错"
+        default:                     own = t
         }
+        let label = Remote.label(t, own)
+        return label.isEmpty ? nil : label
+    }
+
+    /// 终态标注前的图标；后台没写时都是同一个提醒图标。
+    static func terminalIcon(_ t: String) -> String {
+        Remote.icon(t, "exclamationmark.circle")
     }
 
     // MARK: - 会话管理
@@ -193,9 +205,9 @@ final class ChatModel {
             _ = validateAIConsent(authorization)
         } catch let e as BackendError {
             if case .gate(let m) = e { askPassword(nil, message: m) }
-            else { failure = ("图片传不上去", e.message) }
+            else { failure = (T("error.upload.title", "图片传不上去"), e.message) }
         } catch {
-            failure = ("图片传不上去", (error as NSError).localizedDescription)
+            failure = (T("error.upload.title", "图片传不上去"), (error as NSError).localizedDescription)
         }
     }
 
@@ -218,7 +230,7 @@ final class ChatModel {
         draftQuestion = q
         draftAnswer = ""
         draftSteps = []
-        statusLine = "连接中…"
+        statusLine = T("status.connecting", "连接中…")
         streaming = true
         userStopped = false
         runFinalized = false
@@ -323,6 +335,8 @@ final class ChatModel {
                                                imageIds: imageIds, authorization: authorization)
         var sawTerminal = false
         for try await w in stream {
+            // 每问开头后台带一份界面覆盖项：给了就用，没给或写坏回到自带文案。
+            if !LaneDemo.enabled, case .runStart = w.event { ChatStream.adoptUI(w.ui) }
             apply(w)
             if ChatStream.endsRun(w.event) { sawTerminal = true }
             else { persistPendingThrottled(event: w.event) }
@@ -345,12 +359,13 @@ final class ChatModel {
             } catch let e as Gate.Failure {
                 askPassword(q, message: e.message, authorization: authorization)
             } catch StreamError.gateBlocked {
-                askPassword(q, message: "拿密码换了会话之后仍被拦 —— 密码可能已经改了", authorization: authorization)
+                askPassword(q, message: T("gate.retry.blocked", "拿密码换了会话之后仍被拦 —— 密码可能已经改了"),
+                            authorization: authorization)
             } catch is CancellationError {
                 finalizeAborted()
             } catch { await recoverOrShow(error) }
         } else {
-            askPassword(q, message: "这台设备还没有闸凭证", authorization: authorization)
+            askPassword(q, message: T("gate.no.credential", "这台设备还没有闸凭证"), authorization: authorization)
         }
     }
 
@@ -370,10 +385,12 @@ final class ChatModel {
     private func catchUp() async {
         guard let rid = runId else { return }
         catchingUp = true
-        statusLine = "连接断了，正在取回已生成的部分…"
+        statusLine = T("status.catchup", "连接断了，正在取回已生成的部分…")
         defer { catchingUp = false }
         var gateRetried = false
-        let deadline = Date().addingTimeInterval(15 * 60)
+        let limit = Remote.seconds("catchup.limit.seconds", 15 * 60, in: 60...3600)
+        let poll = Remote.seconds("catchup.poll.seconds", 0.5, in: 0.2...5)
+        let deadline = Date().addingTimeInterval(limit)
         while Date() < deadline {
             if Task.isCancelled || userStopped { finalizeAborted(); return }
             do {
@@ -395,23 +412,26 @@ final class ChatModel {
                 if finished { return }
             } catch StreamError.gateBlocked {
                 guard !gateRetried, let pw = Gate.password else {
-                    failure = ("被访问闸拦住了",
-                               "取回需要重新登录 —— 菜单里重设闸密码后，重进这个会话会继续取回。")
+                    failure = (T("error.gate.title", "被访问闸拦住了"),
+                               T("error.gate.catchup", "取回需要重新登录 —— 菜单里重设闸密码后，重进这个会话会继续取回。"))
                     return
                 }
                 gateRetried = true
                 do { try await Gate.login(password: pw, session: ChatStream.session) }
                 catch {
-                    failure = ("被访问闸拦住了",
-                               ((error as? Gate.Failure)?.message ?? "登录失败") + " —— 菜单里重设闸密码后重进本会话。")
+                    failure = (T("error.gate.title", "被访问闸拦住了"),
+                               T("error.gate.catchup.login", "{reason} —— 菜单里重设闸密码后重进本会话。",
+                                 ["reason": (error as? Gate.Failure)?.message ?? T("gate.login.failed", "登录失败")]))
                     return
                 }
             } catch {
                 // 真网络抖动：隔一拍再试（幂等 GET，重试无害）。
             }
-            try? await Task.sleep(nanoseconds: 500_000_000)
+            try? await Task.sleep(nanoseconds: UInt64(poll * 1_000_000_000))
         }
-        failure = ("取回超时", "后端 15 分钟没给出终态 —— 稍后从历史里重进这个会话再试。")
+        failure = (T("error.catchup.timeout.title", "取回超时"),
+                   T("error.catchup.timeout.detail", "后端 {minutes} 分钟没给出终态 —— 稍后从历史里重进这个会话再试。",
+                     ["minutes": String(Int((limit / 60).rounded()))]))
     }
 
     // MARK: - 私有：事件应用与固化（全部按属主会话写）
@@ -425,22 +445,24 @@ final class ChatModel {
                 withOwnerSession { if $0.serverSessionId == nil { $0.serverSessionId = sid } }
             }
             attachments = []        // 连接真建立了，这批图确定已交给后端
-            statusLine = provider.map { "已连（\($0)）· 思考中…" } ?? "已连 · 思考中…"
+            statusLine = provider.map { T("status.connected.provider", "已连（{provider}）· 思考中…", ["provider": $0]) }
+                ?? T("status.connected", "已连 · 思考中…")
         case .stepStart(let i, _):
             draftSteps.append(StepRecord(index: i))
-            statusLine = "第 \(i + 1) 步…"
+            statusLine = T("status.step", "第 {n} 步…", ["n": String(i + 1)])
         case .toolCall(let name):
             if draftSteps.isEmpty { draftSteps.append(StepRecord(index: 0)) }
             draftSteps[draftSteps.count - 1].tools
                 .append(StepRecord.ToolRecord(name: name))
-            statusLine = "\(name)…"
+            statusLine = T("status.tool.running", "{name}…", ["name": name])
         case .toolResult(let name, let ok, let ms):
             if let si = draftSteps.indices.last,
                let ti = draftSteps[si].tools.lastIndex(where: { $0.name == name && $0.ok == nil }) {
                 draftSteps[si].tools[ti].ok = ok
                 draftSteps[si].tools[ti].durationMs = ms
             }
-            statusLine = ok ? "\(name) ✓ \(ms)ms" : "\(name) ✗（继续）"
+            statusLine = ok ? T("status.tool.ok", "{name} ✓ {ms}ms", ["name": name, "ms": String(ms)])
+                            : T("status.tool.failed", "{name} ✗（继续）", ["name": name])
         case .answerDelta(let t, let reset):
             if reset { draftAnswer = "" }
             draftAnswer += t
@@ -453,7 +475,7 @@ final class ChatModel {
                 // **不固化、不清欠账、不断流**：契约保证 error 后必跟 run.end
                 // （兜底成稿），到了会覆盖这条 failure；真崩溃则流关闭 → 取回 →
                 // 孤儿句号收尾（届时 failure 与 aborted 轮并存，如实）。
-                failure = ("运行中断", m)
+                failure = (T("error.interrupted.title", "运行中断"), m)
             }
         case .runEnd(let terminal, let answer, let citations, let wallMs):
             failure = nil           // run.end 是权威终态：此前的 fatal 已被兜底路径接住
@@ -485,7 +507,7 @@ final class ChatModel {
         guard !runFinalized else { return }
         runFinalized = true
         let turn = TurnRecord(question: activeQuestion,
-                              answer: answer.isEmpty ? "（未生成内容）" : answer,
+                              answer: answer.isEmpty ? T("turn.empty", "（未生成内容）") : answer,
                               terminal: terminal, citations: citations,
                               wallMs: wallMs, steps: draftSteps,
                               notices: notices, imageCount: activeImageCount)
@@ -533,12 +555,12 @@ final class ChatModel {
     private func show(_ error: Error) {
         if let e = error as? StreamError {
             switch e {
-            case .gateBlocked:          failure = (e.headline, "请在菜单里重设访问密码后重试。")
+            case .gateBlocked:          failure = (e.headline, T("error.gate.advice", "请在菜单里重设访问密码后重试。"))
             case .http(let s, let b):   failure = (e.headline, "HTTP \(s)\n\(b)")
             case .network(let m):       failure = (e.headline, m)
             }
         } else {
-            failure = ("出错了", (error as NSError).localizedDescription)
+            failure = (T("error.generic.title", "出错了"), (error as NSError).localizedDescription)
         }
     }
 }

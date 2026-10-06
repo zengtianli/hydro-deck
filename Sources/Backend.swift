@@ -21,10 +21,11 @@ enum BackendError: Error {
 
     var message: String {
         switch self {
-        case .gate(let m):      return "被访问闸拦住：\(m)"
-        case .http(let s, let b): return "HTTP \(s)：\(b.prefix(200))"
-        case .network(let m):   return "连不上后端：\(m)"
-        case .contract(let m):  return "响应对不上契约：\(m)"
+        case .gate(let m):      return T("backend.gate", "被访问闸拦住：{reason}", ["reason": m])
+        case .http(let s, let b): return T("backend.http", "HTTP {status}：{body}",
+                                           ["status": String(s), "body": String(b.prefix(200))])
+        case .network(let m):   return T("backend.network", "连不上后端：{reason}", ["reason": m])
+        case .contract(let m):  return T("backend.contract", "响应对不上契约：{reason}", ["reason": m])
         }
     }
 }
@@ -36,11 +37,15 @@ enum Backend {
     {
         var (data, resp) = try await op()
         if Gate.blocked(resp) {
-            guard let pw = Gate.password else { throw BackendError.gate("这台设备还没有闸凭证") }
+            guard let pw = Gate.password else {
+                throw BackendError.gate(T("gate.no.credential", "这台设备还没有闸凭证"))
+            }
             do { try await Gate.login(password: pw, session: ChatStream.session) }
-            catch { throw BackendError.gate((error as? Gate.Failure)?.message ?? "登录失败") }
+            catch { throw BackendError.gate((error as? Gate.Failure)?.message ?? T("gate.login.failed", "登录失败")) }
             (data, resp) = try await op()
-            if Gate.blocked(resp) { throw BackendError.gate("换了会话仍被拦 —— 密码可能已经改了") }
+            if Gate.blocked(resp) {
+                throw BackendError.gate(T("gate.retry.blocked.short", "换了会话仍被拦 —— 密码可能已经改了"))
+            }
         }
         guard let http = resp as? HTTPURLResponse else {
             throw BackendError.network("响应不是 HTTP")
@@ -55,7 +60,7 @@ enum Backend {
     static func uploadImage(_ image: UIImage, authorization: AIConsent.Authorization) async throws -> String {
         try AIConsent.require(authorization)
         guard let jpeg = compressed(image) else {
-            throw BackendError.contract("图片压不进 12MB —— 换一张或截取局部")
+            throw BackendError.contract(T("upload.too.large", "图片压不进 12MB —— 换一张或截取局部"))
         }
         return try await uploadJPEG(jpeg, authorization: authorization)
     }
@@ -126,7 +131,8 @@ enum Backend {
     }
 
     /// 按 doc_id 读原文一页。走工具直调通道（HTTP 恒 200，成败看 ok）。
-    static func readDoc(docId: String, offset: Int = 0, maxChars: Int = 4000)
+    static func readDoc(docId: String, offset: Int = 0,
+                        maxChars: Int = Remote.count("doc.page.chars", 4000, in: 500...20000))
         async throws -> DocPage
     {
         var req = URLRequest(url: URL(string: ChatStream.base + "/api/tools/kb.read_doc/invoke")!)

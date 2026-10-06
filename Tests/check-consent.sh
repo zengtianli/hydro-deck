@@ -6,6 +6,6 @@ scratch="$(mktemp -d /tmp/hydro-consent-sop.XXXXXX)"
 bin="hydro-deck-consent-check"
 trap 'rm -f "$HOME/Library/Preferences/$bin.plist"; rm -rf "$scratch"' EXIT
 xcrun --sdk macosx swiftc -target "$(uname -m)-apple-macos15.0" \
-  Shared/PlatformCompat.swift Sources/AIConsent.swift Sources/ChatStream.swift \
+  Shared/PlatformCompat.swift Shared/RemoteUI.swift Sources/AIConsent.swift Sources/ChatStream.swift \
   Sources/Backend.swift Sources/Gate.swift Tests/ConsentChecks.swift -o "$scratch/$bin"
 "$scratch/$bin"

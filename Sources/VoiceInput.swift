@@ -39,13 +39,13 @@ final class VoiceInput {
         SFSpeechRecognizer.requestAuthorization { auth in
             Task { @MainActor in
                 guard auth == .authorized else {
-                    self.problem = "语音识别权限被拒 —— 设置 → 水利助手 里打开"
+                    self.problem = T("voice.speech.denied", "语音识别权限被拒 —— 设置 → 水利助手 里打开")
                     return
                 }
                 AVAudioApplication.requestRecordPermission { ok in
                     Task { @MainActor in
                         guard ok else {
-                            self.problem = "麦克风权限被拒 —— 设置 → 水利助手 里打开"
+                            self.problem = T("voice.mic.denied", "麦克风权限被拒 —— 设置 → 水利助手 里打开")
                             return
                         }
                         self.begin()
@@ -58,7 +58,7 @@ final class VoiceInput {
     private func begin() {
         guard let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "zh-CN")),
               recognizer.isAvailable else {
-            problem = "这台设备上中文语音识别不可用"
+            problem = T("voice.unavailable", "这台设备上中文语音识别不可用")
             return
         }
         do {
@@ -87,7 +87,8 @@ final class VoiceInput {
                 }
             }
         } catch {
-            problem = "麦克风起不来：\((error as NSError).localizedDescription)"
+            problem = T("voice.mic.failed", "麦克风起不来：{reason}",
+                        ["reason": (error as NSError).localizedDescription])
             teardown()
         }
     }

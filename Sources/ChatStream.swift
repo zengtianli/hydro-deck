@@ -43,6 +43,9 @@ struct WireEvent {
     let seq: Int
     let runId: String
     let event: AgentEvent
+    /// 只有实时流的 run.start 帧带：后端 `ui.json` 的覆盖项（后端 `app/ui.py`，挂在帧顶层）。
+    /// nil = 帧里没有这个键（老后端、断线取回的回放）；有键但内容写坏 = `Lenient(nil)`。
+    var ui: Lenient<FeedUI>? = nil
 }
 
 enum StreamError: Error {
@@ -52,9 +55,9 @@ enum StreamError: Error {
 
     var headline: String {
         switch self {
-        case .gateBlocked:          return "被访问闸拦住了"
-        case .http(let s, _):       return "后端返回 HTTP \(s)"
-        case .network:              return "连不上后端"
+        case .gateBlocked:          return T("error.gate.title", "被访问闸拦住了")
+        case .http(let s, _):       return T("error.http.title", "后端返回 HTTP {status}", ["status": String(s)])
+        case .network:              return T("error.network.title", "连不上后端")
         }
     }
 }
@@ -184,7 +187,9 @@ enum ChatStream {
         switch type {
         case "run.start":
             guard let sid = p["session_id"] as? String else { return nil }
-            return wrap(.runStart(sessionId: sid, provider: p["provider_selected"] as? String))
+            var w = wrap(.runStart(sessionId: sid, provider: p["provider_selected"] as? String))
+            w.ui = decodeUI(d["ui"])
+            return w
         case "step.start":
             guard let i = p["index"] as? Int, let k = p["kind"] as? String else { return nil }
             return wrap(.stepStart(index: i, kind: k))
@@ -198,7 +203,7 @@ enum ChatStream {
             guard let t = p["text"] as? String else { return nil }
             return wrap(.answerDelta(text: t, reset: p["reset"] as? Bool ?? false))
         case "error":
-            let msg = (p["message"] as? String) ?? "未知错误"
+            let msg = (p["message"] as? String) ?? T("error.unknown", "未知错误")
             if p["nonfatal"] as? Bool ?? false { return wrap(.notice(message: msg)) }
             // 良性孤儿句号**只认 kind=run_orphaned**。synthetic:true 还覆盖泵线程异常/
             // trace 坏行/无终态 bug —— 那些是必须报给用户的真实故障，判宽了会把后端
@@ -218,5 +223,38 @@ enum ChatStream {
         default:
             return nil        // llm.request / retrieve / verify / heartbeat 等：本 app 不消费
         }
+    }
+}
+
+// MARK: - 后台覆盖项（改说明文字、状态名、阈值不用发版）
+
+extension ChatStream {
+    private static let uiCacheKey = "remote.ui"
+
+    /// `run.start` 帧顶层的 `ui` → `Lenient<FeedUI>`。键不存在返回 nil；存在但不是对象、
+    /// 或哪一项类型不对，整段作废（`Lenient(nil)`）—— 事件本身照常解，界面回到自带文案。
+    static func decodeUI(_ raw: Any?) -> Lenient<FeedUI>? {
+        guard let raw else { return nil }
+        guard raw is [String: Any], let data = try? JSONSerialization.data(withJSONObject: raw) else {
+            return Lenient(nil)
+        }
+        return (try? JSONDecoder().decode(Lenient<FeedUI>.self, from: data)) ?? Lenient(nil)
+    }
+
+    /// 实时流每次开头调一次：后台这次给了什么就用什么，并记下来给下次启动用；
+    /// 没给或写坏就回到自带文案，缓存一并清掉（不让一份过期的覆盖项留在机器上）。
+    static func adoptUI(_ ui: Lenient<FeedUI>?, defaults: UserDefaults = .standard) {
+        Remote.ui = ui?.value
+        if let value = ui?.value, let data = try? JSONEncoder().encode(value) {
+            defaults.set(data, forKey: uiCacheKey)
+        } else {
+            defaults.removeObject(forKey: uiCacheKey)
+        }
+    }
+
+    /// 启动时调：还没问第一句之前，首页先用上次后台给的那份。
+    static func restoreUI(defaults: UserDefaults = .standard) {
+        guard let data = defaults.data(forKey: uiCacheKey) else { return }
+        Remote.ui = (try? JSONDecoder().decode(Lenient<FeedUI>.self, from: data))?.value
     }
 }

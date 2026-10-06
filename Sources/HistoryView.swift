@@ -44,8 +44,8 @@ struct SessionSidebar: View {
         }
         .overlay {
             if model.store.sessions.isEmpty {
-                ContentUnavailableView("还没有会话", systemImage: "bubble.left.and.bubble.right",
-                                       description: Text("问出第一句就会出现在这里"))
+                ContentUnavailableView(T("history.empty.title", "还没有会话"), systemImage: "bubble.left.and.bubble.right",
+                                       description: Text(T("history.empty.body", "问出第一句就会出现在这里")))
             }
         }
     }
@@ -89,8 +89,8 @@ struct HistoryView: View {
             }
             .overlay {
                 if model.store.sessions.isEmpty {
-                    ContentUnavailableView("还没有会话", systemImage: "bubble.left.and.bubble.right",
-                                           description: Text("问出第一句就会出现在这里"))
+                    ContentUnavailableView(T("history.empty.title", "还没有会话"), systemImage: "bubble.left.and.bubble.right",
+                                           description: Text(T("history.empty.body", "问出第一句就会出现在这里")))
                 }
             }
         }
@@ -114,7 +114,8 @@ struct SessionRow: View {
                     Image(systemName: "arrow.triangle.2.circlepath")
                         .font(.caption).foregroundStyle(.orange)
                 }
-                Text("\(s.turns.count) 轮").font(.caption2).foregroundStyle(.secondary)
+                Text(T("history.turns", "{count} 轮", ["count": String(s.turns.count)]))
+                    .font(.caption2).foregroundStyle(.secondary)
             }
             Text(s.updatedAt.formatted(date: .abbreviated, time: .shortened))
                 .font(.caption2).foregroundStyle(.tertiary)
@@ -141,9 +142,9 @@ struct CitationSheet: View {
         NavigationStack {
             Group {
                 if loading {
-                    ProgressView("读取原文…")
+                    ProgressView(T("doc.loading", "读取原文…"))
                 } else if let e = error {
-                    ContentUnavailableView("原文读不到", systemImage: "doc.questionmark",
+                    ContentUnavailableView(T("doc.failed.title", "原文读不到"), systemImage: "doc.questionmark",
                                            description: Text(e))
                 } else if let p = page {
                     ScrollView {

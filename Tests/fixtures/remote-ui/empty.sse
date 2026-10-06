@@ -1,0 +1,12 @@
+event: run.start
+data: {"seq":0,"ts_ms":1791256280146,"run_id":"run-ui-empty","type":"run.start","node":null,"step":null,"latency_ms":null,"lane":null,"payload":{"question":"断面流速怎么算","session_id":"sess-ui","paradigm":"react","providers_available":[],"provider_selected":"deepseek","budget":{},"caps_stale":false,"caps_warnings":[],"fake_llm":false},"ui":{"copy":{},"vocab":{},"order":[],"limits":{}}}
+id: 0
+
+event: answer.delta
+data: {"seq":1,"ts_ms":1791256280146,"run_id":"run-ui-empty","type":"answer.delta","node":null,"step":null,"latency_ms":null,"lane":null,"payload":{"text":"按曼宁公式","reset":false}}
+id: 1
+
+event: run.end
+data: {"seq":2,"ts_ms":1791256280146,"run_id":"run-ui-empty","type":"run.end","node":null,"step":null,"latency_ms":null,"lane":null,"payload":{"terminal":"refused_no_evidence","answer":"语料里没有这条依据。","citations":[],"metrics":{},"wall_ms":0}}
+id: 2
+

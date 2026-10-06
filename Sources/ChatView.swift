@@ -158,8 +158,8 @@ struct ChatView: View {
 
     private var emptyHint: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("问一句试试").font(.headline)
-            Text("引用文号问指标分档、对比两版标准差异、拍张表格照片让它读数、或让它跑一次承载力/效率评价。答案带引文；坏掉的算法它会如实拒答。")
+            Text(T("empty.title", "问一句试试")).font(.headline)
+            Text(T("empty.body", "引用文号问指标分档、对比两版标准差异、拍张表格照片让它读数、或让它跑一次承载力/效率评价。答案带引文；坏掉的算法它会如实拒答。"))
                 .font(.subheadline).foregroundStyle(.secondary)
         }
         .padding(.top, 24)
@@ -205,7 +205,7 @@ struct ChatView: View {
         VStack(alignment: .leading, spacing: 6) {
             if let q = model.unsentQuestion {
                 HStack(alignment: .top) {
-                    Text("尚未发送：\(q)").font(.caption).lineLimit(2)
+                    Text(T("input.unsent", "尚未发送：{text}", ["text": q])).font(.caption).lineLimit(2)
                     Spacer()
                     Button("恢复文字") {
                         input = input.isEmpty ? q : input + "\n" + q
@@ -288,7 +288,7 @@ struct ChatView: View {
                 .foregroundStyle(Color.accentColor)
         }
         .photosPicker(isPresented: $showPhotos, selection: $pickedPhotos,
-                      maxSelectionCount: 3, matching: .images)
+                      maxSelectionCount: Remote.count("attach.max.count", 3, in: 1...6), matching: .images)
         .disabled(model.streaming || model.uploadingImage)
     }
 
@@ -315,7 +315,8 @@ struct ChatView: View {
     }
 
     private var inputField: some View {
-        TextField(voice.recording ? "说话中…" : "问水利…", text: $input, axis: .vertical)
+        TextField(voice.recording ? T("input.placeholder.recording", "说话中…")
+                                  : T("input.placeholder", "问水利…"), text: $input, axis: .vertical)
             .lineLimit(1...4)
             .textFieldStyle(.plain)
             .focused($inputFocused)
@@ -365,10 +366,9 @@ private struct TurnView: View {
         VStack(alignment: .leading, spacing: 8) {
             QuestionBubble(text: turn.question, imageCount: turn.imageCount)
             if let label = ChatModel.terminalLabel(turn.terminal) {
-                Label(label, systemImage: "exclamationmark.circle")
+                Label(label, systemImage: ChatModel.terminalIcon(turn.terminal))
                     .font(.caption.bold())
-                    .foregroundStyle(turn.terminal == "answered_degraded"
-                                     || turn.terminal == "aborted" ? .orange : .red)
+                    .foregroundStyle(terminalColor(turn.terminal))
             }
             if !turn.steps.isEmpty {
                 StepsDisclosure(steps: turn.steps, live: false)
@@ -392,7 +392,7 @@ private struct TurnView: View {
             }
             if !turn.citations.isEmpty {
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("引文 \(turn.citations.count) 条（点开看原文）")
+                    Text(T("turn.citations", "引文 {count} 条（点开看原文）", ["count": String(turn.citations.count)]))
                         .font(.caption.bold()).foregroundStyle(.secondary)
                     ForEach(turn.citations) { c in
                         Button { onCitation(c) } label: {
@@ -410,6 +410,19 @@ private struct TurnView: View {
             Divider().padding(.top, 4)
         }
     }
+
+    /// 终态标注的颜色。后台 vocab 给了色调名就用它；没给或给了不认识的名字用自带的。
+    private func terminalColor(_ terminal: String) -> Color {
+        switch Remote.tone(terminal) {
+        case "good":    return .green
+        case "warn":    return .orange
+        case "bad":     return .red
+        case "accent":  return .accentColor
+        case "muted":   return .secondary
+        default:        break
+        }
+        return terminal == "answered_degraded" || terminal == "aborted" ? .orange : .red
+    }
 }
 
 // MARK: - 过程（步骤/工具时间线）
@@ -424,11 +437,11 @@ private struct StepsDisclosure: View {
             VStack(alignment: .leading, spacing: 4) {
                 ForEach(steps) { s in
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
-                        Text("第 \(s.index + 1) 步").font(.caption2.monospacedDigit())
+                        Text(T("steps.step", "第 {n} 步", ["n": String(s.index + 1)])).font(.caption2.monospacedDigit())
                             .foregroundStyle(.secondary)
                         VStack(alignment: .leading, spacing: 2) {
                             if s.tools.isEmpty {
-                                Text("思考").font(.caption2).foregroundStyle(.tertiary)
+                                Text(T("steps.thinking", "思考")).font(.caption2).foregroundStyle(.tertiary)
                             }
                             ForEach(s.tools) { t in
                                 HStack(spacing: 4) {
@@ -457,7 +470,9 @@ private struct StepsDisclosure: View {
     private var summary: String {
         let n = steps.count
         let m = steps.reduce(0) { $0 + $1.tools.count }
-        return live ? "过程 · 第 \(n) 步 · \(m) 次工具" : "过程 · \(n) 步 · \(m) 次工具"
+        let values = ["steps": String(n), "tools": String(m)]
+        return live ? T("steps.summary.live", "过程 · 第 {steps} 步 · {tools} 次工具", values)
+                    : T("steps.summary", "过程 · {steps} 步 · {tools} 次工具", values)
     }
 }
 
@@ -469,7 +484,7 @@ private struct QuestionBubble: View {
             Spacer(minLength: 40)
             VStack(alignment: .trailing, spacing: 4) {
                 if imageCount > 0 {
-                    Label("附图 \(imageCount) 张", systemImage: "photo")
+                    Label(T("turn.images", "附图 {count} 张", ["count": String(imageCount)]), systemImage: "photo")
                         .font(.caption2).foregroundStyle(.secondary)
                 }
                 Text(text)

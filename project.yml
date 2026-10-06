@@ -21,6 +21,8 @@ targets:
       - path: Shared/AppLifecycle.swift
       - path: Shared/AppConfiguration.swift
       - path: Shared/AppLifecycleMobile.swift
+      # 总部共享：后台下发的说明文字、状态词表与阈值的接收代码（逐字节副本，multiplatform.py audit 查漂移）
+      - path: Shared/RemoteUI.swift
       - path: Sources
       - path: Resources/Assets.xcassets
         buildPhase: resources

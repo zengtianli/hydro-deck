@@ -9,7 +9,7 @@ lifecycle: active
 bundle_id: cyou.tianli.hydrodeck
 origin: own
 sop:
-  test: bash Tests/check-consent.sh
+  test: bash Tests/check-consent.sh && bash Tests/check-remote-ui.sh
   ui:
   - Sources/**
   - Shared/**
